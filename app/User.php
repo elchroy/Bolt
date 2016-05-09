@@ -2,6 +2,8 @@
 
 namespace Bolt;
 
+use Bolt\Video;
+use Bolt\Category;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'social_link', 'social_id', 'avatar',
     ];
 
     /**
@@ -23,4 +25,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }
