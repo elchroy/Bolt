@@ -12,10 +12,16 @@
 */
 
 $factory->define(Bolt\User::class, function (Faker\Generator $faker) {
+    
+    // prevent uniquness violations
+    $number = rand(100, 1000);
+
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt('bolt'),
         'remember_token' => str_random(10),
+        'social_id' => "{$faker->word}_$number",
+        'social_link' => 'facebook',
     ];
 });
