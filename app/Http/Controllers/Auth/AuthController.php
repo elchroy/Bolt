@@ -2,6 +2,7 @@
 
 namespace Bolt\Http\Controllers\Auth;
 
+use Auth;
 use Bolt\User;
 use Validator;
 use Socialite;
@@ -96,7 +97,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('home');
+        return redirect('dashboard');
     }
 
     /**

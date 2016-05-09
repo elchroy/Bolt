@@ -48,6 +48,15 @@ class UserTest extends TestCase
 	    				;
     }
 
+    public function testUserDashboard()
+    {
+        $user = $this->createUser();
+        $this->actingAs($user)
+            ->visit('/dashboard')
+            ->seePageIs('dashboard')
+            ;
+    }
+
     public function testUserLoginFails()
     {
     	$page = $this->visit('/login')
