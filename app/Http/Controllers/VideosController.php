@@ -4,12 +4,21 @@ namespace Bolt\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use Bolt\Video;
 use Bolt\Category;
 use Bolt\Http\Requests;
 
 class VideosController extends Controller
 {
+
+	public function __construct()
+	{
+		$this->middleware('auth', ['only' => [
+            'add',
+            'createVideo',
+        ]]);
+	}
     
     public function index()
     {
@@ -24,5 +33,23 @@ class VideosController extends Controller
     	$id = $request->id;
         $video = Video::find($id);
         return view('videos.show', compact('video'));
+    }
+
+    public function add()
+    {
+    	$this->middleware('auth');
+
+    	return view('videos.add');
+    }
+
+
+    public function createVideo(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = $request->all();
+        
+        $user->videos()->create($data);
+        return redirect('dashboard');
     }
 }
