@@ -11,6 +11,14 @@ use Bolt\Http\Requests;
 
 class VideosController extends Controller
 {
+
+	public function __construct()
+	{
+		$this->middleware('auth', ['only' => [
+            'add',
+            'createVideo',
+        ]]);
+	}
     
     public function index()
     {
@@ -29,6 +37,19 @@ class VideosController extends Controller
 
     public function add()
     {
+    	$this->middleware('auth');
+
     	return view('videos.add');
+    }
+
+
+    public function createVideo(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = $request->all();
+        
+        $user->videos()->create($data);
+        return redirect('dashboard');
     }
 }

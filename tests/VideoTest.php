@@ -34,14 +34,27 @@ class VideoTest extends TestCase
         // $this->countElements('.video-user', 1);
     }
 
-    public function testAddVideo()
+    public function testAddVideoLinkFailsForNoAuth()
+    {
+        $page = $this->visit('videos/add')
+                    ->seePageIs('login')
+                    ;
+    }
+
+    public function testAddVideoSucceeds()
     {
         $user = $this->createUser();
         $category = $this->createCategory();
         $page = $this->actingAs($user)
                     ->visit('videos/add')
                     ->seePageIs('videos/add')
-                    
+                    ->type('A new title', 'title')
+                    ->type('https://www.youtube.com/watch?v=3oT9PQcFZKc', 'url')
+                    ->type('A new description', 'description')
+                    ->select(1, 'category_id')
+                    ->press('Add')
+                    ->seePageIs('dashboard')
+                    // ->see('A new title')
                     ;
     }
 }
