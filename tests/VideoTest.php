@@ -74,4 +74,44 @@ class VideoTest extends TestCase
                     // ->see('A new title')
                     ;
     }
+
+    public function testVideoEditPage()
+    {
+        $this->createTTModels();
+
+        $user = Bolt\User::find(1);
+        $page = $this->actingAs($user)
+                ->visit('videos/1/edit')
+                ->see('A Introduction to MsDotNet')
+                ->see('This is an introduction to the Microsoft DotNet Framework. It is very powerful.')
+                ->type('This is the updated description.', 'description')
+                ->see('Save')
+                ->press('Save')
+                ;
+        // $video = Bolt\Video::find(1);
+        // $this->assertEquals('This is the updated description.', $video->description);
+    }
+
+    public function testEditVideoLinkFailsForNoAuth()
+    {
+        $page = $this->visit('videos/1/edit')
+                    ->seePageIs('login')
+                    ;
+    }
+
+    public function testEditVideoLinkFailsForWrongOwner()
+    {
+    	$this->createTTModels();
+
+    	factory(Bolt\User::class)->create([
+            'id'   => 100,
+        ]);
+
+        $user = Bolt\User::find(100);
+
+        $page = $this->actingAs($user)
+        			->visit('videos/1/edit')
+                    ->seePageIs('dashboard')
+                    ;
+    }
 }

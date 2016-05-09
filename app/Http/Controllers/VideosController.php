@@ -12,15 +12,22 @@ use Bolt\Http\Requests;
 class VideosController extends Controller
 {
 
-	public function __construct()
+	public function __construct(Request $request)
 	{
 		$this->middleware('auth', ['only' => [
             'add',
             'createVideo',
+            'edit',
+            'updateVideo',
+        ]]);
+
+        $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
+            'edit',
         ]]);
 
         $this->middleware('validateVideo', ['only' => [
             'createVideo',
+            'updateVideo',
         ]]);
 	}
     
@@ -34,8 +41,8 @@ class VideosController extends Controller
 
     public function show(Request $request)
     {
-    	$id = $request->id;
-        $video = Video::find($id);
+        $video = Video::find($request->id);
+
         return view('videos.show', compact('video'));
     }
 
@@ -55,5 +62,21 @@ class VideosController extends Controller
         
         $user->videos()->create($data);
         return redirect('dashboard');
+    }
+
+    public function edit(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        return view('videos.edit', compact('video'));
+    }
+
+    public function updateVideo(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        $video->update($request->all());
+
+        return redirect()->back();
     }
 }
