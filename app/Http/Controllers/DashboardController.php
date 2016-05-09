@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Bolt\Http\Controllers;
 
-use App\Http\Requests;
+use Bolt\Http\Requests;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('dashboard');
     }
 }
