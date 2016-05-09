@@ -58,4 +58,13 @@ class UserTest extends TestCase
     					// ->see('These credentials do not match our records.')
     					;
     }
+
+    public function testUserSocialLogin()
+    {
+        $response = $this->call('GET', 'auth/facebook');
+        $target = $response->headers->get('location');
+        $expectedTarget = 'https://www.facebook.com/v2.5/dialog/oauth?client_id=';
+        $this->assertEquals($expectedTarget, substr($target, 0, 53));
+        $this->assertResponseStatus(302);
+    }
 }
