@@ -23,4 +23,14 @@ class VideoTest extends TestCase
     		->seePageIs('videos');
     		// ->see('MsDotNet');
     }
+
+    public function testVideoShowWithoutAuthUser()
+    {
+    	$this->createVideo();
+    	$this->visit('videos/1')
+                // ->see('roy')
+    			// ->see('A Introduction to MsDotNet')
+    			;	
+        // $this->countElements('.video-user', 1);
+    }
 }

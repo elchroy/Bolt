@@ -23,4 +23,5 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('auth/{link}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{link}/callback', 'Auth\AuthController@handleProviderCallback');
 Route::get('videos', 'VideosController@index');
+Route::get('videos/{id}', 'VideosController@show');
 

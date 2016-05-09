@@ -18,4 +18,11 @@ class VideosController extends Controller
         $paging = $videos->render();
         return view('videos.index', compact('videos', 'categories', 'paging'));
     }
+
+    public function show(Request $request)
+    {
+    	$id = $request->id;
+        $video = Video::find($id);
+        return view('videos.show', compact('video'));
+    }
 }
