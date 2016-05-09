@@ -57,4 +57,21 @@ class VideoTest extends TestCase
                     // ->see('A new title')
                     ;
     }
+
+    public function testAddVideoValidatorFails()
+    {
+        $user = $this->createUser();
+        $category = $this->createCategory();
+        $page = $this->actingAs($user)
+                    ->visit('videos/add')
+                    ->seePageIs('videos/add')
+                    ->type('', 'title')
+                    ->type('', 'url')
+                    ->type('', 'description')
+                    ->select('', 'category_id')
+                    ->press('Add')
+                    ->seePageIs('videos/add')
+                    // ->see('A new title')
+                    ;
+    }
 }
