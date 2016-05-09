@@ -34,3 +34,9 @@
         <button type="submit" class="add-video btn-teach-tech">Save</button>
     </div>
 </form>
+
+<form method="POST" action="/videos/{{ $video->id }}/delete">
+    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="add-video btn-teach-tech">Delete</button>
+</form>

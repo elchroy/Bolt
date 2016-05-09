@@ -19,10 +19,12 @@ class VideosController extends Controller
             'createVideo',
             'edit',
             'updateVideo',
+            'deleteVideo',
         ]]);
 
         $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
             'edit',
+            'deleteVideo',
         ]]);
 
         $this->middleware('validateVideo', ['only' => [
@@ -78,5 +80,15 @@ class VideosController extends Controller
         $video->update($request->all());
 
         return redirect()->back();
+    }
+
+    public function deleteVideo(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        $video->delete();
+
+        $request->session()->flash('success', 'Video Deleted');
+        return redirect()->to('dashboard');
     }
 }

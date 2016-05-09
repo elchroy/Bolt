@@ -114,4 +114,22 @@ class VideoTest extends TestCase
                     ->seePageIs('dashboard')
                     ;
     }
+
+    public function testVideoDelete()
+    {
+        $this->createTTModels();
+
+        $user = Bolt\User::find(1);
+        $page = $this->actingAs($user)
+                ->visit('videos/1/edit')
+                ->press('Delete')
+                // ->seePageIs('dashboard')
+                // ->see('Video Deleted')
+                ;
+
+        // $this->assertSessionHas('success', 'Please Login.');
+        $this->countElements('.delete_video', 0);
+        $video = Bolt\Video::find(1);
+        $this->assertEquals(null, $video);
+    }
 }
