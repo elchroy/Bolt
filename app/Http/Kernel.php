@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'guest' => \Bolt\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'validateVideo' => \Bolt\Http\Middleware\ValidateVideo::class,
+        'owner' => \Bolt\Http\Middleware\CheckOwnership::class,
     ];
 }
