@@ -18,6 +18,10 @@ class VideosController extends Controller
             'add',
             'createVideo',
         ]]);
+
+        $this->middleware('validateVideo', ['only' => [
+            'createVideo',
+        ]]);
 	}
     
     public function index()
