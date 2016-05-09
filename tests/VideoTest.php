@@ -75,7 +75,7 @@ class VideoTest extends TestCase
                     ;
     }
 
-    public function notestVideoEditPage()
+    public function testVideoEditPage()
     {
         $this->createTTModels();
 
@@ -84,6 +84,7 @@ class VideoTest extends TestCase
                 ->visit('videos/1/edit')
                 ->see('A Introduction to MsDotNet')
                 ->see('This is an introduction to the Microsoft DotNet Framework. It is very powerful.')
+                ->type('This is the updated description.', 'description')
                 ->see('Save')
                 ;
     }

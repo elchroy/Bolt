@@ -26,6 +26,7 @@ class VideosController extends Controller
 
         $this->middleware('validateVideo', ['only' => [
             'createVideo',
+            'updateVideo',
         ]]);
 	}
     
@@ -39,8 +40,8 @@ class VideosController extends Controller
 
     public function show(Request $request)
     {
-    	$id = $request->id;
-        $video = Video::find($id);
+        $video = Video::find($request->id);
+
         return view('videos.show', compact('video'));
     }
 
@@ -64,8 +65,7 @@ class VideosController extends Controller
 
     public function edit(Request $request)
     {
-        $id = $request->id;
-        $video = Video::find($id);
+        $video = Video::find($request->id);
 
         return view('videos.edit', compact('video'));
     }
