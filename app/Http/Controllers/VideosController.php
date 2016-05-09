@@ -4,6 +4,7 @@ namespace Bolt\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use Bolt\Video;
 use Bolt\Category;
 use Bolt\Http\Requests;
@@ -24,5 +25,10 @@ class VideosController extends Controller
     	$id = $request->id;
         $video = Video::find($id);
         return view('videos.show', compact('video'));
+    }
+
+    public function add()
+    {
+    	return view('videos.add');
     }
 }

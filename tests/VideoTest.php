@@ -33,4 +33,15 @@ class VideoTest extends TestCase
     			;	
         // $this->countElements('.video-user', 1);
     }
+
+    public function testAddVideo()
+    {
+        $user = $this->createUser();
+        $category = $this->createCategory();
+        $page = $this->actingAs($user)
+                    ->visit('videos/add')
+                    ->seePageIs('videos/add')
+                    
+                    ;
+    }
 }
