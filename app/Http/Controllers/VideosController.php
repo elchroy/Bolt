@@ -18,6 +18,7 @@ class VideosController extends Controller
             'add',
             'createVideo',
             'edit',
+            'updateVideo',
         ]]);
 
         $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
@@ -68,5 +69,14 @@ class VideosController extends Controller
         $video = Video::find($request->id);
 
         return view('videos.edit', compact('video'));
+    }
+
+    public function updateVideo(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        $video->update($request->all());
+
+        return redirect()->back();
     }
 }
