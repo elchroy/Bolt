@@ -15,4 +15,12 @@ class VideoTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function testVideoIndex()
+    {
+    	$category = $this->createCategory();
+    	$this->visit('/videos')
+    		->seePageIs('videos');
+    		// ->see('MsDotNet');
+    }
 }

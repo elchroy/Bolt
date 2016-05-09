@@ -22,4 +22,5 @@ Route::get('/dashboard', 'DashboardController@index');
 // Social Authentication Routes
 Route::get('auth/{link}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{link}/callback', 'Auth\AuthController@handleProviderCallback');
+Route::get('videos', 'VideosController@index');
 
