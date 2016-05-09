@@ -52,27 +52,27 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $user;
     }
 
-    // protected function createCategory()
-    // {
-    //     $category = factory(TeachTech\Category::class)->create([
-    //         'name'      => 'MsDotNet',
-    //         'user_id'   => 1,
-    //         'brief'     => 'This section deals with lessons on MsDotNet.'
-    //     ]);
-    //     return $category;
-    // }
+    protected function createCategory()
+    {
+        $category = factory(Bolt\Category::class)->create([
+            'name'      => 'MsDotNet',
+            'user_id'   => 1,
+            'brief'     => 'This section deals with lessons on MsDotNet.'
+        ]);
+        return $category;
+    }
 
-    // protected function createVideo()
-    // {
-    //     $this->createCategory();
-    //     $video = $this->createUser()->videos()->create([
-    //         'title'         => 'A Introduction to MsDotNet',
-    //         'url'           => 'https://www.youtube.com/watch?v=wCA6jCUbaFQ',
-    //         'description'   => 'This is an introduction to the Microsoft DotNet Framework. It is very powerful.',
-    //         'category_id'   => 1,
-    //     ]);
-    //     return $video;
-    // }
+    protected function createVideo()
+    {
+        $this->createCategory();
+        $video = $this->createUser()->videos()->create([
+            'title'         => 'A Introduction to MsDotNet',
+            'url'           => 'https://www.youtube.com/watch?v=wCA6jCUbaFQ',
+            'description'   => 'This is an introduction to the Microsoft DotNet Framework. It is very powerful.',
+            'category_id'   => 1,
+        ]);
+        return $video;
+    }
 
     // public function createComment()
     // {
@@ -86,7 +86,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     public function createTTModels()
     {
-        $this->createUser();
+        $this->createVideo();
         // $this->createComment();
     }
 
