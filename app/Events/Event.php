@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Bolt\Events;
 
 abstract class Event
 {
