@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('profile/edit', 'UsersController@edit');
+Route::post('profile/update', 'UsersController@update');
 
 // Social Authentication Routes
 Route::get('auth/{link}', 'Auth\AuthController@redirectToProvider');

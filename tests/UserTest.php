@@ -106,4 +106,30 @@ class UserTest extends TestCase
                 ;
         $page = $this->assertResponseStatus(200);
     }
+
+    public function testUserEdit()
+    {
+        $this->createTTModels();
+        $user = Bolt\User::find(1);
+        
+        $page = $this->actingAs($user)
+            ->visit('/dashboard')
+            ->click('Edit Profile')
+            ->seePageIs('profile/edit')
+            ->type('Royale', 'name')
+            ->type('royally@example.com', 'email')
+            ->press('Update')
+            ->seePageIs('dashboard')
+            ->see('Royale')
+            ;
+    }
+
+    public function testUserEditNoAuth()
+    {   
+        $page = $this->visit('/dashboard')
+            ->seePageIs('login')
+            
+            ->see('Login')
+            ;
+    }
 }

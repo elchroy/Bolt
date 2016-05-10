@@ -15,6 +15,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit">Upload</button>
                     </form>
+                    <a href="{{ url('profile/edit') }}">Edit Profile</a>
 
 
                 </div>
