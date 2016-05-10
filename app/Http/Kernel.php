@@ -49,8 +49,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \Bolt\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'validateVideo' => \Bolt\Http\Middleware\ValidateVideo::class,
-        'validateComment' => \Bolt\Http\Middleware\ValidateComment::class,
+        'video' => \Bolt\Http\Middleware\ValidateVideo::class,
+        'avatar' => \Bolt\Http\Middleware\ValidateAvatar::class,
+        'comment' => \Bolt\Http\Middleware\ValidateComment::class,
         'owner' => \Bolt\Http\Middleware\CheckOwnership::class,
     ];
 }

@@ -27,7 +27,7 @@ class VideosController extends Controller
             'deleteVideo',
         ]]);
 
-        $this->middleware('validateVideo', ['only' => [
+        $this->middleware('video', ['only' => [
             'createVideo',
             'updateVideo',
         ]]);

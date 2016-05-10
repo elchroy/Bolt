@@ -38,3 +38,4 @@ Route::get('videos', 'VideosController@index');
 Route::patch('comments/{id}', 'CommentsController@updateComment');
 Route::delete('comments/{id}', 'CommentsController@deleteComment');
 
+Route::post('user/changeAvatar', 'UsersController@changeAvatar');

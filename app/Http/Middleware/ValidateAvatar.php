@@ -5,7 +5,7 @@ namespace Bolt\Http\Middleware;
 use Closure;
 use Validator;
 
-class ValidateComment
+class ValidateAvatar
 {
     /**
      * Handle an incoming request.
@@ -16,24 +16,22 @@ class ValidateComment
      */
     public function handle($request, Closure $next)
     {
-        $validator = $this->validateComment($request->all());
+        $file = $request->input('file');
+        $fileArray = ['image' => $file];
+
+        $validator = $this->validateAvatar($fileArray);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->messages());
         }
+
         return $next($request);
     }
 
-    /**
-     * Get a validator for an incoming video addition request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validateComment(array $data)
+    protected function validateAvatar(array $data)
     {
         return Validator::make($data, [
-            'comment'         => 'required|max:255',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:150' // max 150kb
         ]);
     }
 }
