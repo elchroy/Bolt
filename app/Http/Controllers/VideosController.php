@@ -44,8 +44,9 @@ class VideosController extends Controller
     public function show(Request $request)
     {
         $video = Video::find($request->id);
+        $comments = $video->comments;
 
-        return view('videos.show', compact('video'));
+        return view('videos.show', compact('video', 'comments'));
     }
 
     public function add()

@@ -24,10 +24,16 @@ Route::get('auth/{link}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{link}/callback', 'Auth\AuthController@handleProviderCallback');
 
 
+// Routes for comments
+Route::post('videos/{id}/comments/add', 'CommentsController@createComment');
 Route::post('videos/add', 'VideosController@createVideo');
 Route::get('videos/add', 'VideosController@add');
 Route::get('videos/{id}/edit', 'VideosController@edit');
 Route::post('videos/{id}/update', 'VideosController@updateVideo');
 Route::delete('videos/{id}/delete', 'VideosController@deleteVideo');
+
 Route::get('videos/{id}', 'VideosController@show');
 Route::get('videos', 'VideosController@index');
+Route::patch('comments/{id}', 'CommentsController@updateComment');
+Route::delete('comments/{id}', 'CommentsController@deleteComment');
+
