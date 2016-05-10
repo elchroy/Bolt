@@ -15,6 +15,11 @@ class UsersController extends Controller
 		$this->middleware('avatar', ['only' => [
 			'changeAvatar'
 		]]);
+
+        $this->middleware('auth', ['only' => [
+            'edit',
+            'update',
+        ]]);
 	}
     public function changeAvatar(Request $request, Uploader $uploader)
     {
@@ -26,5 +31,19 @@ class UsersController extends Controller
         $user->avatar = $result['url'];
         $user->save();
         return redirect()->back();
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('user.edit', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $user->update($request->all());
+
+        return redirect('dashboard');
     }
 }
