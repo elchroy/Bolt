@@ -20,6 +20,8 @@ class VideosController extends Controller
             'edit',
             'updateVideo',
             'deleteVideo',
+            'favorite',
+            'unfavorite',
         ]]);
 
         $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
@@ -100,5 +102,33 @@ class VideosController extends Controller
         $toSearch = $data['search'];
         $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(5);
         return view('videos.index', compact('videos'));
+    }
+
+    public function favorite(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        $liked = $video->favorites()->liked()->first();
+        
+        if ($liked == null) {
+            $liked = $video->favorites()->create([
+                        'user_id' => Auth::user()->id,
+                    ]);
+        }
+
+        $liked->activate();
+
+        return redirect()->back();
+    }
+
+    public function unfavorite(Request $request)
+    {
+        $video = Video::find($request->id);
+
+        $liked = $video->favorites()->liked()->first();
+        
+        $liked->deactivate();
+
+        return redirect()->back();
     }
 }

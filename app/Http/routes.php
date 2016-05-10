@@ -32,6 +32,8 @@ Route::get('videos/search', 'VideosController@search');
 Route::get('videos/{id}/edit', 'VideosController@edit');
 Route::post('videos/{id}/update', 'VideosController@updateVideo');
 Route::delete('videos/{id}/delete', 'VideosController@deleteVideo');
+Route::post('videos/{id}/favorite', 'VideosController@favorite');
+Route::post('videos/{id}/unfavorite', 'VideosController@unfavorite');
 
 Route::get('videos/{id}', 'VideosController@show');
 Route::get('videos', 'VideosController@index');

@@ -146,4 +146,39 @@ class VideoTest extends TestCase
                 ;
         $this->assertEquals(200, $response->status());
     }
+
+    public function testVideoLike()
+    {
+        $this->createTTModels();
+
+        $user = Bolt\User::find(1);
+        $video = Bolt\Video::find(1);
+        $page = $this->actingAs($user)
+                ->visit('videos/1')
+                ->see('Favorite')
+                ->press('Favorite')
+                ->seePageIs('videos/1')
+                ->see('Unfavorite')
+                ;
+        $status = $user->favors($video);
+        $this->assertEquals(1, $status);
+    }
+
+    public function testVideoUnLike()
+    {
+        $video = $this->createVideo();
+        $favorite = $this->createFavoriteFor($video);
+
+        $user = Bolt\User::find(1);
+        $video = Bolt\Video::find(1);
+        $page = $this->actingAs($user)
+                ->visit('videos/1')
+                ->see('Unfavorite')
+                ->press('Unfavorite')
+                ->seePageIs('videos/1')
+                ->see('Favorite')
+                ;
+        $status = $user->favors($video);
+        $this->assertEquals(0, $status);
+    }
 }
