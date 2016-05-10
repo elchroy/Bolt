@@ -85,11 +85,12 @@ class VideoTest extends TestCase
                 ->see('A Introduction to MsDotNet')
                 ->see('This is an introduction to the Microsoft DotNet Framework. It is very powerful.')
                 ->type('This is the updated description.', 'description')
+                ->select(1, 'category_id')
                 ->see('Save')
                 ->press('Save')
                 ;
-        // $video = Bolt\Video::find(1);
-        // $this->assertEquals('This is the updated description.', $video->description);
+        $video = Bolt\Video::find(1);
+        $this->assertEquals('This is the updated description.', $video->description);
     }
 
     public function testEditVideoLinkFailsForNoAuth()
