@@ -80,7 +80,7 @@ class UserTest extends TestCase
     public function testUserChangeAvatar()
     {
         $file = __DIR__ . '/def_profile.png';
-        $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.jpg', 'image/jpeg', 200, null, true);
+        $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.png', 'image/png', 200, null, true);
         $user = $this->createUser();
         $page = $this->actingAs($user)
                 ->visit('/dashboard')

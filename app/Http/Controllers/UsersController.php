@@ -4,7 +4,7 @@ namespace Bolt\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Input;
+use Auth;
 use Bolt\Http\Requests;
 use Bolt\Http\Controllers\BoltUploader as Uploader;
 
@@ -18,7 +18,7 @@ class UsersController extends Controller
 	}
     public function changeAvatar(Request $request, Uploader $uploader)
     {
-        $file  = Input::file('file');
+        $file  = $request->file('file');
 
         $result = $uploader->uploadAvatar($file);
 

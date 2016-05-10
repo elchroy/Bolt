@@ -16,7 +16,7 @@ class ValidateAvatar
      */
     public function handle($request, Closure $next)
     {
-        $file = $request->input('file');
+        $file = $request->file('file');
         $fileArray = ['image' => $file];
 
         $validator = $this->validateAvatar($fileArray);
