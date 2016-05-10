@@ -76,4 +76,34 @@ class UserTest extends TestCase
         $this->assertEquals($expectedTarget, substr($target, 0, 53));
         $this->assertResponseStatus(302);
     }
+
+    public function testUserChangeAvatar()
+    {
+        $file = __DIR__ . '/def_profile.png';
+        $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.jpg', 'image/jpeg', 200, null, true);
+        $user = $this->createUser();
+        $page = $this->actingAs($user)
+                ->visit('/dashboard')
+                // ->click('Change Avatar')
+                ->attach($uploadedFile, 'file')
+                ->press('Upload')
+                ->seePageIs('dashboard')
+                ;
+        $this->assertResponseStatus(200);
+    }
+
+    public function testUserChangeAvatarFails()
+    {
+        $file = __DIR__ . '/pix.jpg';
+        $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.jpg', 'image/jpeg', 200, null, true);
+        $user = $this->createUser();
+        $page = $this->actingAs($user)
+                ->visit('/dashboard')
+                // ->click('Change Avatar')
+                ->attach($uploadedFile, 'file')
+                ->press('Upload')
+                ->seePageIs('dashboard')
+                ;
+        $page = $this->assertResponseStatus(200);
+    }
 }

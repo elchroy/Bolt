@@ -25,7 +25,7 @@ class CommentsController extends Controller
         //     'deleteComment',
         // ]]);
 
-        // $this->middleware('validateComment', ['only' => [
+        // $this->middleware('comment', ['only' => [
         //     'createComment',
         //     'updateComment',
         // ]]);

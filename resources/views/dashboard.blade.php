@@ -9,6 +9,14 @@
 
                 <div class="panel-body">
                     You are logged in!
+
+                    <form enctype="multipart/form-data" method="POST" action={{ url('user/changeAvatar') }}>
+                        <input type="file" name="file">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit">Upload</button>
+                    </form>
+
+
                 </div>
             </div>
         </div>
