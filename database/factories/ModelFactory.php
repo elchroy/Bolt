@@ -57,3 +57,16 @@ $factory->define(Bolt\Comment::class, function (Faker\Generator $faker) {
         'user_id'       => rand(1, 5)
     ];
 });
+
+$factory->define(Bolt\Favorite::class, function (Faker\Generator $faker) {
+    $favored = [
+        'Bolt\Video',
+        'Bolt\Comment',
+    ];
+    $choice = rand(0, 1);
+    return [
+        'user_id'           => rand(1, 5),
+        'favoritable_id'    => rand(1, 5),
+        'favoritable_type'  => $favored[$choice],
+    ];
+});

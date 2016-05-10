@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
 
         factory('Bolt\Comment', 15)->create();
 
+        factory('Bolt\Favorite', 15)->create();
+
         Model::reguard();
     }
 }

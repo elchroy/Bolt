@@ -90,17 +90,17 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->createComment();
     }
 
-    // public function createFavoriteFor($model)
-    // {
-    //     $favorite = factory(TeachTech\Favorite::class)->create([
-    //         'user_id' => 1,
-    //         'favoritable_id'    => 1,
-    //         'favoritable_type'  => get_class($model),
-    //         'status'            => 1,
-    //     ]);
+    public function createFavoriteFor($model)
+    {
+        $favorite = factory(Bolt\Favorite::class)->create([
+            'user_id' => 1,
+            'favoritable_id'    => 1,
+            'favoritable_type'  => get_class($model),
+            'status'            => 1,
+        ]);
 
-    //     return $favorite;
-    // }
+        return $favorite;
+    }
 
     /**
     * Verify the number of dom elements

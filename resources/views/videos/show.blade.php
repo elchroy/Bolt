@@ -4,6 +4,16 @@
 	<button type="submit">POST</button>
 </form>
 
+@if(Auth::user())
+<div>
+    @if( Auth::user()->favors($video) )
+        @include('partials.fav', ['action' => 'unfavorite', 'model' => 'videos', 'id' => $video->id, 'button' => 'Unfavorite'])
+    @else
+        @include('partials.fav', ['action' => 'favorite', 'model' => 'videos', 'id' => $video->id, 'button' => 'Favorite'])
+    @endif
+</div>
+@endif
+
 @foreach($comments as $comment)
 {{ $comment->title }}
 @endforeach
