@@ -74,20 +74,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $video;
     }
 
-    // public function createComment()
-    // {
-    //     $comment = factory(TeachTech\Comment::class)->create([
-    //         'comment'   => 'Very nice introduction to the MS-Dot-Net Framework.',
-    //         'video_id'  => 1,
-    //         'user_id'   => 1,
-    //     ]);
-    //     return $comment;
-    // }
+    public function createComment()
+    {
+        $comment = factory(Bolt\Comment::class)->create([
+            'comment'   => 'Very nice introduction to the MS-Dot-Net Framework.',
+            'video_id'  => 1,
+            'user_id'   => 1,
+        ]);
+        return $comment;
+    }
 
     public function createTTModels()
     {
         $this->createVideo();
-        // $this->createComment();
+        $this->createComment();
     }
 
     // public function createFavoriteFor($model)

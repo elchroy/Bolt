@@ -48,3 +48,12 @@ $factory->define(Bolt\Category::class, function (Faker\Generator $faker) {
         'user_id'   => rand(1, 5),
     ];
 });
+
+
+$factory->define(Bolt\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'comment'       => $faker->sentence(rand(3, 6), true),
+        'video_id'      => rand(1, 5),
+        'user_id'       => rand(1, 5)
+    ];
+});
