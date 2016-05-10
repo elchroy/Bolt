@@ -28,6 +28,7 @@ Route::get('auth/{link}/callback', 'Auth\AuthController@handleProviderCallback')
 Route::post('videos/{id}/comments/add', 'CommentsController@createComment');
 Route::post('videos/add', 'VideosController@createVideo');
 Route::get('videos/add', 'VideosController@add');
+Route::get('videos/search', 'VideosController@search');
 Route::get('videos/{id}/edit', 'VideosController@edit');
 Route::post('videos/{id}/update', 'VideosController@updateVideo');
 Route::delete('videos/{id}/delete', 'VideosController@deleteVideo');

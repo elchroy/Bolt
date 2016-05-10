@@ -92,4 +92,13 @@ class VideosController extends Controller
         $request->session()->flash('success', 'Video Deleted');
         return redirect()->to('dashboard');
     }
+
+    public function search(Request $request)
+    {
+        $data = $request->all();
+
+        $toSearch = $data['search'];
+        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(5);
+        return view('videos.index', compact('videos'));
+    }
 }

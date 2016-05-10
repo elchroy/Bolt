@@ -132,4 +132,18 @@ class VideoTest extends TestCase
         $video = Bolt\Video::find(1);
         $this->assertEquals(null, $video);
     }
+
+    public function testVideoSearch()
+    {
+        $this->createVideo();
+        $response = $this->call('GET', 'videos/search', ['search' => 'Introdu'])
+
+        // $this->visit('/videos')
+                // ->type('Introdu', 'search')
+                // ->press("Search")
+                // ->seePageIs('/videos')
+                // ->see()
+                ;
+        $this->assertEquals(200, $response->status());
+    }
 }
