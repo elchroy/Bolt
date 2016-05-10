@@ -42,7 +42,7 @@ class CommentTest extends TestCase
         // $this->countElements('.like-comment', 2);
     }
 
-    public function notestCommentCreateFailsNoComment()
+    public function testCommentCreateFailsNoComment()
     {
         $this->createTTModels();
 
@@ -59,7 +59,7 @@ class CommentTest extends TestCase
         // $this->countElements('.like-comment', 1);
     }
 
-    public function notestCommentCreateFailsCommentTooLong()
+    public function testCommentCreateFailsCommentTooLong()
     {
         $this->createTTModels();
 
@@ -98,7 +98,7 @@ class CommentTest extends TestCase
 
     }
 
-    public function notestCommentUpdateFails()
+    public function testCommentUpdateFails()
     {
         $this->createTTModels();
 
@@ -119,5 +119,16 @@ class CommentTest extends TestCase
                     ;
         $comment = Bolt\Comment::find(1);
         $this->assertEquals(null, $comment);
+    }
+
+    public function testCommentUserCommentedAt()
+    {
+        $this->createTTModels();
+        $comment = Bolt\Comment::find(1);
+        $user = Bolt\User::find(1);
+        $commenter = $comment->user;
+        $commentedAt = $comment->commentedAt();
+        $this->assertTrue($user == $commenter);
+        $this->assertEquals('1 second ago', $commentedAt);
     }
 }
