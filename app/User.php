@@ -44,6 +44,16 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function getAvatar()
+    {
+        return $this->hasAvatar() ? $this->avatar : asset('uploads/def_profile.png');
+    }
+
+    private function hasAvatar()
+    {
+        return $this->avatar != null;
+    }
+
     /**
     * Get all of the staff member's photos.
     */
