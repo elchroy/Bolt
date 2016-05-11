@@ -24,7 +24,7 @@ class Video extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function vID()
+    public function linkId()
     {
         $p = (explode('=', $this->url));
         return end($p);

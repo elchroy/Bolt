@@ -6,3 +6,4 @@ Homestead.json
 .env
 composer.lock
 public/uploads/banner.jpg
+/public/bootstrap
