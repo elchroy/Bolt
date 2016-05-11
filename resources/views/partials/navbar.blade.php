@@ -21,7 +21,7 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
-                    <li><button href="" class="add-video-button">Upload</button></li>
+                    <li><button href="" class="bolt-button add-video-button">Upload</button></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,7 +82,7 @@
         border-top: 1px solid transparent;
     }
 
-    .navbar-nav li button {
+    .bolt-button {
         border-top: 1px solid rgba(144, 22, 22, 0);
         background: rgb(143, 10, 10);
         line-height: 40px;
