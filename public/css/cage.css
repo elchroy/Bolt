@@ -1,9 +1,10 @@
 body {
-    background-color: rgba(1, 59, 19, 0.71);
+    background-color: #fff;
     font-family: 'Open Sans', sans-serif;
     line-height: 21px;
 	font-size: 13px;
-    color: #6a737b;
+    color: #fff;
+    background: #CCCCCC url('/../uploads/banner.jpg') no-repeat center top fixed;
 }
 
 ol, ul {
@@ -39,7 +40,19 @@ h4, h5, h6 {
     display: table;
 }
 
-body > section,
+body .bolt-section,
 .footer {
 	padding: 70px 0;
+}
+
+.container {
+	width: 90%;
+	padding 3px 10px;
+}
+
+input {
+	background: transparent;
+    border: none;
+    border-bottom: solid #184339 3px;
+    width: 100%;
 }
