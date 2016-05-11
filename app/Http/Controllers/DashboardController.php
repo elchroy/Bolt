@@ -4,6 +4,7 @@ namespace Bolt\Http\Controllers;
 
 use Bolt\Http\Requests;
 use Illuminate\Http\Request;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -24,6 +25,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user = Auth::user();
+        $videos = $user->videos()->paginate(30);
+        return view('dashboard', compact('videos', 'user'));
     }
 }
