@@ -24,7 +24,8 @@
                     <li><button href="" class="bolt-button add-video-button">Upload</button></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            <span class="hidden-xs"><img src="{{ Auth::user()->getAvatar() }}" class="img-responsive" id="user-avatar"></span>
+                            <span class="hidden-sm">{{ Auth::user()->name }}</span> <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -105,6 +106,17 @@
 
     .dropdown-menu {
         padding: 0;
+    }
+
+    #user-avatar {
+        width: 100%;
+        max-width: 30px;
+        height: auto;
+        display: inline;
+        border: #fff solid 1px;
+        border-radius: 10%;
+        padding: 0;
+        margin: 0px;
     }
 
     .dropdown-menu li a{
