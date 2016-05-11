@@ -1,0 +1,48 @@
+.bolt-login {
+    background-color: rgba(230, 233, 233, 0.39);
+    font-size: 120%;
+    margin: 5%; 
+    padding: 5%;
+}
+
+input[type=checkbox] {
+    width: auto;
+}
+
+button {
+    width: 100%;
+}
+
+.bolt-social {
+    width: 100%;
+    background: none;
+    line-height: 40px;
+    padding: 0px;
+    border: 0px;
+}
+
+.bolt-social {
+    width: 100%;
+    background: none;
+    line-height: 40px;
+    padding: 0px;
+    border: 0px;
+}
+
+.social-login a {
+    display: block;
+    margin: 10px;
+    width: 100%;
+}
+
+.social-login a button {
+    color: #fff;
+}
+
+#social-login {
+    border-left: solid #172E35 5px;
+}
+
+.button-icon {
+    padding-right: 10px;
+}

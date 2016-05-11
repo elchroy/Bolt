@@ -1,0 +1,139 @@
+body {
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 21px;
+	font-size: 13px;
+    color: #fff;
+    /*background: #CCCCCC url('/../uploads/banner.jpg') no-repeat center top fixed;*/
+}
+
+ol, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: #fff;
+	
+    -webkit-transition: all .3s ease-in 0s;
+       -moz-transition: all .3s ease-in 0s;
+        -ms-transition: all .3s ease-in 0s;
+         -o-transition: all .3s ease-in 0s;
+            transition: all .3s ease-in 0s;
+}
+
+a, a:focus, a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+	font-weight: normal;
+	margin: 0;
+}
+
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+body .bolt-section,
+.footer {
+	padding: 70px 0;
+}
+
+.container {
+	width: 90%;
+	padding 3px 10px;
+}
+
+.bolt-section {
+	color: #172E35;
+}
+
+.bolt-section a {
+	color: rgb(143, 10, 10);
+}
+
+.bolt-section a:hover {
+	color: rgb(143, 10, 10);
+	text-decoration: underline;
+}
+
+.bolt-button {
+    border-top: 1px solid rgba(144, 22, 22, 0);
+    background: rgb(143, 10, 10);
+    line-height: 40px;
+    margin-top: 8px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 110%;
+    border: none;
+}
+
+input {
+	background: transparent;
+    border: none;
+    border-bottom: solid #184339 3px;
+    width: 100%;
+}
+
+input:focus {
+	background: #fff;
+	line-height: 40px;
+    border: #222 solid;
+
+    -webkit-transition: all .3s ease-in 0s;
+       -moz-transition: all .3s ease-in 0s;
+        -ms-transition: all .3s ease-in 0s;
+         -o-transition: all .3s ease-in 0s;
+            transition: all .3s ease-in 0s;
+}
+
+.section-title {}
+
+.section-title h2 {
+    color: #172E35;
+    font-size: 40px;
+    margin: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.sec-sub-title {
+    margin: 35px 0 45px;
+}
+
+.sec-sub-title p {
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 18px;
+    color: #5b646e;
+}
+
+.divider {
+  margin-top: 30px;
+}
+
+.divider i {
+  color: #333333;
+}
+
+.divider:before,
+.divider:after {
+  content: "__________________________________";
+  color: #e6e8ea;
+  position: relative;
+  bottom: 6px;
+}
+
+.divider:before {
+  right: 10px;
+}
+
+.divider:after {
+  left: 10px;
+}
