@@ -40,7 +40,8 @@ class VideosController extends Controller
         $videos = Video::latest()->paginate(24);
         $categories = Category::all();
         $paging = $videos->render();
-        return view('videos.index', compact('videos', 'categories', 'paging'));
+        $title = 'All Videos';
+        return view('videos.index', compact('videos', 'categories', 'paging', 'title'));
     }
 
     public function show(Request $request)
@@ -100,8 +101,11 @@ class VideosController extends Controller
         $data = $request->all();
 
         $toSearch = $data['search'];
-        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(5);
-        return view('videos.index', compact('videos'));
+        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(12);
+        $title = "Search results for '$toSearch'";
+        $paging = $videos->appends(['search' => $toSearch])->links();
+
+        return view('videos.index', compact('videos', 'paging', 'title'));
     }
 
     public function favorite(Request $request)
