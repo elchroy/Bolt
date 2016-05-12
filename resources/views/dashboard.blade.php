@@ -1,5 +1,42 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var $sidebar   = $("#user-sidebar"),
+            $window    = $(window),
+            offset     = $sidebar.offset(),
+            topPadding = 70;
+
+        
+        $('#edit-profile').click(function () {
+            $('.sideforms').not('[id="edit-profile-form"]').hide(600);
+            $('#edit-profile-form').toggle(600);
+        });
+
+        $('#change-avatar').click(function () {
+            $('.sideforms').not('[id="change-avatar-form"]').hide(600);
+            $('#change-avatar-form').toggle(600);
+        });
+
+
+        $window.scroll(function() {
+            if ($window.scrollTop() > offset.top - 70) {
+                $sidebar.stop().animate({
+                    marginTop: $window.scrollTop() - offset.top + topPadding
+                });
+            } else {
+                $sidebar.stop().animate({
+                    marginTop: 0
+                });
+            }
+        });
+
+    });
+</script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -11,33 +48,43 @@
             </div>
 
             <div class="list-group">
-                <a href="#user_videos" class="list-group-item"><span class="badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a>
-                <a href="#fav-videos" class="list-group-item"><span class="badge">45</span>Favorite Videos</a>
+                <a href="#user-videos" class="list-group-item"><span class="badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a>
+                <a href="#fav-videos" class="list-group-item"><span class="badge">{{ $user->numFavVids() }}</span>Favorite Videos</a>
                 <!-- <button class="list-group-item"><span class="badge">+</span>Upload Video</button> -->
             </div>
             <div>
                 <button class="user-actions" id="edit-profile"><i class="fa fa-edit"></i>Edit Profile</button>
+                <div id="edit-profile-form" class="sideforms" hidden>
+                    @include('user.edit-form')
+                </div>
                 <button class="user-actions" id="change-avatar"><i class="fa fa-image"></i>Change Avatar</button>
+                <div id="change-avatar-form" class="sideforms" hidden>
+                    <form enctype="multipart/form-data" method="POST" action={{ url('user/changeAvatar') }}>
+                        <input type="file" name="file">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="col-md-9" id="user-mainbar">
 
-                <div id="user-videos">
-                        <div class="title"><h3>Your Videos</h3></div>
+                <div>
+                    <div class="section-title" id="user-videos"><h2>Your Videos</h2></div>
                     <div class="row main-panel">
                         @foreach($videos as $video)
-                            <div class="col-md-3 col-sm-6 col-xs-12 single-video">
-                                <a href="/videos/{{ $video->id }}">
-                                    <div class="thumbnail">
-                                        <img class="video-image" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
-                                        <p class="video-title">{{ $video->title }}</p>
-                                    </div>
-                                </a>
-                            </div>
+                            @include('videos.video-item')
                         @endforeach
                     </div>
-                    {!! $videos->render() !!}
+
+                    <div class="section-title" id="fav-videos"><h2>Favorite Videos</h2></div>
+                    <div class="row main-panel">
+                        @foreach($favs as $video)
+                            @include('videos.video-item')
+                        @endforeach
+                    </div>
+                    <!-- {!! $videos->render() !!} -->
                 </div>
 
         </div>
@@ -49,7 +96,7 @@
 <style type="text/css">
     .main-panel {
         /*overflow: auto;*/
-        /*max-height: 70vh;*/
+        /*max-height: 100vh;*/
     }
 
     .title,max-height: {

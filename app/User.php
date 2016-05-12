@@ -62,6 +62,21 @@ class User extends Authenticatable
         return $this->hasMany(Favorite::class);
     }
 
+    public function favoriteVideos()
+    {
+        $videoLikes = $this->favorites()->where('favoritable_type', 'Bolt\Video')->where('status', 1)->get();
+        $favVids = array_map(function ($like) {
+            return \Bolt\Video::find($like['favoritable_id']);
+        }, $videoLikes->toArray());
+
+        return $favVids;
+    }
+
+    public function numFavVids()
+    {
+        return count($this->favoriteVideos());
+    }
+
     public function favors(\Illuminate\Database\Eloquent\Model $model)
     {
         $liked = $this->favored($model);
