@@ -44,7 +44,7 @@ class Video extends Model
 
     public function srcFrame()
     {
-        $srcFrame = "http://" . $this->urlHost() . '/embed/' . $this->vID();
+        $srcFrame = "http://" . $this->urlHost() . '/embed/' . $this->linkId();
         return $srcFrame;
     }
 
