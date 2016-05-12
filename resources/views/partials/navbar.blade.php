@@ -37,7 +37,7 @@
                 @endif
       </ul>
              
-             <form class="navbar-form search-form pull-right">
+             <form method="GET" action="{{ url('videos/search') }}" class="navbar-form search-form pull-right">
                 <div class="form-group" style="display:inline;">
                   <div class="input-group" style="display:table;">
                     <span class="input-group-addon" style="width:50%;background: transparent; border: none;">

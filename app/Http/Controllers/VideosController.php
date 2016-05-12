@@ -101,8 +101,11 @@ class VideosController extends Controller
         $data = $request->all();
 
         $toSearch = $data['search'];
-        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(5);
-        return view('videos.index', compact('videos'));
+        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(12);
+        $title = "Search results for '$toSearch'";
+        $paging = $videos->appends(['search' => $toSearch])->links();
+
+        return view('videos.index', compact('videos', 'paging', 'title'));
     }
 
     public function favorite(Request $request)

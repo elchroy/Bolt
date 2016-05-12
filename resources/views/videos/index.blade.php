@@ -12,7 +12,7 @@
                             @include('videos.video-item')
                         @endforeach
                     </div>
-                    {!! $videos->render() !!}
+                    {!! $paging !!}
                 </div>
 
         </div>
