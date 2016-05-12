@@ -49,5 +49,7 @@
     <!-- <script src="{{ asset('bootstrap/js/jquery-1.12.1.min.js') }}"></script> -->
     <!-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/cage.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
