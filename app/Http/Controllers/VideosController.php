@@ -46,7 +46,7 @@ class VideosController extends Controller
     public function show(Request $request)
     {
         $video = Video::find($request->id);
-        $comments = $video->comments;
+        $comments = $video->comments()->latest()->paginate(15);
 
         return view('videos.show', compact('video', 'comments'));
     }

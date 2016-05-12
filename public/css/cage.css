@@ -81,6 +81,31 @@ input {
     width: 100%;
 }
 
+button {
+    width: 100%;
+}
+
+.button-full {
+	margin-top: 0px;
+	padding: 0 5px;
+}
+
+.button-half {
+	width: auto;
+}
+
+textarea {
+	resize: none;
+    line-height: 30px;
+    padding: 0 3px;
+    margin: 0px;
+    border: solid rgb(23, 45, 52);
+    width: 100%;
+    border-radius: 2px;
+    color: #415359;
+
+}
+
 input:focus {
 	background: #fff;
 	line-height: 40px;
@@ -100,7 +125,7 @@ input:focus {
     font-size: 40px;
     margin: 20px;
     font-weight: 800;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .sec-sub-title {

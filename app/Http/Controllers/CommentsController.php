@@ -14,21 +14,21 @@ class CommentsController extends Controller
 
 	public function __construct(Request $request)
 	{
-		// $this->middleware('auth', ['only' => [
-  //           'createComment',
-  //           'updateComment',
-  //           'deleteComment',
-  //       ]]);
+		$this->middleware('auth', ['only' => [
+            'createComment',
+            'updateComment',
+            'deleteComment',
+        ]]);
 
-        // $this->middleware('owner:' . $request->id . ',' . Comment::class, ['only' => [
-        //     'updateComment',
-        //     'deleteComment',
-        // ]]);
+        $this->middleware('owner:' . $request->id . ',' . Comment::class, ['only' => [
+            'updateComment',
+            'deleteComment',
+        ]]);
 
-        // $this->middleware('comment', ['only' => [
-        //     'createComment',
-        //     'updateComment',
-        // ]]);
+        $this->middleware('comment', ['only' => [
+            'createComment',
+            'updateComment',
+        ]]);
 	}
     public function createComment(Request $request)
     {
