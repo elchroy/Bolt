@@ -168,18 +168,6 @@
     .user-info #user-email {
     }
 
-    .single-video {
-        /*background: rgb(23, 46, 53);*/
-        padding: 1px;
-        margin: 0px;
-        border-radius: 3px;
-        max-height: 100vh;
-    }
-
-    .video-image {
-        width: 100%;
-    }
-
 </style>
 
 @section('page')

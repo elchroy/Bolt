@@ -6,3 +6,18 @@
         </div>
     </a>
 </div>
+
+<style type="text/css">
+
+    .single-video {
+        background: rgb(225, 228, 229);
+        padding: 1px;
+        margin: 0px;
+        border-radius: 3px;
+        max-height: 100vh;
+    }
+
+    .video-image {
+        width: 100%;
+    }
+</style>

@@ -21,6 +21,7 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
+                    <li><a href="{{ url('/videos') }}">All Videos</a></li>
                     <li><button href="" class="bolt-button add-video-button">Upload</button></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -36,10 +37,10 @@
                 @endif
       </ul>
              
-             <form class="navbar-form search-form">
+             <form class="navbar-form search-form pull-right">
                 <div class="form-group" style="display:inline;">
                   <div class="input-group" style="display:table;">
-                    <span class="input-group-addon" style="width:1%;background: transparent; border: none;">
+                    <span class="input-group-addon" style="width:50%;background: transparent; border: none;">
                         <input class="form-control input-group-addon" id="search-videos" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
                     </span>
                   </div>

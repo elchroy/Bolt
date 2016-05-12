@@ -40,7 +40,8 @@ class VideosController extends Controller
         $videos = Video::latest()->paginate(24);
         $categories = Category::all();
         $paging = $videos->render();
-        return view('videos.index', compact('videos', 'categories', 'paging'));
+        $title = 'All Videos';
+        return view('videos.index', compact('videos', 'categories', 'paging', 'title'));
     }
 
     public function show(Request $request)
