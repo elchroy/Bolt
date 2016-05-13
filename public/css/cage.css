@@ -40,8 +40,7 @@ h4, h5, h6 {
     display: table;
 }
 
-body .bolt-section,
-.footer {
+body .bolt-section {
 	padding: 70px 0;
 }
 

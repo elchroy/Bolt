@@ -1,36 +1,32 @@
-<div class="navbar navbar-fixed-bottom" id="footer">
-  
+<div class="navbar-fixed-bottom footer wow fadeInUp animated" id="footer">
   <div class="container">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url('/login') }}">Login</a></li>
-        <li><a href="{{ url('/register') }}">Register</a></li>        
-      </ul>
-  </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <p class="copyright text-center">
+          {{ date('Y') }} Designed by <a href="http://github.com/andela-celisha-wigwe">Roy</a>.
+        </p>
+      </div>
+    </div>
 
+  </div>
 </div>
-</nav>
 
 <style type="text/css">
 
-    #footer {
-      background: transparent;
-      background: rgb(23, 46, 53);
-      border: 0 none;
-      margin: 0;
-      
-        -webkit-transition: background-color 800ms linear;
-           -moz-transition: background-color 800ms linear;
-            -ms-transition: background-color 800ms linear;
-             -o-transition: background-color 800ms linear;
-                transition: background-color 800ms linear;
-    }
+.footer {
+  background-color: #1ea78d;
+  color: #fff;
 
-    .navbar li {
-        margin: 0 2px;
-    }
+    -webkit-transition: background-color 800ms linear;
+       -moz-transition: background-color 800ms linear;
+        -ms-transition: background-color 800ms linear;
+         -o-transition: background-color 800ms linear;
+            transition: background-color 800ms linear;
+}
 
-    .navbar-nav li a {
-        /*border-top: 1px solid transparent;*/
-    }
+.footer a:hover {
+  color: #062033;
+}
 
 </style>
