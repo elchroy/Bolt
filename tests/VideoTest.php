@@ -156,10 +156,10 @@ class VideoTest extends TestCase
         $video = Bolt\Video::find(1);
         $page = $this->actingAs($user)
                 ->visit('videos/1')
-                ->see('Favorite')
-                ->press('Favorite')
+                ->see('Like')
+                ->press('Like')
                 ->seePageIs('videos/1')
-                ->see('Unfavorite')
+                ->see('Unlike')
                 ;
         $status = $user->favors($video);
         $this->assertEquals(1, $status);
@@ -174,12 +174,55 @@ class VideoTest extends TestCase
         $video = Bolt\Video::find(1);
         $page = $this->actingAs($user)
                 ->visit('videos/1')
-                ->see('Unfavorite')
-                ->press('Unfavorite')
+                ->see('Unlike')
+                ->press('Unlike')
                 ->seePageIs('videos/1')
-                ->see('Favorite')
+                ->see('Like')
                 ;
         $status = $user->favors($video);
         $this->assertEquals(0, $status);
+    }
+
+    public function testVideoFavoriteWithAjax()
+    {
+        $this->createTTModels();
+        $video = Bolt\Video::find(1);
+
+        $user = Bolt\User::find(1);
+
+        $ajaxReturn = $this->actingAs($user)->json('POST', 'videos/1/favorite', [], ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response = get_object_vars($ajaxReturn)['response'];
+
+        $jsonResponse = $response->content();
+
+        $this->assertEquals('{"status":"success","message":"Done"}', $jsonResponse);
+        $this->assertEquals(200, $response->status());
+
+        $favorite = Bolt\Favorite::find(1);
+        $status = $favorite->status;
+        $this->assertEquals(1, $status);
+        $this->assertTrue(1 == $status);
+    }
+
+    public function testVideoUnfavoriteWithAjax()
+    {
+        $this->createTTModels();
+        $video = Bolt\Video::find(1);
+        $this->createFavoriteFor($video);
+
+        $user = Bolt\User::find(1);
+
+        $ajaxReturn = $this->actingAs($user)->json('POST', 'videos/1/unfavorite', [], ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response = get_object_vars($ajaxReturn)['response'];
+
+        $jsonResponse = $response->content();
+
+        $this->assertEquals('{"status":"success","message":"Done"}', $jsonResponse);
+        $this->assertEquals(200, $response->status());
+
+        $favorite = Bolt\Favorite::find(1);
+        $status = $favorite->status;
+        $this->assertEquals(0, $status);
+        $this->assertTrue(0 == $status);
     }
 }
