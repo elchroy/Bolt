@@ -9,35 +9,6 @@ input[type=checkbox] {
     width: auto;
 }
 
-.bolt-social {
-    width: 100%;
-    background: none;
-    line-height: 40px;
-    padding: 0px;
-    border: 0px;
-}
-
-.bolt-social {
-    width: 100%;
-    background: none;
-    line-height: 40px;
-    padding: 0px;
-    border: 0px;
-}
-
-.social-login a {
-    display: block;
-    margin: 10px;
-    width: 100%;
-}
-
-.social-login a button {
-    color: #fff;
-}
-
-#social-login {
-    border-left: solid #172E35 5px;
-}
 
 .button-icon {
     padding-right: 10px;

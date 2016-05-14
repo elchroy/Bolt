@@ -4,7 +4,7 @@ body {
     line-height: 21px;
 	font-size: 13px;
     color: #fff;
-    /*background: #CCCCCC url('/../uploads/banner.jpg') no-repeat center top fixed;*/
+    background: rgb(242, 242, 242)  url('/../uploads/bg.png') repeat center top fixed;
 }
 
 ol, ul {
@@ -40,8 +40,7 @@ h4, h5, h6 {
     display: table;
 }
 
-body .bolt-section,
-.footer {
+body .bolt-section {
 	padding: 70px 0;
 }
 
@@ -104,6 +103,38 @@ textarea {
     border-radius: 2px;
     color: #415359;
 
+}
+
+
+
+.bolt-social {
+    width: 100%;
+    background: none;
+    line-height: 40px;
+    padding: 0px;
+    margin: 5px;
+    border: 0px;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+}
+
+.button-icon {
+    padding-right: 10px;
+}
+
+.social-login a {
+    display: block;
+    margin: 10px;
+    width: 100%;
+}
+
+.social-login a button {
+    color: #fff;
+}
+
+#social-login {
+    border-left: solid #172E35 5px;
 }
 
 input:focus {
