@@ -4,34 +4,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var $sidebar   = $("#user-sidebar"),
-            $window    = $(window),
-            offset     = $sidebar.offset(),
-            topPadding = 70;
-
-        
-        $('#edit-profile').click(function () {
-            $('.sideforms').not('[id="edit-profile-form"]').hide(600);
-            $('#edit-profile-form').toggle(600);
-        });
-
-        $('#change-avatar').click(function () {
-            $('.sideforms').not('[id="change-avatar-form"]').hide(600);
-            $('#change-avatar-form').toggle(600);
-        });
-
-
-        $window.scroll(function() {
-            if ($window.scrollTop() > offset.top - 70) {
-                $sidebar.stop().animate({
-                    marginTop: $window.scrollTop() - offset.top + topPadding
-                });
-            } else {
-                $sidebar.stop().animate({
-                    marginTop: 0
-                });
-            }
-        });
+        keepSideBar("user-sidebar");
 
     });
 </script>
