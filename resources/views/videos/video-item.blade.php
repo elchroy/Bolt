@@ -1,4 +1,4 @@
-<div class="col-md-3 col-sm-6 col-xs-12 shingle-video {{ randomFader() }} animated" data-wow-duration="20000ms" data-wow-delay="900ms">
+<div class="col-md-3 col-sm-6 col-xs-12 single-video {{ randomFader() }} animated" data-wow-duration="20000ms" data-wow-delay="900ms">
     
     <div class="single-video">
         <a href="/videos/{{ $video->id }}">
@@ -14,7 +14,7 @@
                                     <li class="button-half"><i class="fa fa-google-plus fa-lg"></i></li>
                                 </ul> -->
                 </div>
-                <img class="video-image" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                <img class="video-image" src="{{ asset('uploads/banner.jpg') }}" srjc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 <p class="video-title truncate">{{ $video->title }}</p>
             </div>
         </a>

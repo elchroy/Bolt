@@ -41,14 +41,26 @@
     </style>
 </head>
 <body id="bolt-layout">
+
+    @if(Request::is('/'))
+        <div id="preloader">
+            <img src="{{ asset('uploads/bolt-logo.png') }}" alt="Bolt">
+            <!-- <h2>Welcome to Bolt</h2> -->
+        </div>
+    @endif
+
     
     @include('partials.navbar')
 
-    <div class="bolt-section">
+    <div id="bolt-section" class="bolt-section">
+        <p style="color: black; display: block;">{{ Request::is('/') }}</p>
+    
         @yield('content')
     </div>
 
     @include('partials.footer')
+
+    <a href="#bolt-section" hrekf="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
 
     <!-- JavaScripts -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script> -->
@@ -79,5 +91,14 @@
 
     <script type="text/javascript" src="{{ asset('js/cage.js') }}"></script>
     @yield('scripts')
+    <script type="text/javascript">
+
+        $(window).load(function(){
+            $("#preloader").fadeOut('slide');
+        });
+
+
+
+    </script>
 </body>
 </html>

@@ -22,10 +22,10 @@
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
                     <li><a href="{{ url('/videos') }}">All Videos</a></li>
-                    <li><button href="" class="bolt-button add-video-button">Upload</button></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="hidden-xs"><img src="{{ Auth::user()->getAvatar() }}" class="img-responsive" id="user-avatar"></span>
+                            <span class="hidden-xs"></span>
+                            <img src="{{ Auth::user()->getAvatar() }}" width="20" class="img-rounded" id="user-avatar">
                             <span class="hidden-sm">{{ Auth::user()->name }}</span> <span class="caret"></span>
                         </a>
 
@@ -38,13 +38,14 @@
       </ul>
              
              <form method="GET" action="{{ url('videos/search') }}" class="navbar-form search-form pull-right">
-                <div class="form-group" style="display:inline;">
-                  <div class="input-group" style="display:table;">
-                    <span class="input-group-addon" style="width:50%;background: transparent; border: none;">
-                        <input class="form-control input-group-addon" id="search-videos" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
-                    </span>
-                  </div>
-                </div>
+                <!-- <div class="form-group" style="display:inline;"> -->
+                  <!-- <div class="input-group" style="display:table;"> -->
+                    <!-- <span class="input-group-addon" style="width:50%;background: transparent; border: none;"> -->
+                        <input class="form-control input-group-addon" id="search-videos" name="search" placeholder="Search for videos" autocomplete="off" autofocus="autofocus" type="text">
+                        <i class="fa fa-search"></i>
+                    <!-- </span> -->
+                  <!-- </div> -->
+                <!-- </div> -->
               </form>
 
 
@@ -56,10 +57,10 @@
 <style type="text/css">
 
     #navigation {
-      background: transparent;
-      background: rgb(23, 46, 53);
+      background: #FFFFFF;
       border: 0 none;
       margin: 0;
+      border-bottom: rgba(255, 255, 255, 0.1) solid 3px;
       
         -webkit-transition: background-color 800ms linear;
            -moz-transition: background-color 800ms linear;
@@ -73,15 +74,35 @@
     }
 
     .navbar-brand {
-      /*padding: 0;*/
+        color: #1EA78D;
+        font-size: 40px;
+        font-family: monospace;
+    }
+
+    .navbar-brand:hover {
+        color: #172E35;
     }
 
     .navbar li {
         margin: 0 2px;
+        background: transparent;
     }
 
-    .navbar-nav li a {
-        border-top: 1px solid transparent;
+    ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .navbar-nav li a,
+    .navbar-nav li .dropdown a {
+        color: #fff;
+        font-size: 100%;
+        margin-top: 15px;
+        display: block;
+        background: rgb(30, 167, 141);
+        border-radius: 3px;
+        padding-top: 10px; 
+        padding-bottom: 5px; 
     }
 
     .bolt-button {
@@ -99,9 +120,7 @@
     .navbar-nav li a.current,
     .navbar-nav li a:focus,
     .navbar-nav li a:hover {
-        /*background-color: rgb(17, 78, 21);*/
-        background: rgb(143, 10, 10);
-        border-top: 1px solid #32B0EE;
+        background: rgb(9, 76, 63);
         color: #fff;
     }
 
@@ -110,34 +129,51 @@
     }
 
     #user-avatar {
-        width: 100%;
-        max-width: 30px;
-        height: auto;
+        /*position: relative;*/
+        /*float: left;*/
+        /*max-width: 30px;*/
         display: inline;
-        border: #fff solid 1px;
-        border-radius: 10%;
-        padding: 0;
-        margin: 0px;
+        /*left: 0;*/
+        height: auto;
     }
 
     .dropdown-menu li a{
-        line-height: 40px;
+        background: #fff;
+        margin: 5px 0;
+        color: #1EA78D;
+        /*padding: 0px;*/
+        display: block;
+        border-radius: 0px;
+        widows: 100%;
+    }
+
+    ul.dropdown-menu {
+        background: rgba(255, 255, 255, 0);
     }
 
     .dropdown-menu li a:hover,
     .dropdown-menu li a:focus {
         /*background-color: rgba(24, 68, 53, 0.62)*/
-        background: rgb(143, 10, 10);
+        background: rgb(9, 76, 63);
     }
 
     #search-videos {
         width: 100%;
         padding: 0 10%;
-        line-height: 30px;
+        /*line-height: 30px;*/
         background: transparent;
         border: none;
-        border-bottom: solid #CCC 3px;
-        border-radius: 0px;
+        border-bottom: solid #1EA78D 3px;
+        /*border-radius: 0px;*/
+        color: #172E35;
+        font-weight: bold;
+        font-family: monospace;
+    }
+
+    .navbar-toggle {
+        padding: 0px;
+        margin-right: inherit;
+        color: #1EA78D;
     }
 
 </style>
