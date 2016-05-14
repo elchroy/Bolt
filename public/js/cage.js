@@ -38,14 +38,14 @@ var keepSideBar = function (sidebarId)
 
 
 
-var toggleDiv = function (buttonID, divID, commonClass)
+var toggleDiv = function (buttonID, divID, commonClass, time = null)
 {
   // console.log(buttonID);
     $('#' + buttonID).click(function () {
-        $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide();
+        $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide(time);
         // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);
         // $('#'+divID).toggle('fade');
-        $('#'+divID).toggle();
+        $('#'+divID).toggle(time);
         // $('#'+divID).fadeToggle(600);
     });
 }
