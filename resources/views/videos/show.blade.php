@@ -1,10 +1,69 @@
 @extends('layouts.app')
 
+@section('scripts')
+	<script type="text/javascript">
+		$(document).ready( function () {
+			fav = $('#favForm');
+			
+
+
+			fav.click( function (e) {
+				e.preventDefault();
+
+				action = $(this).attr('action');
+				token = fav.children('#_token').val();
+				data = {_token: token};
+
+				$.post(action, data, function (d) {
+
+					button = fav.children('.fav-button');
+					id = button.attr('id');
+					'<i class="fa fa-lg fa-heart"></i>'
+			
+
+					if (id == 'button-favorite') {
+						replaceClass = 'button-unfavorite';
+						replaceHTML = '<i class="fa fa-lg fa-heart"></i> Unlike';
+					} else if (id == 'button-unfavorite') {
+						replaceClass = 'button-favorite';
+						replaceHTML = '<i class="fa fa-lg fa-heart-o"></i> Like';
+					}
+
+					
+					actionArray = action.split('/');
+					currentAction = actionArray[3];
+					currentVideo = actionArray[2];
+					var reverseAction;
+					
+					if (currentAction == 'favorite') {
+						reverseAction = 'unfavorite';
+					} else {
+						reverseAction = 'favorite';
+					}
+
+
+					button.attr('id', function () {
+						return 'button-' + reverseAction;
+					});
+
+
+					button.removeClass(id).addClass(replaceClass).html(replaceHTML);
+					
+					fav.attr('action', function () {
+						return '/videos/' + currentVideo + '/' + reverseAction;
+					});
+				});
+
+			});
+		});
+	</script>
+@endsection
+
 @section('content')
 	    <div class="row">
 	    	<div class="col-md-9">
 	    		<div id="video-screen">
-	    			<iframe id="video-frame" src="{{ $video->srcFrame() }}?autoplay=0" frameborder="0" allowfullscreen ></iframe>
+	    			<!-- <iframe id="video-frame" src="{{ $video->srcFrame() }}?autoplay=0" frameborder="0" allowfullscreen ></iframe> -->
 	    		</div>
 	    		<div class="row">
 	    			<div class="col-md-10">
@@ -54,7 +113,7 @@
 	    				<div class="col-md-12 single-comment">
 	    					<div class="row single-comment-row">
 	    						<div class="col-md-2 commenter-avatar">
-	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
+	    							<!-- <img class="img-responsive" src="{{ $comment->user->getAvatar() }}"> -->
 	    						</div>
 	    						<div class="col-md-10 comment-body">
 	    							<p class="comment-text">{{ $comment->comment }}</p>

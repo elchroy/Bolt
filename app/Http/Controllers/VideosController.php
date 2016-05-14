@@ -122,6 +122,16 @@ class VideosController extends Controller
 
         $liked->activate();
 
+        if($request->ajax()){
+            
+            $output = [
+                'status' => 'success',
+                'message' => 'Done',
+            ];
+
+            return json_encode($output);
+        }
+
         return redirect()->back();
     }
 
@@ -130,8 +140,18 @@ class VideosController extends Controller
         $video = Video::find($request->id);
 
         $liked = $video->favorites()->liked()->first();
-        
+
         $liked->deactivate();
+
+        if($request->ajax()){
+            
+            $output = [
+                'status' => 'success',
+                'message' => 'Done',
+            ];
+
+            return json_encode($output);
+        }
 
         return redirect()->back();
     }
