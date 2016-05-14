@@ -1,10 +1,10 @@
-<a href="{{url('auth', ['link' => 'facebook'])}}" class="btn-facebook">
+<a href="{{url('auth', ['link' => 'facebook'])}}" class="bolt-social btn-facebook">
     <button class="bolt-social">
         <i class="fa fa-facebook fa-lg button-icon"></i>Facebook
     </button>
 </a>
 
-<a href="{{url('auth', ['link' => 'twitter'])}}" class="btn-twitter">
+<a href="{{url('auth', ['link' => 'twitter'])}}" class="bolt-social btn-twitter">
     <button class="bolt-social">
         <i class="fa fa-twitter fa-lg button-icon"></i>Twitter
     </button>
