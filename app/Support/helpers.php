@@ -10,7 +10,8 @@ function alpharray()
 
 function randomFader()
 {
-	$options = ['fadeInRight', 'fadeInUp', 'fadeInDown', 'fadeInLeft'];
-	$choice = rand(0, 3);
+	$options = ['rubberBand', 'BounceInRight', 'fadeIn', 'BounceInUp', 'BounceInDown', 'BounceInLeft', 'fadeInRight', 'fadeInUp', 'fadeInDown', 'fadeInLeft', 'slideInRight', 'slideInUp', 'slideInDown', 'slideInLeft'];
+	$count = count($options);
+	$choice = rand(0, $count - 1);
 	return $options[$choice];
 }

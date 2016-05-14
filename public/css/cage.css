@@ -5,6 +5,7 @@ body {
 	font-size: 13px;
     color: #fff;
     background: rgb(242, 242, 242)  url('/../uploads/bg.png') repeat center top fixed;
+    font-family: monospace;
 }
 
 ol, ul {
@@ -156,7 +157,12 @@ input:focus {
     font-size: 40px;
     margin: 20px;
     font-weight: 800;
-    /*text-transform: uppercase;*/
+    /* text-transform: uppercase; */
+    font-family: monospace;
+    text-align: center;
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px;
 }
 
 .sec-sub-title {
@@ -200,4 +206,29 @@ input:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px;
+}
+
+#preloader {
+  background-color: #fff;
+  border: solid #fff;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1100;
+}
+
+#preloader > img {
+  left: 40%;
+  position: absolute;
+  top: 40%;
+}
+
+#back-top {
+  bottom: 20px;
+  position: fixed;
+  right: 25px;
+  z-index: 10;
+  background: #172E35;
+  padding: 5px 10px;
+  color: #fff;
 }

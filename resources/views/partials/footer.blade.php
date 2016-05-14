@@ -1,4 +1,4 @@
-<div class="navbar-fixed-bottom footer wow fadeInUp animated" id="footer">
+<div class="navbar-static-bottom footer wow fadeInUp animated" id="footer">
   <div class="container">
     
     <div class="row">
@@ -17,6 +17,8 @@
 .footer {
   background-color: #1ea78d;
   color: #fff;
+  font-family: monospace;
+  bottom: 0px;
 
     -webkit-transition: background-color 800ms linear;
        -moz-transition: background-color 800ms linear;

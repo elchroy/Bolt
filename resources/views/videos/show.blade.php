@@ -60,6 +60,7 @@
 @endsection
 
 @section('content')
+	<div class="container">
 	    <div class="row">
 	    	<div class="col-md-9">
 	    		<div id="video-screen">
@@ -96,7 +97,6 @@
 		        </div>
 	    	</div>
 	    	<div class="col-md-3 video-right">
-				<div>
 			    	<form action="/videos/{{ $video->id }}/comments/add" method="POST">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<textarea name="comment" placeholder="Post a comment." maxlength="255" reqkuired>{{ old('comment') }}</textarea>
@@ -105,7 +105,6 @@
                             </span>
                     	<button class="bolt-button button-full" type="submit">POST</button>
 					</form>
-				</div>
 
 		    	<div class="row video-comments">
 
@@ -147,8 +146,8 @@
 	}
 
 	.video-comments {
-		overflow: scroll;
-		max-height: 70vh;
+		/*overflow: scroll;*/
+		/*max-height: 70vh;*/
 		background: rgb(221, 224, 224);
 	    border: none;
 	    padding: 0px;
@@ -170,13 +169,18 @@
 	}
 
 	.single-comment-row div {
-		padding: 2px;
+		padding: 0 17px;
 	}
 
 	.comment-info {
 		font-style: italic;
     	color: #8F0A0A;
     	font-size: 85%;
+	}
+
+	.comment-text {
+		word-wrap: break-word;
+	    text-align: justify;
 	}
 
 	iframe {
