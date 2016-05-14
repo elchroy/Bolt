@@ -86,7 +86,7 @@ class UserTest extends TestCase
                 ->visit('/dashboard')
                 // ->click('Change Avatar')
                 ->attach($uploadedFile, 'file')
-                ->press('Upload')
+                ->press('submit-new-avatar')
                 ->seePageIs('dashboard')
                 ;
         $this->assertResponseStatus(200);
@@ -99,9 +99,10 @@ class UserTest extends TestCase
         $user = $this->createUser();
         $page = $this->actingAs($user)
                 ->visit('/dashboard')
+                ->see('Change Avatar')
                 // ->click('Change Avatar')
                 ->attach($uploadedFile, 'file')
-                ->press('Upload')
+                ->press('submit-new-avatar')
                 ->seePageIs('dashboard')
                 ;
         $page = $this->assertResponseStatus(200);
@@ -114,13 +115,14 @@ class UserTest extends TestCase
         
         $page = $this->actingAs($user)
             ->visit('/dashboard')
-            ->click('Edit Profile')
-            ->seePageIs('profile/edit')
+            ->see('Edit Profile')
+            ->see('Update')
             ->type('Royale', 'name')
             ->type('royally@example.com', 'email')
             ->press('Update')
             ->seePageIs('dashboard')
             ->see('Royale')
+            ->see('royally@example.com')
             ;
     }
 

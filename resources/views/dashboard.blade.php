@@ -5,6 +5,8 @@
     $(document).ready(function () {
 
         keepSideBar("user-sidebar");
+        toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
+        toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
 
     });
 </script>
@@ -35,7 +37,7 @@
                     <form enctype="multipart/form-data" method="POST" action={{ url('user/changeAvatar') }}>
                         <input type="file" name="file">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit">Upload</button>
+                        <button id="submit-new-avatar" type="submit">Upload</button>
                     </form>
                 </div>
             </div>
