@@ -1,4 +1,4 @@
-<div class="col-md-3 col-sm-6 col-xs-12 single-video">
+<div class="col-md-3 col-sm-6 col-xs-12 single-video {{ randomFader() }} animated" data-wow-duration="20000ms" data-wow-delay="900ms">
     <a href="/videos/{{ $video->id }}">
         <div class="thumbnail">
             <img class="video-image" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">

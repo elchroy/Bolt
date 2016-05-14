@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top" id="navigation">
+<div class="navbar navbar-fixed-top fadeInDown wow animated" id="navigation">
   <div class="container">
     <div class="navbar-header">
 
