@@ -5,26 +5,33 @@
             <div class="video-box">
                 <div class="overlay">
                     <button class="bolt-button button-half"><i class="fa fa-play fa-lg"></i> Play</button>
-                    <h4 class="vid-cat">{{ $video->title }}</h4>
-                    <p class="vid-cat truncate">{{ $video->category->name }}</p>
+                    @if(Auth::user())
+                        @if(Auth::user()->owns($video))
+                          <button class="bolt-button button-half"><i class="fa fa-play fa-lg"></i> Edit</button>
+                        @endif
+                    @endif
 
-                              <!--   <ul class="social-links">
-                                    <li class="button-half"><i class="fa fa-twitter fa-lg"></i></li>
+                    <h4 class="vid-cat">{{ $video->title }}</h4>
+                    <!-- <p class="vid-cat truncate">{{ $video->category->name }}</p> -->
+
+                                    <!-- <li class="button-half"><i class="fa fa-twitter fa-lg"></i></li>
                                     <li class="button-half"><i class="fa fa-facebook fa-lg"></i></li>
-                                    <li class="button-half"><i class="fa fa-google-plus fa-lg"></i></li>
-                                </ul> -->
+                                    <li class="button-half"><i class="fa fa-google-plus fa-lg"></i></li> -->
                 </div>
                 <img class="video-image" src="{{ asset('uploads/banner.jpg') }}" srjc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 <p class="video-title truncate">{{ $video->title }}</p>
             </div>
         </a>
+        <p class="video-handles"><a href="{{ url('/videos/' . $video->id . '/edit') }}"><i class="fa fa-edit"></i> Edit</a></p>
     </div>
 </div>
 
 <style type="text/css">
 
     .single-video {
-        border-radius: 3px;
+        border-radius: 2px;
+        border: 1px solid rgba(5, 25, 26, 0.26); 
+        background: rgba(237, 237, 238, 0.92);
     }
 
     .single-video a {
@@ -44,7 +51,7 @@
   background-color: #0d7c67;
   color: #fff;
   /*height: px;*/
-  padding: 10px 0 0;
+  /*padding: 10px 0 0;*/
   display: inline-block;
   width: 30%;
 }

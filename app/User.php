@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasAvatar() ? $this->avatar : asset('uploads/def_profile.png');
     }
 
+    public function owns(\Illuminate\Database\Eloquent\Model $model)
+    {
+        return $this->id == $model->user_id;
+    }
+
     private function hasAvatar()
     {
         return $this->avatar != null;

@@ -2,55 +2,20 @@
     <input name="_token" type="hidden" value="{{ csrf_token() }}">
         
         @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+           @include('videos.video-errors')
         @else
             <div class="alert alert-info">
                 <p class="alert-info text-center"> Note: All fields are required.</p>
             </div>
         @endif
 
-        <div class="form-group">
-            <label class="control-label col-md-2 col-sm-12" for="title">Title:</label>
-            <div class="col-md-10 col-sm-12">
-                <input class="" placeholder="E.g Introduction to JAVA" required name="title" type="text" id="title" value="{{ Input::old('title') }}">
-            </div>
-        </div>
+        @include('videos.title-field', ['video' => null])
         
-         <div class="form-group">
-            <label class="control-label col-md-2 col-sm-12" for="url">URL:</label>
-            <div class="col-md-10 col-sm-12">
-                <input class="" required name="url" placeholder="E.g https://www.youtube.com/watch?v=yp_gH3zPfbo" type="url" id="url" value="{{ Input::old('url') }}">
-            </div>
-        </div>
+        @include('videos.url-field', ['video' => null])
         
-         <div class="form-group">
-            <label class="control-label col-md-2 col-sm-12" for="Description">Description:</label>
-            <div class="col-md-10 col-sm-12">
-                <textarea class=" new-video-description" placeholder="Briefly describe the video resource" name="description" required maxlength="255" cols="50" rows="5">{{ Input::old('description') }}</textarea>
-            </div>
-        </div>
+        @include('videos.description-field', ['video' => null])
         
-         <div class="form-group">
-            <label class="control-label col-md-2 col-sm-12" for="category_id">Category:</label>
-            <div class="col-md-10 col-sm-12">
-                <select class="new-video-category" name="category_id">
-                    <option class="new-video-category" id="cat-0" value="">Select a category</option>
-                    @foreach(Bolt\Category::all() as $category)
-                        @if(Input::old('category_id') == $category->id)
-                            <option class="new-video-category" selected id="cat-{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
-                        @else
-                            <option class="new-video-category" id="cat-{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
-        </div>
+        @include('videos.category-field', ['video' => null])
 
         <button type="submit" class="bolt-button">Add</button>
 
