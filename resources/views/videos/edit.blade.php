@@ -1,39 +1,47 @@
-<form method="POST" action="/videos/{{ $video->id }}/update" accept-charset="UTF-8" class="form-horizontal" role="form">
-    <input name="_token" type="hidden" value="{{ csrf_token() }}">
-     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Add A Video</h4>
+@extends('layouts.app')
+
+@section('content')
+    
+    <div class="container">
+
+        <div class="section-title text-center">
+            <h2> <i class="fa fa-lg fa-edit"></i> Edit</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-responsive video-image hidden-sm hidden-xs" src="{{ asset('uploads/banner.jpg') }}" srjc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="delete-video-form" class="video-forms" hidden>
+                            @include('videos.delete-video-form')
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button id="delete-video-button" class="bolt-button button-half">Delete</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8 col-sm-12">
+                @include('videos.edit-video-form', $video)
+            </div>
+        </div>
+    
     </div>
-     <div class="modal-body">
-         <div class="panel-body" style="padding: 10px;">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input class="form-control" name="title" value="{{ $video->title }}" type="text" id="title">
-            </div>
-            <div class="form-group">
-                <label for="url">URL:</label>
-                <input class="form-control" name="url" value="{{ $video->url }}" type="url" id="url">
-            </div>
-            <div class="form-group">
-                <label for="title">Description:</label>
-                <textarea class="form-control new-video-description" placeholder="Briefly describe the video" name="description" cols="50" rows="10">{{ $video->description }}</textarea>
-            </div>
-            <div class="form-group">
-                <select class="form-control new-video-category" name="category_id">
-                        <option class="new-video-category" id="cat-0" value="">Select a category</option>
-                        <!-- { { $ category->id == $ video->category->id ? 'selected' : '' } } -->
-                    @foreach(Bolt\Category::all() as $category)
-                        <option class="new-video-category" id="cat-{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-         </div>
-     </div>
-     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="add-video btn-teach-tech">Save</button>
-    </div>
-</form>
+
+@endsection
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready( function () {
+            toggleDiv("delete-video-button", "delete-video-form", "video-forms", 600);
+        });
+        
+    </script>
+@endsection
 
 <form method="POST" action="/videos/{{ $video->id }}/delete">
     <input name="_token" type="hidden" value="{{ csrf_token() }}">
