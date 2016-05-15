@@ -5,11 +5,15 @@
     $(document).ready(function () {
 
         // keepSideBar("user-sidebar");
+        toggleDiv("add-new-video-button", "add-video-form", "video-forms", 600);
         toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
         toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
+        
+        {!! count($errors) > 0 ? '$("#add-new-video-button").trigger("click");' : '' !!}
 
     });
 </script>
+                        
 @endsection
 
 @section('content')
@@ -46,7 +50,14 @@
         <div class="col-md-9" id="user-mainbar">
 
                 <div>
-                    <div class="section-title" id="user-videos"><h2>Your Videos</h2></div>
+                    <div class="section-title" id="user-videos">
+                        <h2>
+                            Your Videos <span id="add-new-video-button" class="add-badge badge pull-right"><i class="fa fa-lg fa-plus"></i> Upload</span>
+                        </h2>
+                        <div id="add-video-form" class="BounceInUp video-forms" hidden style="font-size: 100% !important;">
+                            @include('videos.add-video-form')
+                        </div>
+                    </div>
                     <div class="row main-panel">
                         @foreach($videos as $video)
                             @include('videos.video-item')
@@ -159,9 +170,14 @@
         border-radius: 3px;
     }
 
-    .user-badge {
+    .user-badge, .add-badge {
         background-color: #8F0A0A !important;
         border-radius: 3px !important;
+    }
+
+    .add-badge {
+        line-height: 3 !important;
+        cursor: pointer;
     }
 
 </style>

@@ -2,7 +2,7 @@ body {
     background-color: #fff;
     font-family: 'Open Sans', sans-serif;
     line-height: 21px;
-	font-size: 13px;
+    font-size: 13px;
     color: #fff;
     background: rgb(242, 242, 242)  url('/../uploads/bg.png') repeat center top fixed;
     font-family: monospace;
@@ -140,7 +140,6 @@ textarea {
 
 input:focus {
 	background: #fff;
-	line-height: 40px;
     border: #222 solid;
 
     -webkit-transition: all .3s ease-in 0s;

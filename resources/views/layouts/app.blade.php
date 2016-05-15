@@ -51,10 +51,22 @@
 
     
     @include('partials.navbar')
-
-    <div id="bolt-section" class="bolt-section">
-        <p style="color: black; display: block;">{{ Request::is('/') }}</p>
     
+    <div id="bolt-section" class="bolt-section"> 
+        <div class="session-values">     
+            @if(Session::has('success'))
+                <div class="alert alert-success success">
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
+
+            @if(Session::has('error'))
+                <div class="alert alert-danger danger">
+                    <p>{{ Session::get('error') }}</p>
+                </div>
+            @endif
+        </div>
+
         @yield('content')
     </div>
 

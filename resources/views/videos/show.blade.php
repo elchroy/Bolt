@@ -64,7 +64,7 @@
 	    <div class="row">
 	    	<div class="col-md-9">
 	    		<div id="video-screen">
-	    			<!-- <iframe id="video-frame" src="{{ $video->srcFrame() }}?autoplay=0" frameborder="0" allowfullscreen ></iframe> -->
+	    			<iframe id="video-frame" src="{{ $video->srcFrame() }}?autoplay=0" frameborder="0" allowfullscreen ></iframe>
 	    		</div>
 	    		<div class="row">
 	    			<div class="col-md-10">
@@ -112,7 +112,7 @@
 	    				<div class="col-md-12 single-comment">
 	    					<div class="row single-comment-row">
 	    						<div class="col-md-2 commenter-avatar">
-	    							<!-- <img class="img-responsive" src="{{ $comment->user->getAvatar() }}"> -->
+	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
 	    						</div>
 	    						<div class="col-md-10 comment-body">
 	    							<p class="comment-text">{{ $comment->comment }}</p>
