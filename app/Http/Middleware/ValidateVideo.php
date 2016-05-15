@@ -19,7 +19,7 @@ class ValidateVideo
         $validator = $this->validateVideo($request->all());
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->messages());
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         return $next($request);
     }
