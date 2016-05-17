@@ -90,14 +90,14 @@
 
 			});
 
-			$('.edit-comment-form-openers').click( function () {
+			$('.comment-form-openers').click( function () {
 
 				id = $(this).attr('id');
 				commentID = $(this).attr('comment');
 				divID = $(this).attr('for');
-				performToggle(id, divID, "edit-comment-forms");
+				performToggle(id, divID, "comment-forms");
 				// $('.current-comment#current-comment-' + commentID).addClass('fadeOutRight animated').hide();
-				$('.current-comment#current-comment-' + commentID).toggle();
+				// $('.current-comment#current-comment-' + commentID).toggle();
 			});
 		});
 	</script>
@@ -159,7 +159,8 @@
 	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
     								@if(Auth::user())
     									@if(Auth::user()->owns($comment))
-		    								<button href="#" class="edit-comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> Edit </button>
+		    								<a href="#" class="comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i> Edit</a>
+		    								<a href="#" class="comment-form-openers" comment="{{$comment->id}}" for="delete-comment-{{ $comment->id }}" id="open-delete-for-{{$comment->id}}"> <i class="fa fa-trash"></i> Delete</a>
 		    							@endif
     								@endif
 	    						</div>
@@ -171,7 +172,7 @@
 	    								</div>
 	    								@if(Auth::user())
 	    									@if(Auth::user()->owns($comment))
-		    									<div class="col-md-12 edit-comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
+		    									<div class="col-md-12 comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
 							    					<form action="/comments/{{$comment->id}}" method="POST">
 														<input type="hidden" name="_token" value="{{ csrf_token() }}">
 														{!! method_field('patch') !!}
@@ -180,6 +181,14 @@
 								                                <strong>{{ $errors->first('comment') }}</strong>
 								                            </span>
 								                    	<button class="button-full" id="submit-comment-edit" type="submit">Update</button>
+													</form>
+							    				</div>
+		    									<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
+							    					<form action="/comments/{{$comment->id}}" method="POST">
+														<input type="hidden" name="_token" value="{{ csrf_token() }}">
+														{!! method_field('delete') !!}
+														<div> Are you sure?</div>
+								                    	<button class="button-full" id="submit-delete-edit" type="submit">Delete</button>
 													</form>
 							    				</div>
 		    								@endif
