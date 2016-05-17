@@ -89,6 +89,16 @@
 				});
 
 			});
+
+			$('.edit-comment-form-openers').click( function () {
+
+				id = $(this).attr('id');
+				commentID = $(this).attr('comment');
+				divID = $(this).attr('for');
+				performToggle(id, divID, "edit-comment-forms");
+				// $('.current-comment#current-comment-' + commentID).addClass('fadeOutRight animated').hide();
+				$('.current-comment#current-comment-' + commentID).toggle();
+			});
 		});
 	</script>
 @endsection
@@ -147,13 +157,38 @@
 	    					<div class="row single-comment-row">
 	    						<div class="col-md-2 col-sm-3 col-xs-3 commenter-avatar">
 	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
+    								@if(Auth::user())
+    									@if(Auth::user()->owns($comment))
+		    								<button href="#" class="edit-comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> Edit </button>
+		    							@endif
+    								@endif
 	    						</div>
-	    						<div class="col-md-10 col-md-9 col-xs-9 comment-body">
-	    							<p class="comment-text">{{ $comment->comment }}</p>
-    								<p class="comment-info">{{ $comment->commentedAt() }}</p>
+	    						<div class="col-md-10 col-sm-9 comment-body">
+	    							<div class="row">
+	    								<div class="col-md-12 current-comment" id="current-comment-{{$comment->id}}">
+	    									<p class="comment-text">{{ $comment->comment }}</p>
+		    								<p class="comment-info">{{ $comment->commentedAt() }} {{ $comment->is_edited() }}</p>
+	    								</div>
+	    								@if(Auth::user())
+	    									@if(Auth::user()->owns($comment))
+		    									<div class="col-md-12 edit-comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
+							    					<form action="/comments/{{$comment->id}}" method="POST">
+														<input type="hidden" name="_token" value="{{ csrf_token() }}">
+														{!! method_field('patch') !!}
+														<textarea name="comment" id="comment" placeholder="Edit a comment." maxlength="255" required>{{ $comment->comment }}</textarea>
+													      <span class="help-block">
+								                                <strong>{{ $errors->first('comment') }}</strong>
+								                            </span>
+								                    	<button class="button-full" id="submit-comment-edit" type="submit">Update</button>
+													</form>
+							    				</div>
+		    								@endif
+	    								@endif
+	    							</div>
 	    						</div>
 	    					</div>
 	    				</div>
+	    				
 	    			@endforeach
 		    	</div>
 	    	</div>
