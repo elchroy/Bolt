@@ -42,12 +42,16 @@ var toggleDiv = function (buttonID, divID, commonClass, time = null)
 {
   // console.log(buttonID);
     $('#' + buttonID).click(function () {
-        $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide(time);
-        // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);
-        // $('#'+divID).toggle('fade');
-        $('#'+divID).toggle(time);
-        // $('#'+divID).fadeToggle(600);
+        performToggle(buttonID, divID, commonClass, time);
     });
+}
+
+var performToggle = function (buttonID, divID, commonClass, time = null) {
+  $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide(time);
+  // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);
+  // $('#'+divID).toggle('fade');
+  $('#'+divID).toggle(time);
+  // $('#'+divID).fadeToggle(600);
 }
 
 
