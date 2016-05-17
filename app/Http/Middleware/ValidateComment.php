@@ -19,6 +19,7 @@ class ValidateComment
         $validator = $this->validateComment($request->all());
 
         if ($validator->fails()) {
+            dd($validator->messages());
             return redirect()->back()->withErrors($validator->messages());
         }
         return $next($request);
