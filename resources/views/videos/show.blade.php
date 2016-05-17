@@ -3,6 +3,40 @@
 @section('scripts')
 	<script type="text/javascript">
 		$(document).ready( function () {
+
+			postComment = $('#post-comment');
+
+			postComment.click( function (e) {
+				
+				e.preventDefault();
+
+				var newComment = $('#new-comment').val();
+				commentToken = $('#comment-token').val();
+				action = $('#new-comment-form').attr('action');
+				data = {_token: commentToken, comment: newComment}
+
+				$.post(action, data, function (d) {
+					comment = prepareCommentHTML(newComment);
+					newCommentHTML = $.parseHTML(comment);
+					comments = $('.single-comment').toArray();
+					
+					comments.unshift(newCommentHTML);
+					comments.pop();
+
+					console.log(comments);
+
+					$('#video-comments').html(comments);
+
+
+				});
+
+			});
+
+			var prepareCommentHTML = function (newComment) {
+				comment = "<div class='col-md-12 single-comment'><div class='row single-comment-row'><div class='col-md-2 commenter-avatar'><img class='img-responsive' src='{{ Auth::user()->getAvatar() }}'></div><div class='col-md-10 comment-body'><p class='comment-text'>" + newComment + "</p><p class='comment-info'></p></div></div></div>";
+				return comment;
+			}
+
 			fav = $('#favForm');
 			
 
@@ -97,24 +131,24 @@
 		        </div>
 	    	</div>
 	    	<div class="col-md-3 video-right">
-			    	<form action="/videos/{{ $video->id }}/comments/add" method="POST">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<textarea name="comment" placeholder="Post a comment." maxlength="255" reqkuired>{{ old('comment') }}</textarea>
+			    	<form action="/videos/{{ $video->id }}/comments/add" id="new-comment-form" method="POST">
+						<input type="hidden" id="comment-token" name="_token" value="{{ csrf_token() }}">
+						<textarea name="comment" id="new-comment" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
 					      <span class="help-block">
                                 <strong>{{ $errors->first('comment') }}</strong>
                             </span>
-                    	<button class="bolt-button button-full" type="submit">POST</button>
+                    	<button class="bolt-button button-full" id="post-comment" type="submit">POST</button>
 					</form>
 
-		    	<div class="row video-comments">
+		    	<div class="row" id="video-comments">
 
 	    			@foreach($comments as $comment)
-	    				<div class="col-md-12 single-comment">
+	    				<div class="col-md-12 col-msm-6 single-comment">
 	    					<div class="row single-comment-row">
-	    						<div class="col-md-2 commenter-avatar">
+	    						<div class="col-md-2 col-sm-3 col-xs-3 commenter-avatar">
 	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
 	    						</div>
-	    						<div class="col-md-10 comment-body">
+	    						<div class="col-md-10 col-md-9 col-xs-9 comment-body">
 	    							<p class="comment-text">{{ $comment->comment }}</p>
     								<p class="comment-info">{{ $comment->commentedAt() }}</p>
 	    						</div>
@@ -145,7 +179,7 @@
 		height: 100%;
 	}
 
-	.video-comments {
+	#video-comments {
 		/*overflow: scroll;*/
 		/*max-height: 70vh;*/
 		background: rgb(221, 224, 224);
