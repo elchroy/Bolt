@@ -53,7 +53,15 @@ class CommentsController extends Controller
     	$comment = Comment::find($request->id);
     	$comment->update($request->all());
     	
-    	return redirect()->back();
+    	if ($request->ajax()) {
+            $output = [
+                'status' => 'success',
+            ];
+
+            return json_encode($output);
+        }
+
+        return redirect()->back();
     }
 
     public function deleteComment(Request $request)
@@ -61,6 +69,14 @@ class CommentsController extends Controller
     	$id = $request->id;
         Comment::destroy($id);
         
+        if ($request->ajax()) {
+            $output = [
+                'status' => 'success',
+            ];
+
+            return json_encode($output);
+        }
+
         return redirect()->back();
     }
 
