@@ -38,6 +38,14 @@ class CommentsController extends Controller
         $user = Auth::user();
         $user->comments()->create($data);
 
+        if ($request->ajax()) {
+            $output = [
+                'status' => 'success',
+            ];
+
+            return json_encode($output);
+        }
+
         return redirect()->back();
     }
     public function updateComment(Request $request)

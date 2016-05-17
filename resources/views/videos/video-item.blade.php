@@ -18,7 +18,7 @@
                                     <li class="button-half"><i class="fa fa-facebook fa-lg"></i></li>
                                     <li class="button-half"><i class="fa fa-google-plus fa-lg"></i></li> -->
                 </div>
-                <img class="video-image" src="{{ asset('uploads/banner.jpg') }}" srjc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                <img class="video-image" srfc="{{ asset('uploads/banner.jpg') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 <p class="video-title truncate">{{ $video->title }}</p>
             </div>
         </a>
