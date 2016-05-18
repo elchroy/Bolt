@@ -1,4 +1,4 @@
-<form method="POST" action="/videos/{{ $video->id }}/update" accept-charset="UTF-8" class="form-horizontal" role="form">
+<form method="POST" action="/videos/{{ $video->id }}/update" accept-charset="UTF-8" class="form-horizontal edit-video-form" role="form">
     <input name="_token" type="hidden" value="{{ csrf_token() }}">
         
         @if (count($errors) > 0)

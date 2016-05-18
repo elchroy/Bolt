@@ -1,0 +1,49 @@
+.add-video-form,
+.edit-video-form {
+    /*line-height: 30px;*/
+    margin: 20px 0;
+    background: rgba(248, 249, 249, 0.5);
+    border-radius: 3px;
+    padding: 20px;
+    width: 100%;
+}
+
+
+
+.add-video-form div label {
+    font-weight: bolder;
+    text-align: left;
+}
+
+/*.add-video-form .form-group {
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.add-video-form .form-group:hover,
+.add-video-form .form-group div input:hover,
+.add-video-form .form-group div input:focus {
+    background: rgb(231, 233, 234);
+    cursor: pointer;
+}
+
+.add-video-form .form-group div input,
+.add-video-form .form-group div textarea,
+select {
+    font-size: 150%;
+}
+
+.add-video-form .form-group div .form-control {
+
+}*/
+
+select {
+    width: 100%;
+    height: 30px;
+    border: #172E35;
+}    
+
+
+.video-image {
+    width: 100%;
+}

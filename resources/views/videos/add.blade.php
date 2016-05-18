@@ -13,3 +13,9 @@
     </div>
 
 @endsection
+
+@section('styles')
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
+
+@endsection
