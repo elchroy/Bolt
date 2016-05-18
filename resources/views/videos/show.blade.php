@@ -17,17 +17,9 @@
 
 				$.post(action, data, function (d) {
 					comment = prepareCommentHTML(newComment);
-					newCommentHTML = $.parseHTML(comment);
-					comments = $('.single-comment').toArray();
-					
-					comments.unshift(newCommentHTML);
-					comments.pop();
 
-					console.log(comments);
-
-					$('#video-comments').html(comments);
-
-
+					$('#video-comments').find('div.single-comment:last-child').remove();
+					$('#video-comments').prepend(comment);
 				});
 
 			});
@@ -99,6 +91,45 @@
 				// $('.current-comment#current-comment-' + commentID).addClass('fadeOutRight animated').hide();
 				// $('.current-comment#current-comment-' + commentID).toggle();
 			});
+
+
+			$('.submit-comment-edit-buttons').click( function (e) {
+
+				e.preventDefault();
+
+				var commentID = $(this).attr('comment');
+				var comment = $('#submit-comment-edit-' + commentID).siblings('#comment').val();
+				action = $('#comment-edit-form-' + commentID).attr('action');
+				token = $('#submit-comment-edit-' + commentID).siblings('#edit-token').val();
+				method = $('#submit-comment-edit-' + commentID).siblings('#edit-method').val();
+				
+				data = {_token: token, comment: comment, _method: method}
+
+				$.post(action, data, function (d) {
+					$('#open-edit-for-' + commentID).trigger('click');
+					$('.comment-text#comment-text-' + commentID).html(comment);
+					$('#edited-' + commentID).html('| (edited)');
+				});
+			});
+
+
+			$('.submit-comment-delete-buttons').click( function (e) {
+
+				e.preventDefault();
+
+				var commentID = $(this).attr('comment');
+				action = $('#comment-delete-form-' + commentID).attr('action');
+				token = $('#submit-comment-delete-' + commentID).siblings('#delete-token').val();
+				method = $('#submit-comment-delete-' + commentID).siblings('#delete-method').val();
+				
+				data = {_token: token, _method: method}
+				
+				$.post(action, data, function (d) {
+					$('#open-delete-for-' + commentID).trigger('click');
+					$('#single-comment-' + commentID).remove();
+				});
+			});
+
 		});
 	</script>
 @endsection
@@ -153,7 +184,7 @@
 		    	<div class="row" id="video-comments">
 
 	    			@foreach($comments as $comment)
-	    				<div class="col-md-12 col-msm-6 single-comment">
+	    				<div class="col-md-12 col-sm-6 single-comment" id="single-comment-{{$comment->id}}">
 	    					<div class="row single-comment-row">
 	    						<div class="col-md-2 col-sm-3 col-xs-3 commenter-avatar">
 	    							<img class="img-responsive" src="{{ $comment->user->getAvatar() }}">
@@ -167,28 +198,28 @@
 	    						<div class="col-md-10 col-sm-9 comment-body">
 	    							<div class="row">
 	    								<div class="col-md-12 current-comment" id="current-comment-{{$comment->id}}">
-	    									<p class="comment-text">{{ $comment->comment }}</p>
-		    								<p class="comment-info">{{ $comment->commentedAt() }} {{ $comment->is_edited() }}</p>
+	    									<p class="comment-text" id="comment-text-{{$comment->id}}" >{{ $comment->comment }}</p>
+		    								<p class="comment-info" id="comment-info-{{$comment->id}}" >{{ $comment->commentedAt() }} <span id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span></p>
 	    								</div>
 	    								@if(Auth::user())
 	    									@if(Auth::user()->owns($comment))
 		    									<div class="col-md-12 comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
-							    					<form action="/comments/{{$comment->id}}" method="POST">
-														<input type="hidden" name="_token" value="{{ csrf_token() }}">
-														{!! method_field('patch') !!}
+							    					<form action="/comments/{{$comment->id}}" id="comment-edit-form-{{$comment->id}}" method="POST">
+														<input type="hidden" name="_token" id="edit-token" value="{{ csrf_token() }}">
+														<input type="hidden" name="_method" id="edit-method" value="patch">
 														<textarea name="comment" id="comment" placeholder="Edit a comment." maxlength="255" required>{{ $comment->comment }}</textarea>
 													      <span class="help-block">
 								                                <strong>{{ $errors->first('comment') }}</strong>
 								                            </span>
-								                    	<button class="button-full" id="submit-comment-edit" type="submit">Update</button>
+								                    	<button class="button-full submit-comment-edit-buttons" comment="{{$comment->id}}" id="submit-comment-edit-{{$comment->id}}" type="submit">Update</button>
 													</form>
 							    				</div>
 		    									<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
-							    					<form action="/comments/{{$comment->id}}" method="POST">
-														<input type="hidden" name="_token" value="{{ csrf_token() }}">
-														{!! method_field('delete') !!}
+							    					<form action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
+														<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
+														<input type="hidden" name="_method" id="delete-method" value="delete">
 														<div> Are you sure?</div>
-								                    	<button class="button-full" id="submit-delete-edit" type="submit">Delete</button>
+								                    	<button class="button-full submit-comment-delete-buttons" comment="{{$comment->id}}" id="submit-comment-delete-{{$comment->id}}" type="submit">Delete</button>
 													</form>
 							    				</div>
 		    								@endif

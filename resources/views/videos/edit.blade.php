@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive video-image hidden-sm hidden-xs" src="{{ asset('uploads/banner.jpg') }}" srjc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                <img class="img-responsive video-image" sdrc="{{ asset('uploads/banner.jpg') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 
                 <div class="row">
                     <div class="col-md-8">
@@ -30,6 +30,12 @@
         </div>
     
     </div>
+
+@endsection
+
+@section('styles')
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
 
 @endsection
 
