@@ -41,9 +41,10 @@ body .bolt-welcome {
 }
 
 body .bolt-section {
-  margin: 0 70px;
+  margin: 70px;
   background: #fff;
   color: #312C32;
+  padding: 5px 10px;
 }
 
 .bolt-button {
@@ -68,6 +69,13 @@ body .bolt-section {
   border-radius: 3px;
     
 }
+
+.video-controls {
+  background: #312C32;
+  color: #98dafc;
+  font-size: 120%;
+}
+
 .container {
   width: 90%;
 }
