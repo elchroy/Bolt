@@ -25,6 +25,17 @@ a:hover {
   border-radius: 3px;
 }
 
+#bolt-presenter {
+  top: 70px;
+  background: #98dafc;
+  color: #312C32;
+  padding: 10px;
+  line-height: 30px;
+  border-radius: 0 10px 10px 0px;
+  z-index: 99;
+  position: fixed;
+}
+
 body .bolt-welcome {
   margin: 70px;
 }

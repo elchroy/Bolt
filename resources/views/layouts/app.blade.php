@@ -55,21 +55,21 @@
         @yield('welcome')
     </div>
     
+    <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
+        @if(Session::has('success'))
+            <div class="alert alert-success success fadeInLeft animated">
+                <!-- <p>{{ Session::get('success') }}</p> -->
+            </div>
+        @endif
+
+        @if(Session::has('error'))
+            <div class="alert alert-danger danger fadeInLeft animated">
+                <!-- <p>{{ Session::get('error') }}</p> -->
+            </div>
+        @endif
+    </div>
+    
     <div id="bolt-section" class="bolt-section"> 
-        <!-- <div class="session-values">     
-            @if(Session::has('success'))
-                <div class="alert alert-success success">
-                    <p>{{ Session::get('success') }}</p>
-                </div>
-            @endif
-
-            @if(Session::has('error'))
-                <div class="alert alert-danger danger">
-                    <p>{{ Session::get('error') }}</p>
-                </div>
-            @endif
-        </div> -->
-
         @yield('content')
     </div>
 
