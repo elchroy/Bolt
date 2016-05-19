@@ -27,6 +27,7 @@
     
     <!-- STYLES FOR SOCIAL AUTHENTICATION -->
     <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/video-item.css') }}">
 
     @yield('styles')
 
@@ -36,43 +37,46 @@
         }
 
         .fa-btn {
-            margin-right: 6px;
+            /*margin-right: 6px;*/
         }
     </style>
 </head>
-<body id="bolt-layout">
+<body id="bolt-body">
 
-    @if(Request::is('/'))
+    <!-- @if(Request::is('/'))
         <div id="preloader">
             <img src="{{ asset('uploads/bolt-logo.png') }}" alt="Bolt">
-            <!-- <h2>Welcome to Bolt</h2> -->
         </div>
-    @endif
+    @endif -->
 
     
     @include('partials.navbar')
+
+    <div id="bolt-welcome" class="bolt-welcome"> 
+        @yield('welcome')
+    </div>
+    
+    <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
+        @if(Session::has('success'))
+            <div class="alert alert-success success fadeInLeft animated">
+                <!-- <p>{{ Session::get('success') }}</p> -->
+            </div>
+        @endif
+
+        @if(Session::has('error'))
+            <div class="alert alert-danger danger fadeInLeft animated">
+                <!-- <p>{{ Session::get('error') }}</p> -->
+            </div>
+        @endif
+    </div>
     
     <div id="bolt-section" class="bolt-section"> 
-        <div class="session-values">     
-            @if(Session::has('success'))
-                <div class="alert alert-success success">
-                    <p>{{ Session::get('success') }}</p>
-                </div>
-            @endif
-
-            @if(Session::has('error'))
-                <div class="alert alert-danger danger">
-                    <p>{{ Session::get('error') }}</p>
-                </div>
-            @endif
-        </div>
-
         @yield('content')
     </div>
 
     @include('partials.footer')
 
-    <a href="#bolt-section" hrekf="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
+    <a href="#bolt-body" hrekf="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

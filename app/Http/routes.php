@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$recent = Bolt\Video::latest()->take(4)->get();
+    return view('welcome', compact('recent'));
 });
 
 Route::auth();

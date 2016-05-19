@@ -1,5 +1,96 @@
 body {
-    background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  background: rgba(49, 44, 50, 0.8) url('/../uploads/bg.png') repeat center top fixed;
+}
+
+a {
+  color: #98dafc;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #daad86;
+  text-decoration: underline;
+
+    -webkit-transition: all .3s ease-in 0s;
+       -moz-transition: all .3s ease-in 0s;
+        -ms-transition: all .3s ease-in 0s;
+         -o-transition: all .3s ease-in 0s;
+            transition: all .3s ease-in 0s;
+}
+
+.bolt-section,
+.bolt-welcome {
+  border-radius: 3px;
+}
+
+#bolt-presenter {
+  top: 70px;
+  background: #98dafc;
+  color: #312C32;
+  padding: 10px;
+  line-height: 30px;
+  border-radius: 0 10px 10px 0px;
+  z-index: 99;
+  position: fixed;
+}
+
+body .bolt-welcome {
+  margin: 70px;
+}
+
+body .bolt-section {
+  margin: 0 70px;
+  background: #fff;
+  color: #312C32;
+}
+
+.bolt-button {
+  line-height: 30px;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 110%;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  color: #312C32;
+}
+
+.section-title {}
+
+.section-title h2 {
+  color: #daad86;
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  background: #312C32;
+  border-radius: 3px;
+    
+}
+.container {
+  width: 90%;
+}
+
+#back-top {
+  bottom: 20px;
+  position: fixed;
+  right: 25px;
+  z-index: 10;
+  background: #312C32;
+  padding: 5px 10px;
+  color: #fff;
+}
+
+.truncate {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+/*body {
+    background-color: #312c32;
     font-family: 'Open Sans', sans-serif;
     line-height: 21px;
     font-size: 13px;
@@ -156,7 +247,6 @@ input:focus {
     font-size: 40px;
     margin: 20px;
     font-weight: 800;
-    /* text-transform: uppercase; */
     font-family: monospace;
     text-align: center;
     background: #fff;
@@ -230,4 +320,4 @@ input:focus {
   background: #172E35;
   padding: 5px 10px;
   color: #fff;
-}
+}*/

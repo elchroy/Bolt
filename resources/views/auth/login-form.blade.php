@@ -1,9 +1,9 @@
-<form class="form-horizontal" role="form" method="POST" action={{ url('/login') }}>
+<form class="form-horizontal" id="login-form" role="form" method="POST" action={{ url('/login') }}>
     {!! csrf_field() !!}
     
-    <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-        <input type="email" class="" name="email">
+    <div class="input-section {{ $errors->has('email') ? ' has-error' : '' }}">
         <label class="">Email</label>
+        <input type="email" class="login-elements" name="email">
         
         @if ($errors->has('email'))
             <span class="help-block">
@@ -13,9 +13,9 @@
     </div>
     
 
-    <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
-        <input type="password" class="" name="password">
+    <div class="input-section {{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="">Password</label>
+        <input type="password" class="login-elements" name="password">
         
 
         @if ($errors->has('password'))
@@ -27,16 +27,26 @@
     
 
     <div class="{{ $errors->has('remember') ? ' has-error' : '' }}">
-        <input type="checkbox" name="remember"> Remember Me
+        <p><input type="checkbox" name="remember"> Remember Me</p>
     </div>
-    <a class="pull-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+    
     
     <button type="submit" class="bolt-button pull-right">
         <i class="fa fa-btn fa-sign-in fa-lg"></i>Login
     </button>
 
-    <a class="pull-right" href="{{ url('/register') }}">Register</a>
+    <p><a href="{{ url('/password/reset') }}">Forgot Your Password?</a></p>
     
     
 
 </form>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login-register.css') }}">
+
+
+
+<style type="text/css">
+    .input-section {
+        padding: 10px 0px;
+    }
+</style>

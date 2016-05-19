@@ -1,10 +1,10 @@
 <form class="form-horizontal" role="form" method="POST" action={{ url('/register') }}>
     {!! csrf_field() !!}
 
-    <div class="{{ $errors->has('name') ? ' has-error' : '' }}">
-            <input type="text" class="" name="name" value="{{ old('name') }}">
+    <div class="input-section {{ $errors->has('name') ? ' has-error' : '' }}">
             <label class="">Name</label>
-
+            <input type="text" class="login-elements" name="name" value="{{ old('name') }}">
+            
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
@@ -12,9 +12,9 @@
             @endif
     </div>
     
-    <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-        <input type="email" class="" name="email">
+    <div class="input-section {{ $errors->has('email') ? ' has-error' : '' }}">
         <label class="">Email</label>
+        <input type="email" class="login-elements" name="email">
         
         @if ($errors->has('email'))
             <span class="help-block">
@@ -23,9 +23,9 @@
         @endif
     </div>
 
-    <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
-        <input type="password" class="" name="password">
+    <div class="input-section {{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="">Password</label>
+        <input type="password" class="login-elements" name="password">
         
 
         @if ($errors->has('password'))
@@ -35,9 +35,10 @@
         @endif
     </div>
 
-    <div class="{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-        <input type="password" class="" name="password_confirmation">
+
+    <div class="input-section {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
         <label class="">Confirm Password</label>
+        <input type="password" class="login-elements" name="password_confirmation">
         
 
         @if ($errors->has('password_confirmation'))
@@ -53,3 +54,15 @@
     
 
 </form>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login-register.css') }}">
+
+<style type="text/css">
+    
+
+    .input-section {
+        padding: 5px 0px;
+    }
+
+
+</style>

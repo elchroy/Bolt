@@ -1,62 +1,134 @@
-<div class="navbar navbar-fixed-top fadeInDown wow animated" id="navigation">
-  <div class="container">
-    <div class="navbar-header">
+<div class="navbar navbar-fixed-top" id="navigation">
+    <div class="container">
 
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+        <div class="navbar-header" id="bolt-brand">
 
-      <a class="navbar-brand" href="{{ url('/') }}">
-      Bolt
-      </a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="{{ url('/') }}">Bolt</a>
+
+        </div>
+
+        <div class="navbar-collapse collapse bolt-nav-menu">
+         
+          <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form method="GET" action="{{ url('videos/search') }}" id="search-form">
+                                <div>
+                                    <!-- <i class="fa fa-search pull-left"></i> -->
+                                    <input class="" id="search-videos" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
+                                </div>
+                            </form>
+                        </li>
+            <!-- Authentication Links -->
+                        <li><a href="{{ url('/videos') }}">All Videos</a></li>
+                        
+                    @if (Auth::user())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="hidden-sm">{{ Auth::user()->name }}</span>
+                                <!-- <img class="hidden-xs" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar"> -->
+                                <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="menu-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
+                                <li class="menu-item"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+          </ul>
+        </div>
+        
+  
     </div>
-
-    <div class="navbar-collapse collapse" id="searchbar">
-     
-      <ul class="nav navbar-nav navbar-right">
-        <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                @else
-                    <li><a href="{{ url('/videos') }}">All Videos</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="hidden-xs"></span>
-                            <img src="{{ Auth::user()->getAvatar() }}" width="20" class="img-rounded" id="user-avatar">
-                            <span class="hidden-sm">{{ Auth::user()->name }}</span> <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="menu-item"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="menu-item"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                @endif
-      </ul>
-             
-             <form method="GET" action="{{ url('videos/search') }}" class="navbar-form search-form pull-right">
-                <!-- <div class="form-group" style="display:inline;"> -->
-                  <!-- <div class="input-group" style="display:table;"> -->
-                    <!-- <span class="input-group-addon" style="width:50%;background: transparent; border: none;"> -->
-                        <input class="form-control input-group-addon" id="search-videos" name="search" placeholder="Search for videos" autocomplete="off" autofocus="autofocus" type="text">
-                        <i class="fa fa-search"></i>
-                    <!-- </span> -->
-                  <!-- </div> -->
-                <!-- </div> -->
-              </form>
-
-
-    </div><!--/.nav-collapse -->
-  </div>
 </div>
-</nav>
+
 
 <style type="text/css">
 
     #navigation {
+        background: #312c32;
+        font-size: 120%;
+    }
+
+    .navbar a{
+        /*display: block;*/
+        color: #daad86;
+    }
+
+    .navbar-nav li a:hover,
+    .navbar-nav li a:focus {
+        color: #312c32;
+        background-color: #daad86;
+    }
+
+    .navbar-nav li a{
+        line-height: inherit;
+    }
+
+    .navbar-nav li#search-list-item {
+        margin: 0 100px;
+    }
+
+    #search-videos {
+        background: transparent;
+        display: inline;
+        margin: 0;
+        line-height: 45px;
+        border: none;
+        position: relative;
+        color: #312c32;
+    }
+
+    #search-videos:focus {
+        background: #daad86;
+        padding: 0 10px;
+    }
+
+    #search-form div i {
+        padding: 14px 0px;
+        position: absolute;
+    }
+
+    #search-form {
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #search-form div {
+        border: none;
+    }
+    #dropdown-toggle-image {
+        padding: 0;
+        margin: 0;
+        border: solid;
+        display: inline-block;
+    }
+    #dropdown-toggle-image img {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+    }
+
+    #navbar-avatar {
+        height: 3.1em;
+        width: auto;
+    }
+
+    .open a{
+        color: #312c32 !important;
+        /*background-color: #daad86 !important;*/
+    }
+
+
+
+    /*#navigation {
       background: #FFFFFF;
       border: 0 none;
       margin: 0;
@@ -126,14 +198,10 @@
 
     .dropdown-menu {
         padding: 0;
-    }
+    }*/
 
-    #user-avatar {
-        /*position: relative;*/
-        /*float: left;*/
-        /*max-width: 30px;*/
-        display: inline;
-        /*left: 0;*/
+    /*#user-avatar {
+       display: inline;
         height: auto;
     }
 
@@ -141,7 +209,6 @@
         background: #fff;
         margin: 5px 0;
         color: #1EA78D;
-        /*padding: 0px;*/
         display: block;
         border-radius: 0px;
         widows: 100%;
@@ -153,18 +220,15 @@
 
     .dropdown-menu li a:hover,
     .dropdown-menu li a:focus {
-        /*background-color: rgba(24, 68, 53, 0.62)*/
         background: rgb(9, 76, 63);
     }
 
     #search-videos {
         width: 100%;
         padding: 0 10%;
-        /*line-height: 30px;*/
         background: transparent;
         border: none;
         border-bottom: solid #1EA78D 3px;
-        /*border-radius: 0px;*/
         color: #172E35;
         font-weight: bold;
         font-family: monospace;
@@ -174,6 +238,6 @@
         padding: 0px;
         margin-right: inherit;
         color: #1EA78D;
-    }
+    }*/
 
 </style>
