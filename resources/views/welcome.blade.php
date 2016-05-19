@@ -13,7 +13,80 @@
     </script>
 @endsection
 
+@section('welcome')
+    <div class="container">
+        
+        <div class="row">
+            @if(Auth::guest())
+
+                <div class="col-md-2 col-sm-2"></div>
+                
+                <div class="col-md-8 col-sm-8 login-form">
+                    <div class="row" id="login-modes">
+                        <div class="col-md-6 col-sm-12 login-modes" id="trad-login">
+                            <div class="row">
+                                <div class="col-md-12 bolt-home-form fadeIn animated" id="form-login">
+                                    @include('auth.login-form')
+                                    <a id="show-register">Do not have an account? Register</a>
+                                </div>
+                                <div class="col-md-12 bolt-home-form fadeIn animated" id="form-register" hidden>
+                                    @include('auth.register-form')
+                                    <a id="show-login">Have an account? Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 login-modes" id="social-login">
+                            @include('partials.social')
+                        </div>
+                    </div>
+                    <p><a href="#top-videos">Continue as guest...</a></p>
+                </div>
+
+                <div class="col-md-2 col-sm-2"></div>
+            @endif
+            
+        </div>
+
+    </div>
+@endsection
+
 @section('content')
+<div class="container">
+    <div class="row section-title text-center" id="top-videos"> <h2>Top Videos</h2>
+
+        <div class="col-md-12">
+            <div class="row">
+                
+                @foreach($recent as $video)
+                    @include('videos.video-item')
+                @endforeach
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@endsection
+
+@section('styles')
+<style type="text/css">
+    
+    .login-form {
+        background: #312C32;
+        padding: 70px 50px;
+        border-radius: 4px;
+    }
+
+    .login-elements {
+        border-radius: 3px;
+        line-height: 30px;
+        width: 100%;
+    }
+
+</style>
+@endsection
+
+@section('dcontent')
 <div class="container">
     <div class="row bolt-home-page fadeInLeft animated" id="page-1">
         <div class="col-md-9 bolt-home-logo">
@@ -58,35 +131,5 @@
 
 <style type="text/css">
 
-    body {
-        /*background: url({{ asset('uploads/bolt.png') }}) no-repeat center top fixed;*/
-    }
-
-    .bolt-home-main {
-        background: transparent;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 5% 0;
-    }
-
-    .bolt-home-form,
-    .bolt-home-page {
-        display: none;
-        position: static;
-    }
-
-    .bolt-home-forms {
-        /*min-height: 30px;*/
-    }
-
-    #form-login,
-    #page-1 {
-        display: block;
-    }
-
-    #show-login,
-    #show-register {
-        cursor: pointer;
-        font-size: 150%;
-    }
+    
 </style>

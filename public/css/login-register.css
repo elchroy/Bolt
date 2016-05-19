@@ -1,15 +1,15 @@
-.bolt-login {
-    background-color: rgba(230, 233, 233, 0.39);
-    font-size: 120%;
-    margin: 5%; 
-    padding: 5%;
+#login-modes {
+    background: #5A565B;
+    padding: 50px;
+    border-radius: 4px;
 }
 
-input[type=checkbox] {
-    width: auto;
+.login-elements {
+    border-radius: 3px;
+    line-height: 30px;
+    width: 100%;
 }
 
-
-.button-icon {
-    padding-right: 10px;
+.bolt-button {
+    background: #98dafc;
 }

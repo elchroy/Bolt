@@ -18,7 +18,7 @@
                                     <li class="button-half"><i class="fa fa-facebook fa-lg"></i></li>
                                     <li class="button-half"><i class="fa fa-google-plus fa-lg"></i></li> -->
                 </div>
-                <img class="video-image" srfc="{{ asset('uploads/banner.jpg') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                <img class="video-image" src="{{ asset('uploads/def_profile.png') }}" srdc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 <p class="video-title truncate">{{ $video->title }}</p>
             </div>
         </a>
@@ -27,6 +27,45 @@
 </div>
 
 <style type="text/css">
+  
+
+.overlay {
+    background-color: rgba(170, 137, 110, 0.78);
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    opacity: 0;
+    filter: alpha(opacity=0);
+    
+    -webkit-transition: all 450ms ease-out 0s;  
+       -moz-transition: all 450ms ease-out 0s;
+         -o-transition: all 450ms ease-out 0s;
+            transition: all 450ms ease-out 0s;
+          
+    -webkit-transform: rotateY(180deg) scale(0.5,0.5);
+       -moz-transform: rotateY(180deg) scale(0.5,0.5);
+        -ms-transform: rotateY(180deg) scale(0.5,0.5);
+         -o-transform: rotateY(180deg) scale(0.5,0.5);
+            transform: rotateY(180deg) scale(0.5,0.5);
+}
+
+.video-box:hover .overlay {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    
+    -webkit-transform: rotateY(0deg) scale(1,1);
+       -moz-transform: rotateY(0deg) scale(1,1);
+        -ms-transform: rotateY(0deg) scale(1,1);
+         -o-transform: rotateY(0deg) scale(1,1);
+            transform: rotateY(0deg) scale(1,1);
+}
+</style>
+
+<!-- <style type="text/css">
 
     .single-video {
         border-radius: 2px;
@@ -50,8 +89,6 @@
 .overlay ul li {
   background-color: #0d7c67;
   color: #fff;
-  /*height: px;*/
-  /*padding: 10px 0 0;*/
   display: inline-block;
   width: 30%;
 }
@@ -60,7 +97,6 @@
 
 
 .video-box {
-    /*float: left;*/
     width: 100%;
     position: relative;
 }
@@ -68,13 +104,10 @@
 .video-box > img {
   display: block;
   height: auto;
-  /*max-width: 100%;*/
 }
 
 .overlay {
     background-color: rgba(14,180,147,.5);
-    /*font-size: 150%;*/
-    /*padding: 25% 0;*/
     text-align: center;
     position: absolute;
     left: 0;
@@ -121,12 +154,7 @@
 }
 
 .video-box .overlay h4 {
-  /*font-size: 18px;*/
-  /*font-weight: 700;*/
-  /*line-height: 15px;*/
-  /*margin: 25px 0 8px;*/
   height: 20px;
-  /*white-space: normal;*/
   overflow: hidden;
   
 }
@@ -142,4 +170,4 @@ h4.truncate {
 }
 
 
-</style>
+</style> -->
