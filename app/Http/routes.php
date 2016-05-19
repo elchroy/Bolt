@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	$recent = Bolt\Video::latest()->take(4)->get();
+	$recent = Bolt\Video::latest()->take(8)->get();
     return view('welcome', compact('recent'));
 });
 

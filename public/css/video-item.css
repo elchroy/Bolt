@@ -51,6 +51,7 @@
 
 .video-image {
     width: 100%;
+    border-radius: 3px;
 }
 
 .overlay {
@@ -83,12 +84,6 @@
   border-radius: 3px;
   padding: 5px;
   }
-
-.video-controls {
-  background: #312C32;
-  color: #98dafc;
-  font-size: 120%;
-}
 
 .overlay a h4 {
   background: #fff;

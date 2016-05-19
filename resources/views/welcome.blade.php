@@ -17,6 +17,12 @@
     <div class="container">
         
         <div class="row">
+            <div class="col-md-6">
+                CompanY infro
+            </div>
+            <div class="col-md-6">
+                login / register form or WITH COMPANY LOGO 
+            </div>
             @if(Auth::guest())
 
                 <div class="col-md-2 col-sm-2"></div>
@@ -56,10 +62,22 @@
 
         <div class="col-md-12">
             <div class="row">
-                
-                @foreach($recent as $video)
-                    @include('videos.video-item')
-                @endforeach
+
+                <div class="col-md-4" id="most-liked">
+                    <p> <i class="fa fa-star fa-lg"></i></p>
+                    <div class="col-md-12 single-video {{ randomFader() }} animated">
+                        @include('videos.video-item', ['video' => mostLikedVideo()])
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        @foreach($recent as $video)
+                             <div class="col-md-3 col-sm-4 col-xs-12">
+                                @include('videos.video-item')
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -81,6 +99,14 @@
         border-radius: 3px;
         line-height: 30px;
         width: 100%;
+    }
+
+    #most-liked {
+        background: #B76868;
+        border-radius: 3px;
+        padding: 0 5px;
+        color: #312C32;
+        font-weight: bolder;
     }
 
 </style>

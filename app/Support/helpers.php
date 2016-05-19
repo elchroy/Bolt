@@ -15,3 +15,13 @@ function randomFader()
 	$choice = rand(0, $count - 1);
 	return $options[$choice];
 }
+
+function mostLikedVideo()
+{
+    return getAllLikedVideos()->groupBy('favoritable_id')->max()->first()->favoritable;
+}
+
+function getAllLikedVideos()
+{
+	return Bolt\Favorite::where('favoritable_type', 'Bolt\Video')->isLiked()->get();
+}

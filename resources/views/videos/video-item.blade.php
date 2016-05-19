@@ -1,7 +1,6 @@
-<div class="col-md-3 col-sm-6 col-xs-12 single-video {{ randomFader() }} animated">
   <div class="video-box">
      <a href="/videos/{{ $video->id }}">
-        <img class="img-responsive video-image" src="{{ asset('uploads/def_profile.png') }}" srdc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+        <img class="img-responsive video-image" srfc="{{ asset('uploads/def_profile.png') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
       <p class="video-title text-left truncate">{{ $video->title }}</p>
      
        <div class="overlay">
@@ -17,9 +16,6 @@
           @endif
       </div>
     </a>
-
-    
   </div>
   <!-- <p class="video-handles"><a href="{{ url('/videos/' . $video->id . '/edit') }}"><i class="fa fa-edit"></i> Edit</a></p> -->
-</div>
 

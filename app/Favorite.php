@@ -37,6 +37,11 @@ class Favorite extends Model
         $this->save();
     }
 
+    public function scopeIsLiked($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function activate()
     {
         $this->status = 1;
