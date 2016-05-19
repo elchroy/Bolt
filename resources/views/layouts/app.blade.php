@@ -27,6 +27,7 @@
     
     <!-- STYLES FOR SOCIAL AUTHENTICATION -->
     <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/video-item.css') }}">
 
     @yield('styles')
 
