@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('scripts')
+
+    <script type="text/javascript" src="{{ asset('js/login-register.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -17,89 +20,91 @@
     <div class="container">
         
         <div class="row">
-            <div class="col-md-6">
-                CompanY infro
-            </div>
-            <div class="col-md-6">
-                login / register form or WITH COMPANY LOGO 
-            </div>
-            @if(Auth::guest())
+            <!-- <div class="col-md-4 col-sm- col-xs-12">
+                <img src="{{ asset('uploads/bolt-logo.png') }}" class="img-responsive welcome-logo center-block">
 
-                <div class="col-md-2 col-sm-2"></div>
-                
-                <div class="col-md-8 col-sm-8 login-form">
-                    <div class="row" id="login-modes">
-                        <div class="col-md-6 col-sm-12 login-modes" id="trad-login">
-                            <div class="row">
-                                <div class="col-md-12 bolt-home-form fadeIn animated" id="form-login">
-                                    @include('auth.login-form')
-                                    <a id="show-register">Do not have an account? Register</a>
-                                </div>
-                                <div class="col-md-12 bolt-home-form fadeIn animated" id="form-register" hidden>
-                                    @include('auth.register-form')
-                                    <a id="show-login">Have an account? Login</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 login-modes" id="social-login">
-                            @include('partials.social')
-                        </div>
+                <div class="welcome-note bolt-div">
+
+                    <p class="welcome-header">With Bolt</p>
+
+                    <div class="welcome-body">
+                        <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
+                        <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
+                        <p><i class="fa fa-check fa-lg"></i> You are in control </p>
                     </div>
-                    <p><a href="#top-videos">Continue as guest...</a></p>
-                </div>
 
-                <div class="col-md-2 col-sm-2"></div>
-            @endif
+                    <p>
+                        <a href="#top-videos">
+                            <button class="bolt-calling">
+                                See Top Videos
+                            </button>
+                        </a>
+                        <a href="#recent-videos">
+                            <button class="bolt-calling">
+                                Recent Videos
+                            </button>
+                        </a>o
+                    </p>
+
+                </div>
+            </div> -->
+            <div class="col-md-2 col-sm-2 hidden-xs">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <a href="#top-videos">Browse videos</a>
+                @if(Auth::guest())    
+                    @include('auth.login-form')
+                @else
+                @endif
+            </div>
+            <div class="col-md-2 col-sm-2 hidden-xs">
+            </div>
+            
             
         </div>
-
     </div>
 @endsection
 
 @section('content')
 <div class="container">
-    <div class="row section-title text-center" id="top-videos"> <h2>Top Videos</h2>
-
         <div class="col-md-12">
             <div class="row">
 
-                <div class="col-md-4" id="most-liked">
-                    <p> <i class="fa fa-star fa-lg"></i></p>
-                    <div class="col-md-12 single-video {{ randomFader() }} animated">
-                        @include('videos.video-item', ['video' => mostLikedVideo()])
+                <div id="top-videos">
+                    <h2 class="video-group-title">Top Videos</h2>
+
+                    <div class="trending-videos">
+                        <div class="row">
+                            @foreach(mostLikedVideos() as $video)
+                                 <div class="col-md-3 col-sm-4 col-xs-12">
+                                    @include('videos.video-item')
+                                </div>
+                            @endforeach                 
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        @foreach($recent as $video)
-                             <div class="col-md-3 col-sm-4 col-xs-12">
-                                @include('videos.video-item')
-                            </div>
-                        @endforeach
+
+                <div id="recent-videos">
+                    <h2 class="video-group-title">Most Recent Videos</h2>
+
+                    <div class="recent-videos">
+                        <div class="row">
+                            @foreach($recent as $video)
+                                <div class="col-md-3 col-sm-4 col-xs-12">
+                                    @include('videos.video-item')
+                                </div>
+                            @endforeach                  
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
-
-    </div>
 </div>
 @endsection
 
 @section('styles')
 <style type="text/css">
-    
-    .login-form {
-        background: #312C32;
-        padding: 70px 50px;
-        border-radius: 4px;
-    }
-
-    .login-elements {
-        border-radius: 3px;
-        line-height: 30px;
-        width: 100%;
-    }
 
     #most-liked {
         background: #B76868;
@@ -107,6 +112,30 @@
         padding: 0 5px;
         color: #312C32;
         font-weight: bolder;
+    }
+
+    .welcome-logo {
+        margin: 0 auto;
+    }
+
+    .welcome-note {
+        padding: 20px;
+        font-size: larger;
+        font-weight: 300;
+        background: #FFFFFF
+    }
+
+    .welcome-note p.welcome-header{
+        background: #312C32;
+        color: #fff;
+        border-radius: 2px;
+        padding: 10px;
+        font-size: xx-large;
+    }
+
+    .welcome-note div.welcome-body{
+        background: #FAFFBD ;
+        padding: 10px;
     }
 
 </style>
@@ -154,8 +183,3 @@
     </div>
 </div>
 @endsection
-
-<style type="text/css">
-
-    
-</style>

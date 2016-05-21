@@ -1,4 +1,4 @@
-<form method="POST" action="/videos/add" accept-charset="UTF-8" class="form-horizontal add-video-form" role="form">
+<form method="POST" action="/videos/add" accept-charset="UTF-8" class="form-horizontal bolt-form add-video-form" role="form">
     <input name="_token" type="hidden" value="{{ csrf_token() }}">
         
         @if (count($errors) > 0)

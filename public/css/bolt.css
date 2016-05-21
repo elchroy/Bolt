@@ -1,0 +1,175 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  /*font-family: "Roboto", sans-serif;*/
+  color: #312C32;
+  background: #fff url('/../uploads/bolt-skin.jpg') repeat center top fixed;
+}
+
+a:hover {
+
+    -webkit-transition: all .3s ease-in 0s;
+       -moz-transition: all .3s ease-in 0s;
+        -ms-transition: all .3s ease-in 0s;
+         -o-transition: all .3s ease-in 0s;
+            transition: all .3s ease-in 0s;
+}
+
+.bolt-div {
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	max-width: 400px;
+	margin: 0 auto 100px;
+	padding: 40px;
+	color-profile: none;
+	color: #312C32 !important;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.bolt-button {
+	text-transform: uppercase;
+	outline: 0;
+	background: #312C32;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.bolt-calling {
+	text-transform: uppercase;
+	outline: 0;
+	background: rgb(197, 32, 32);
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.navbar-default {
+	background-color: #312c32;
+    border-color: #FFFFFF;
+    color: #fff;
+    margin: 0px;
+}
+
+.navbar-default a {
+	color: #fff;
+	
+}
+.navbar-nav li a {
+	font-weight: 300;
+    font-size: larger;
+    margin: 5px 5px;
+    padding: 10px;
+    border-radius: 1px;
+    color: #fff !important;
+}
+.navbar-nav li#avatar a {
+	margin: 5px 5px;
+    padding: 0px;
+}
+
+.navbar-brand {
+	font-weight: 300;
+    font-size: xx-large;
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover {
+    background: #FFFFFF !important;
+    color: #312C32 !important;
+}
+
+.navbar-nav li form {
+	margin: 0px !important;
+	background: transparent;
+	width: 100%;
+	padding: 0px 10px;
+    margin-top: 10px !important;
+}
+.navbar-nav li form input#search-videos {
+	background: inherit;
+    border: none;
+    display: block;
+    height: 30px;
+}
+
+.container {
+  width: 90%;
+}
+
+#back-top {
+  bottom: 20px;
+  position: fixed;
+  right: 25px;
+  z-index: 10;
+  padding: 5px 10px;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+li.open a.dropdown-toggle {
+	background: #FFFFFF !important;
+	color: #312C32 !important;
+}
+
+.dropdown-menu li a{
+    margin: 0;
+    background: #312C32;
+}
+
+.dropdown-menu li {
+    font-size: 80%;
+}
+
+#navbar-avatar {
+	height: 45px;
+}
+
+
+/* WELCOME PAGE */
+
+body .bolt-welcome {
+  margin-top: 70px;
+  background: url('/../uploads/noise.png') repeat center top fixed;
+}
+
+
+body .bolt-section {
+  margin: 70px 20px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+body .bolt-section div.row {
+  padding: 10px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-group-title {
+    text-align: left;
+    background: #C52020;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 2px;
+    font-weight: 100;
+}

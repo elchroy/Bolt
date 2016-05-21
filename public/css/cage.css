@@ -1,7 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #fff;
-  background: rgba(49, 44, 50, 0.8) url('/../uploads/bg.png') repeat center top fixed;
+  color: #312C32;
+  background: #fff ;/*url('/../uploads/bg.png') repeat center top fixed;*/
 }
 
 a {

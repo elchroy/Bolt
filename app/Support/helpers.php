@@ -16,12 +16,29 @@ function randomFader()
 	return $options[$choice];
 }
 
+function mostLikedVideos()
+{
+	$col = topVideos()->take(4)->keys()->map( function ($t) {
+		return Bolt\Video::find($t);
+	});
+
+	return $col;
+}
+
 function mostLikedVideo()
 {
-    return getAllLikedVideos()->groupBy('favoritable_id')->max()->first()->favoritable;
+	$col = topVideos();
+	// ksort($col);
+	// dd($col->first()->first()->favoritable);
+	return topVideos()->first()->first()->favoritable;
 }
 
 function getAllLikedVideos()
 {
 	return Bolt\Favorite::where('favoritable_type', 'Bolt\Video')->isLiked()->get();
+}
+
+function topVideos()
+{
+	return getAllLikedVideos()->groupBy('favoritable_id')->sort()->reverse();
 }

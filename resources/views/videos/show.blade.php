@@ -3,6 +3,7 @@
 @section('scripts')
 	<script type="text/javascript">
 		$(document).ready( function () {
+			keepSideBar("video-left");
 
 			postComment = $('#post-comment');
 
@@ -25,7 +26,7 @@
 			});
 
 			var prepareCommentHTML = function (newComment) {
-				comment = "<div class='col-md-12 single-comment'><div class='row single-comment-row'><div class='col-md-2 commenter-avatar'><img class='img-responsive' src='{{ Auth::user()->getAvatar() }}'></div><div class='col-md-10 comment-body'><p class='comment-text'>" + newComment + "</p><p class='comment-info'></p></div></div></div>";
+				comment = "<div class='col-md-12 single-comment'><div class='row single-comment-row'><div class='col-md-2 commenter-avatar'><img class='img-responsive' src='{ { Auth::user()->getAvatar() } }'></div><div class='col-md-10 comment-body'><p class='comment-text'>" + newComment + "</p><p class='comment-info'></p></div></div></div>";
 				return comment;
 			}
 
@@ -135,44 +136,45 @@
 @endsection
 
 @section('content')
-	<div class="container">
+
 	    <div class="row">
-	    	<div class="col-md-9">
+	    	<div class="col-md-9" id="video-left">
 	    		<div id="video-screen">
 	    			<iframe id="video-frame" src="{{ $video->srcFrame() }}?autoplay=0" frameborder="0" allowfullscreen ></iframe>
 	    		</div>
+
 	    		<div class="row">
-	    			<div class="col-md-10">
-			    		<div class="section-title text-center video-title">
-			    			<h2>{{ $video->title }}</h2>
-			    			<p></p>
-				        </div>
-	    			</div>
-	    			@if(Auth::user())
-						<div>
-						    @if( Auth::user()->favors($video) )
-						        @include('partials.fav', [
-						        	'action' => 'unfavorite',
-						        	'model' => 'videos',
-						        	'id' => $video->id,
-						        	'button' => 'Unlike',
-						        ])
-						    @else
-						        @include('partials.fav', [
-						        	'action' => 'favorite',
-							        'model' => 'videos',
-							        'id' => $video->id,
-							        'button' => 'Like',
-						       	])
-						    @endif
-						</div>
-					@else
-						<a href="{{ url('/login') }}"><button class="bolt-button button-half">Like this video</button></a>
-					@endif
-		        </div>
+		    		<div class="col-md-10 video-group-title">
+				    	<h2>{{ $video->title }}</h2>
+				    </div>
+		    		<div class="col-md-2" id="like-button">
+				    	@if(Auth::user())
+							<div>
+							    @if( Auth::user()->favors($video) )
+							        @include('partials.fav', [
+							        	'action' => 'unfavorite',
+							        	'model' => 'videos',
+							        	'id' => $video->id,
+							        	'button' => 'Unlike',
+							        ])
+							    @else
+							        @include('partials.fav', [
+							        	'action' => 'favorite',
+								        'model' => 'videos',
+								        'id' => $video->id,
+								        'button' => 'Like',
+							       	])
+							    @endif
+							</div>
+						@else
+							<a href="{{ url('/login') }}"><button class="bolt-button button-half">Like this video</button></a>
+						@endif
+				    </div>
+	    		</div>
+	    			
 	    	</div>
 	    	<div class="col-md-3 video-right">
-			    	<form action="/videos/{{ $video->id }}/comments/add" id="new-comment-form" method="POST">
+			    	<form action="/videos/{{ $video->id }}/comments/add" class="bolt-form" id="new-comment-form" method="POST">
 						<input type="hidden" id="comment-token" name="_token" value="{{ csrf_token() }}">
 						<textarea name="comment" id="new-comment" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
 					      <span class="help-block">
@@ -181,7 +183,7 @@
                     	<button class="bolt-button button-full" id="post-comment" type="submit">POST</button>
 					</form>
 
-		    	<div class="row" id="video-comments">
+		    	<div class="row bolt-div" id="video-comments">
 
 	    			@foreach($comments as $comment)
 	    				<div class="col-md-12 col-sm-6 single-comment" id="single-comment-{{$comment->id}}">
@@ -204,7 +206,7 @@
 	    								@if(Auth::user())
 	    									@if(Auth::user()->owns($comment))
 		    									<div class="col-md-12 comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
-							    					<form action="/comments/{{$comment->id}}" id="comment-edit-form-{{$comment->id}}" method="POST">
+							    					<form action="/comments/{{$comment->id}}" class="bolt-form" id="comment-edit-form-{{$comment->id}}" method="POST">
 														<input type="hidden" name="_token" id="edit-token" value="{{ csrf_token() }}">
 														<input type="hidden" name="_method" id="edit-method" value="patch">
 														<textarea name="comment" id="comment" placeholder="Edit a comment." maxlength="255" required>{{ $comment->comment }}</textarea>
@@ -215,7 +217,7 @@
 													</form>
 							    				</div>
 		    									<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
-							    					<form action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
+							    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
 														<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
 														<input type="hidden" name="_method" id="delete-method" value="delete">
 														<div> Are you sure?</div>
@@ -233,7 +235,7 @@
 		    	</div>
 	    	</div>
 	    </div>
-	</div>
+	<!-- </div> -->
 @endsection
 
 <style type="text/css">
@@ -249,22 +251,16 @@
 		/*top: 0;*/
 		left: 0;
 		right: 0;
-		padding: 0 30px;
 		width: 100%;
 		height: 100%;
 	}
 
-	#video-comments {
-		/*overflow: scroll;*/
-		/*max-height: 70vh;*/
-		background: rgb(221, 224, 224);
-	    border: none;
-	    padding: 0px;
-	    border-radius: 3px;
+	.video-right {
+		padding: 5px;
 	}
 
-	.video-right {
-		padding: 0;
+	.video-right form {
+		margin: 0px;
 	}
 
 	.single-comment {
@@ -285,6 +281,10 @@
 		font-style: italic;
     	color: #8F0A0A;
     	font-size: 85%;
+	}
+
+	#like-button {
+		
 	}
 
 	.comment-text {

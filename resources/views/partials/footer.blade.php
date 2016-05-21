@@ -16,7 +16,15 @@
 
 .footer {
   background: #312c32;
-  font-size: 120%;
+  color: #FFFFFF;
+  font-size: smaller;
+  font-weight: bolder;
+}
+
+.footer a {
+  text-decoration: none;
+  font-size: smaller;
+  font-weight: bolder;
 }
 
 </style>

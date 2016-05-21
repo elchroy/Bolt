@@ -28,45 +28,62 @@
     <!-- STYLES FOR SOCIAL AUTHENTICATION -->
     <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/video-item.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
 
-    @yield('styles')
+    <!-- @ yield('styles') -->
 
     <style>
         body {
-            /*font-family: 'Lato';*/
-            font-family: "Roboto", sans-serif;
-
+            font-family: 'Lato';
         }
 
         .fa-btn {
-            margin-right: 6px;
+            /*margin-right: 6px;*/
         }
     </style>
 </head>
 <body id="bolt-body">
 
+    <!-- @if(Request::is('/'))
+        <div id="preloader">
+            <img src="{{ asset('uploads/bolt-logo.png') }}" alt="Bolt">
+        </div>
+    @endif -->
+
     
     @include('partials.navbar')
 
-    <div class="bolt-welcome">
-        @yield('welcome')
-    </div>
+    <!-- <div id="bolt-welcome" class="bolt-welcome">  -->
+        <!-- @yield('welcome') -->
+    <!-- </div> -->
+    
+    <!-- <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter"> -->
+        <!-- @if(Session::has('success')) -->
+            <!-- <div class="alert alert-success success fadeInLeft animated"> -->
+                <!-- <p>{{ Session::get('success') }}</p> -->
+            <!-- </div> -->
+        <!-- @endif -->
 
-    <div class="bolt-section">
-        @yield('content')
-    </div>
+        <!-- @if(Session::has('error')) -->
+            <!-- <div class="alert alert-danger danger fadeInLeft animated"> -->
+                <!-- <p>{{ Session::get('error') }}</p> -->
+            <!-- </div> -->
+        <!-- @endif -->
+    <!-- </div> -->
+    
+    <!-- <div id="bolt-section" class="bolt-section">  -->
+        <!-- @yield('content') -->
+    <!-- </div> -->
 
-    @include('partials.footer')
-   
-    <a href="#bolt-body" href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
+    <!-- @include('partials.footer') -->
+
+    <a href="#bolt-body" hrekf="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
 
     <!-- JavaScripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="{{ asset('bootstrap/js/jquery-1.12.3.min.js') }}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script> -->
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js/jquery.singlePageNav.min.js') }}"></script> -->
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- <script type="text/javascript" src="{{ asset('js//jquery.fancybox.pack.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js//wow.min.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js//jquery.mixitup.min.js') }}"></script> -->
