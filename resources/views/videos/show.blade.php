@@ -284,7 +284,6 @@
 	}
 
 	#like-button {
-		
 	}
 
 	.comment-text {
