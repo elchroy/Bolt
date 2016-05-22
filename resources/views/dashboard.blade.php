@@ -24,7 +24,7 @@
             <div class="user-info video-tidtle">
                 <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
                 <div id="user-manage-overlay">
-                    <button class="bolt-button" id="edit-profile"><i class="fa fa-edit"></i> Edit</button>
+                    <button class="bolt-button" id="edit-profile"><i class="fa fa-edit"></i> Edit Profile</button>
                     <button class="bolt-button" id="change-avatar"><i class="fa fa-image"></i> Change Avatar</button>
                 </div>
                 <div class="user-image-overlay">
@@ -37,7 +37,7 @@
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"><span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"><span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorite Videos</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><button id="add-new-video-button" class="list-group-item"><span class="user-badge badge">+</span>Upload Video</button></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" class="list-group-item"><!-- <button id="add-category-button"> --><span class="user-badge badge">+</span>Add Category<!-- </button> --></a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item">Add Category</a></div>
             </div>
             <div>
                 <div id="edit-profile-form" class="sideforms" hidden>

@@ -12,8 +12,10 @@
 				{!! method_field('patch') !!}
 
 				@include('categories.form-fields')
-			</form>	
+
+			<button type="submit">Update</button>
 			
+			</form>	
 
 		</div>
 	</div>
