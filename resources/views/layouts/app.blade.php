@@ -53,6 +53,26 @@
         @yield('welcome')
     </div>
 
+    @if(Session::has('success'))
+        <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
+            <div class="alert alert-success success fadeInLeft animated">
+                <span><i class="fa fa-hand-o-right fa-lg"></i></span>
+                <p>{{ Session::get('success') }}</p>
+            </div>
+        </div>
+    @endif
+
+    @if(Session::has('error'))
+        <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
+            <div class="alert alert-danger danger fadeInLeft animated">
+                <span><i class="fa fa-hand-o-right fa-lg"></i></span>
+                <p>{{ Session::get('error') }}</p>
+            </div>
+        </div>
+    @endif
+    
+    </div>
+    
     <div class="bolt-section">
         @yield('content')
     </div>
@@ -63,9 +83,9 @@
 
     <!-- JavaScripts -->
     <script src="{{ asset('bootstrap/js/jquery-1.12.3.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script> -->
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js/jquery.singlePageNav.min.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js//jquery.fancybox.pack.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('js//wow.min.js') }}"></script> -->

@@ -24,7 +24,7 @@
             <div class="user-info video-tidtle">
                 <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
                 <div id="user-manage-overlay">
-                    <button class="bolt-button" id="edit-profile"><i class="fa fa-edit"></i> Edit</button>
+                    <button class="bolt-button" id="edit-profile"><i class="fa fa-edit"></i> Edit Profile</button>
                     <button class="bolt-button" id="change-avatar"><i class="fa fa-image"></i> Change Avatar</button>
                 </div>
                 <div class="user-image-overlay">
@@ -37,6 +37,7 @@
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"><span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"><span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorite Videos</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><button id="add-new-video-button" class="list-group-item"><span class="user-badge badge">+</span>Upload Video</button></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item">Add Category</a></div>
             </div>
             <div>
                 <div id="edit-profile-form" class="sideforms" hidden>
@@ -76,6 +77,19 @@
                         @foreach($favs as $video)
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 @include('videos.video-item')
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
+                    <div class="row main-panel">
+                        @foreach($categories as $category)
+                            <div class="col-md-3 col-sm-6 col-xs-12 list-group">
+                                <div class="list-group-item">
+                                    <a href="{{ url('categories/' . $category->id) . '/edit' }}">
+                                        <h3> <span class="badge"> {{$category->numberOfVideos()}} </span> {{$category->name}}</h3>
+                                    </a>
+                                </div>
                             </div>
                         @endforeach
                     </div>

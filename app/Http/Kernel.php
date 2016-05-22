@@ -53,5 +53,6 @@ class Kernel extends HttpKernel
         'avatar' => \Bolt\Http\Middleware\ValidateAvatar::class,
         'comment' => \Bolt\Http\Middleware\ValidateComment::class,
         'owner' => \Bolt\Http\Middleware\CheckOwnership::class,
+        'category' => \Bolt\Http\Middleware\ValidateCategory::class,
     ];
 }

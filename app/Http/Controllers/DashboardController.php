@@ -28,6 +28,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         $videos = $user->videos()->paginate(30);
         $favs = $user->favoriteVideos();
-        return view('dashboard', compact('videos', 'user', 'favs'));
+        $categories = $user->categories()->paginate(10);
+        return view('dashboard', compact('videos', 'user', 'favs', 'categories'));
     }
 }
