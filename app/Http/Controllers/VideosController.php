@@ -101,6 +101,10 @@ class VideosController extends Controller
     {
         $video = Video::find($request->id);
 
+        // First delete all Video's decendanta (comments and favorites)
+        $this->deleteChildrenOf($video);
+
+        // The delete the video.
         $video->delete();
 
         $request->session()->flash('success', 'Video Deleted');
@@ -165,5 +169,16 @@ class VideosController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    private function deleteChildrenOf(Video $video)
+    {
+        foreach ($video->comments as $comment) {
+            $comment->delete();
+        }
+
+        foreach ($video->favorites as $favorite) {
+            $favorite->delete();
+        }
     }
 }
