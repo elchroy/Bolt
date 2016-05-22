@@ -44,6 +44,16 @@ class CategoriesController extends Controller
     	return redirect()->to('dashboard');
     }
 
+    public function show(Request $request)
+    {
+    	$category = Category::find($request->id);
+    	$title = $category->name;
+    	$videos = $category->videos()->paginate(24);
+    	$paging = $videos->render();
+
+    	return view('videos.index', compact('category', 'videos', 'paging', 'title'));
+    }
+
     public function edit(Request $request)
     {
     	$category = Category::find($request->id);
