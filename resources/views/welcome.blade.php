@@ -51,7 +51,6 @@
             <div class="col-md-2 col-sm-2 hidden-xs">
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <a href="#top-videos">Browse videos</a>
                 @if(Auth::guest())    
                     @include('auth.login-form')
                 @else
