@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-	$recent = Bolt\Video::latest()->take(8)->get();
-    return view('welcome', compact('recent'));
-});
+Route::get('/', 'PagesController@welcome');
 
 Route::auth();
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard', 'PagesController@dashboard');
 Route::get('profile/edit', 'UsersController@edit');
 Route::post('profile/update', 'UsersController@update');
 

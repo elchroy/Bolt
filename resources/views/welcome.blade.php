@@ -74,7 +74,7 @@
 
                     <div class="trending-videos">
                         <div class="row">
-                            @foreach(mostLikedVideos() as $video)
+                            @foreach($mostLikedVideos as $video)
                                  <div class="col-md-3 col-sm-4 col-xs-12">
                                     @include('videos.video-item')
                                 </div>

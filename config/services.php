@@ -20,21 +20,21 @@ return [
     ],
 
     'github' => [
-        'client_id' => '8234b1fa8a00ed4888a6',
-        'client_secret' => '04ba7b5ebb7ac54d7b63d722d090b1ac55c60847',
-        'redirect' => 'http://localhost:8888/auth/github/callback',
+        'client_id'     => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect'      => env('GITHUB_REDIRECT'),
     ],
 
     'facebook' => [
-        'client_id' => '602752246555102',
-        'client_secret' => 'ebec34c4eddf4496782e8e3a52ebe900',
-        'redirect' => 'http://localhost:8888/auth/facebook/callback',
+        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect'      => env('FACEBOOK_REDIRECT'),
     ],
 
     'twitter' => [
-        'client_id' => 'f3AqslycJZQU7giEgomr4Fy8R',
-        'client_secret' => 'pB4VI39c92QRmIpVWpW6YCZbLW9DmcLATIrnT8bpmGNnykSM0z',
-        'redirect' => 'http://localhost:8888/auth/twitter/callback',
+        'client_id'     => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect'      => env('TWITTER_REDIRECT'),
     ],
 
     'ses' => [
@@ -51,6 +51,12 @@ return [
         'model' => Bolt\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+    'cloudinary' => [
+        'cloud_name'  => env('CLOUDINARY_CLOUD_NAME'),
+        'api_key'     => env('CLOUDINARY_API_KEY'),
+        'api_secret'  => env('CLOUDINARY_API_SECRET'),
     ],
 
 ];

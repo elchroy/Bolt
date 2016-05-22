@@ -24,7 +24,7 @@ class UsersController extends Controller
     public function changeAvatar(Request $request, Uploader $uploader)
     {
         $file  = $request->file('file');
-
+        
         $result = $uploader->uploadAvatar($file);
 
         $user = Auth::user();
