@@ -14,6 +14,7 @@ class VideosController extends Controller
 
 	public function __construct(Request $request)
 	{
+        // First confirm if the user is authenticated
 		$this->middleware('auth', ['only' => [
             'add',
             'createVideo',
@@ -24,11 +25,21 @@ class VideosController extends Controller
             'unfavorite',
         ]]);
 
+        // Next confirm that the requested video of given ID is available.
+        $this->middleware('available:' . Video::class, ['only' => [
+            'edit',
+            'show',
+            'updateVideo',
+            'deleteVideo',
+        ]]);
+
+        // Next confirm that the user is the correct owner of the requested video.
         $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
             'edit',
             'deleteVideo',
         ]]);
 
+        // Validate the request data.
         $this->middleware('video', ['only' => [
             'createVideo',
             'updateVideo',

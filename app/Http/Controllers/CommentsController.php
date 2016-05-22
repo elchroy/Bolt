@@ -20,6 +20,12 @@ class CommentsController extends Controller
             'deleteComment',
         ]]);
 
+        // Next confirm that the requested comment of given ID is available.
+        $this->middleware('available:' . Comment::class, ['only' => [
+            'updateComment',
+            'deleteComment',
+        ]]);
+
         $this->middleware('owner:' . $request->id . ',' . Comment::class, ['only' => [
             'updateComment',
             'deleteComment',

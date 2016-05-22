@@ -20,6 +20,13 @@ class CategoriesController extends Controller
             'update'
         ]]);
 
+        // Next confirm that the requested category of given ID is available.
+        $this->middleware('available:' . Category::class, ['only' => [
+            'show',
+            'edit',
+            'update',
+        ]]);
+
         $this->middleware('category', ['only' => [
             'create',
             // 'update'
