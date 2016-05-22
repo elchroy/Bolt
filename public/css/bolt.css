@@ -16,6 +16,10 @@ a:hover {
             transition: all .3s ease-in 0s;
 }
 
+ul {
+  list-style: none;
+}
+
 .bolt-div {
 	position: relative;
 	z-index: 1;
@@ -165,13 +169,18 @@ body .bolt-section div.row {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.video-group-title {
+.video-group-title,
+.section-header {
     text-align: left;
     background: #C52020;
     color: #fff;
     padding: 0 5px;
     border-radius: 2px;
     font-weight: 100;
+}
+
+.section-body {
+  padding: 0 20px;
 }
 
 ul.pagination {

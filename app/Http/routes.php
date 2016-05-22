@@ -44,3 +44,7 @@ Route::patch('comments/{id}', 'CommentsController@updateComment');
 Route::delete('comments/{id}', 'CommentsController@deleteComment');
 
 Route::post('user/changeAvatar', 'UsersController@changeAvatar');
+
+
+Route::get('categories/add', 'CategoriesController@add');
+Route::post('categories/create', 'CategoriesController@create');

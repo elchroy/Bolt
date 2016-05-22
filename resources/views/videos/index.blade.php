@@ -12,10 +12,10 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <!-- <div class="container"> -->
 
         <div class=" row">
-            <div class="col-md-12" id="user-mainbar">
+            <div class="section-body" id="user-mainbar">
 
                         <div class="video-group-title" id="user-videos"><h2>{{ $title }}</h2></div>
                         <div class="row main-panel">
@@ -30,5 +30,5 @@
                         </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 @endsection

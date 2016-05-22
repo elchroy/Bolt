@@ -25,6 +25,9 @@
       box-sizing: border-box;
       font-size: 14px;
     }
+    textarea {
+      resize: none;
+    }
 
     .text-left {
         display: inline;
