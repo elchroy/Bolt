@@ -5,12 +5,15 @@
 		<div class="section-body">
 			
 			<div class="section-header">
-				<h2>Add Category</h2>
+				<h2>Edit Category - <i>{{ $category->name }}</i></h2>
 			</div>
 
-			<form class="bolt-form" method="POST" action="{{ url('categories/create') }}">
+			<form class="bolt-form" method="POST" action="{{ url('categories/' . $category->id) }}">
+				{!! method_field('patch') !!}
+
 				@include('categories.form-fields')
 			</form>	
+			
 
 		</div>
 	</div>

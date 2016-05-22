@@ -16,17 +16,23 @@ class CategoriesController extends Controller
     	$this->middleware('auth', ['only' => [
             'add',
             'create',
+            'edit',
+            'update'
         ]]);
 
         $this->middleware('category', ['only' => [
             'create',
+            // 'update'
+        ]]);
+
+        $this->middleware('owner:' . $request->id . ',' . Category::class, ['only' => [
+            'edit',
         ]]);
     }
 
-
     public function add(Request $request)
     {
-    	return view('categories/add');
+    	return view('categories.add');
     }
 
     public function create(Request $request)
@@ -34,6 +40,23 @@ class CategoriesController extends Controller
     	$user = Auth::user();
     	$user->categories()->create($request->all());
 
-    	return view('dashboard');
+    	$request->session()->put('success', 'Created');
+    	return redirect()->to('dashboard');
+    }
+
+    public function edit(Request $request)
+    {
+    	$category = Category::find($request->id);
+
+    	return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request)
+    {
+    	$category = Category::find($request->id);
+    	$category->update($request->all());
+
+    	$request->session()->put('success', 'Updated');
+    	return redirect()->to('dashboard');
     }
 }

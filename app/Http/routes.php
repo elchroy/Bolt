@@ -48,3 +48,5 @@ Route::post('user/changeAvatar', 'UsersController@changeAvatar');
 
 Route::get('categories/add', 'CategoriesController@add');
 Route::post('categories/create', 'CategoriesController@create');
+Route::get('categories/{id}/edit', 'CategoriesController@edit');
+Route::patch('categories/{id}', 'CategoriesController@update');

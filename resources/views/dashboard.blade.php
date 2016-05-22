@@ -80,6 +80,19 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
+                    <div class="row main-panel">
+                        @foreach($categories as $category)
+                            <div class="col-md-3 col-sm-6 col-xs-12 list-group">
+                                <div class="list-group-item">
+                                    <a href="{{ url('categories/' . $category->id) . '/edit' }}">
+                                        <h3> <span class="badge"> {{$category->numberOfVideos()}} </span> {{$category->name}}</h3>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                     <!-- {!! $videos->render() !!} -->
                 </div>
 
