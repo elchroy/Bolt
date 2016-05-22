@@ -173,3 +173,32 @@ body .bolt-section div.row {
     border-radius: 2px;
     font-weight: 100;
 }
+
+ul.pagination {
+  border: none;
+}
+
+ul.pagination li.disabled span {
+  border-radius: 0px;
+}
+ul.pagination li.active span {
+  background: #312C32;
+  border-radius: 0px;
+  border: 1px solid #312C32;
+  cursor: pointer;
+  font-weight: bold;
+}
+ul.pagination li.active span:hover {
+  background: #C52020;
+  border: 1px solid #312C32;
+  cursor: pointer;
+}
+
+ul.pagination li a{
+  color: #312C32;
+}
+
+ul.pagination li a:hover{
+  color: #FFFFFF;
+  background: #C52020;
+}

@@ -36,6 +36,13 @@
 @section('styles')
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
+
+<style type="text/css">
+    .bolt-form {
+        margin: 0px;
+    }
+</style>
 
 @endsection
 

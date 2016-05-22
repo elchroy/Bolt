@@ -3,7 +3,7 @@
 @section('scripts')
 	<script type="text/javascript">
 		$(document).ready( function () {
-			keepSideBar("video-left");
+			// keepSideBar("video-left");
 
 			postComment = $('#post-comment');
 
@@ -144,10 +144,10 @@
 	    		</div>
 
 	    		<div class="row">
-		    		<div class="col-md-10 video-group-title">
+		    		<div class="col-md-10 col-sm-10 video-group-title">
 				    	<h2>{{ $video->title }}</h2>
 				    </div>
-		    		<div class="col-md-2" id="like-button">
+		    		<div class="col-md-2 col-sm-2" id="like-button">
 				    	@if(Auth::user())
 							<div>
 							    @if( Auth::user()->favors($video) )
@@ -284,6 +284,7 @@
 	}
 
 	#like-button {
+		padding: 0px;
 	}
 
 	.comment-text {

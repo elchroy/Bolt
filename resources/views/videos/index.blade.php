@@ -25,9 +25,9 @@
                                 </div>
                             @endforeach
                         </div>
-                        {!! $paging !!}
-
-
+                        <div class="pull-right">
+                            {!! $paging !!}
+                        </div>
             </div>
         </div>
     </div>
