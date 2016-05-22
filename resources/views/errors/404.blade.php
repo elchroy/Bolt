@@ -11,7 +11,7 @@
 
 	        <div class="bolt-div">
 	        	<h2 class="section-header text-center">
-	        		PAGE NOT FOUND
+	        		{{ $message or 'PAGE NOT FOUND' }}
 	        	</h2>
 
 	        	<a href="{{ url('/videos') }}">
