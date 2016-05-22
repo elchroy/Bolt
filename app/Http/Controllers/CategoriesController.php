@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     	$user = Auth::user();
     	$user->categories()->create($request->all());
 
-    	$request->session()->put('success', 'Created');
+    	$request->session()->flash('success', 'Created');
     	return redirect()->to('dashboard');
     }
 
@@ -56,7 +56,7 @@ class CategoriesController extends Controller
     	$category = Category::find($request->id);
     	$category->update($request->all());
 
-    	$request->session()->put('success', 'Updated');
+    	$request->session()->flash('success', 'Updated');
     	return redirect()->to('dashboard');
     }
 }

@@ -211,3 +211,18 @@ ul.pagination li a:hover{
   color: #FFFFFF;
   background: #C52020;
 }
+
+.bolt-presenter {
+  padding: 3px;
+  background: #312C32;
+  max-width: 200px;
+  position: fixed;
+  z-index: 999;
+  top: 60;
+  border: 1px solid #fff;
+}
+
+.bolt-presenter .alert {
+  margin: 0px;
+  border-radius: 1px;
+}
