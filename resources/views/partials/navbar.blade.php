@@ -12,7 +12,10 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Bolt
+                    <div class="bolt-logo">
+                        <img class="img-responsive" src="{{ asset('img/bolt-logo.png') }}">
+                    </div>
+                    <!-- Bolt -->
                 </a>
             </div>
 
@@ -21,7 +24,7 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li id="search-list">
-                        <form class="" method="GET" action="{{ url('videos/search') }}" id="search-form">
+                        <form class="bolt-form" method="GET" action="{{ url('videos/search') }}" id="search-form">
                             <input class="" id="search-videos" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
                         </form>
                     </li>
