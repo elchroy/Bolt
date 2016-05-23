@@ -2,20 +2,24 @@
 
 namespace Bolt\Http\Controllers;
 
+use Bolt\Http\Controllers\States\VideoState;
 use Bolt\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
 
-class DashboardController extends Controller
+class PagesController extends Controller
 {
+    protected $state;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(VideoState $state)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', [ 'only' => 'dashboard']);
+
+        $this->state = $state;
     }
 
     /**
@@ -23,12 +27,20 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {
         $user = Auth::user();
         $videos = $user->videos()->paginate(30);
         $favs = $user->favoriteVideos();
         $categories = $user->categories()->paginate(10);
         return view('dashboard', compact('videos', 'user', 'favs', 'categories'));
+    }
+
+    public function welcome()
+    {
+        $recent = $this->state->recent(8);
+        $mostLikedVideos = $this->state->top(4);
+        
+        return view('welcome', compact('recent','mostLikedVideos'));
     }
 }
