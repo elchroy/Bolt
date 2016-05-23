@@ -219,6 +219,8 @@
 				                    	<button class="button-full submit-comment-edit-buttons" comment="{{$comment->id}}" id="submit-comment-edit-{{$comment->id}}" type="submit">Update</button>
 									</form>
 			    				</div>
+
+			    				
 								<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
 			    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
 										<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
