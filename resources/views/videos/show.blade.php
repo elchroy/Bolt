@@ -223,7 +223,7 @@
 			    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
 										<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
 										<input type="hidden" name="_method" id="delete-method" value="delete">
-										<div> Are you sure?</div>
+										<div> Are you sure you want to delete this video?</div>
 				                    	<button class="button-full submit-comment-delete-buttons" comment="{{$comment->id}}" id="submit-comment-delete-{{$comment->id}}" type="submit">Delete</button>
 									</form>
 			    				</div>
