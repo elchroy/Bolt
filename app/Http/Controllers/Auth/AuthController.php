@@ -117,6 +117,7 @@ class AuthController extends Controller
             'email' => $socialUser->email,
             'social_id' => $socialUser->id,
             'social_link' => $socialLink,
+            'password' => bcrypt('mybolt'),
             'avatar' => $socialUser->avatar
         ]);
     }
