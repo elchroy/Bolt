@@ -42,13 +42,21 @@
             transform: rotateY(0deg) scale(1,1);
 }
 
+.video-controls {
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  top: 0px;
+}
+
 .video-box {
   margin: 10px auto;
   padding: 5px;
   position: relative;
   width: 100%;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1), 0 5px 5px 0 rgba(0, 0, 0, 1);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 1), 0 0px 1px 0 rgba(0, 0, 0, 1);
+  border: 1px #f2f2f2 solid;
+  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1), 0 5px 5px 0 rgba(0, 0, 0, 1);*/
+  /*box-shadow: 0 0 4px 0 rgba(0, 0, 0, 1), 0 0px 1px 0 rgba(0, 0, 0, 1);*/
 }
 
 .video-image {

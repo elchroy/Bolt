@@ -48,15 +48,43 @@
 
                 </div>
             </div> -->
-            <div class="col-md-2 col-sm-2 hidden-xs">
+            <div class="col-md-4 col-sm-4 hidden-xs">
+                <div class="welcome-note bolt-div bolt-form">
+
+                    <p class="welcome-header">With Bolt</p>
+
+                    <div class="welcome-body">
+                        <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
+                        <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
+                        <p><i class="fa fa-check fa-lg"></i> You are in control </p>
+                    </div>
+
+                    <p>
+                        <a href="#top-videos">
+                            <button class="bolt-calling">
+                                See Top Videos
+                            </button>
+                        </a>
+                        <a href="#recent-videos">
+                            <button class="bolt-calling">
+                                Recent Videos
+                            </button>
+                        </a>o
+                    </p>
+
+                </div>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                @if(Auth::guest())    
-                    @include('auth.login-form')
+                @if(Auth::guest())
+                    <div class="bolt-form">
+                        @include('auth.register-form')
+
+                        @include('auth.login-form')
+
+                        @include('partials.social')
+                    </div>
                 @else
                 @endif
-            </div>
-            <div class="col-md-2 col-sm-2 hidden-xs">
             </div>
             
             
@@ -105,7 +133,16 @@
 @endsection
 
 @section('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
 <style type="text/css">
+
+    .bolt-form .register-form {
+        display: none;
+    }
+
+    .bolt-form {
+        /*max-width: 500px;*/
+    }
 
     #most-liked {
         background: #B76868;

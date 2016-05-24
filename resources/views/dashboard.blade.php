@@ -19,7 +19,7 @@
 @section('content')
 <!-- <div class="container"> -->
     <div class="row bolt-puppy">
-        <div class="col-md-3 bolt-div" id="user-sidebar">
+        <div class="col-md-2 bolt-div" id="user-sidebar">
 
             <div class="user-info video-tidtle">
                 <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="col-md-9" id="user-mainbar">
+        <div class="col-md-10" id="user-mainbar">
 
                 <div>
 

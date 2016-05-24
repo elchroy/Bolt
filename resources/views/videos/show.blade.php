@@ -45,14 +45,18 @@
 	    			
 	    	</div>
 	    	<div class="col-md-3 video-right">
+	    		@if(Auth::user())
 			    	<form action="/videos/{{ $video->id }}/comments/add" class="bolt-form" id="new-comment-form" method="POST">
 						<input type="hidden" id="comment-token" name="_token" value="{{ csrf_token() }}">
-						<textarea name="comment" id="new-comment" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
+						<textarea name="comment" id="new-comment" commenter="{{ Auth::user()->getAvatar() }}" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
 					      <span class="help-block">
                                 <strong>{{ $errors->first('comment') }}</strong>
                             </span>
                     	<button class="bolt-button button-full" id="post-comment" type="submit">POST</button>
 					</form>
+				@else
+					<button class="bolt-button">Login to comment</button>
+	    		@endif
 
 		    	<div class="bolt-div" id="video-comments">
 		    		@foreach($comments as $comment)

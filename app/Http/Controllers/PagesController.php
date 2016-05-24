@@ -33,14 +33,18 @@ class PagesController extends Controller
         $videos = $user->videos()->paginate(30);
         $favs = $user->favoriteVideos();
         $categories = $user->categories()->paginate(10);
-        return view('dashboard', compact('videos', 'user', 'favs', 'categories'));
+        $title = $user->name;
+
+        return view('dashboard', compact('videos', 'user', 'favs', 'categories', 'title'));
     }
 
     public function welcome()
     {
         $recent = $this->state->recent(8);
         $mostLikedVideos = $this->state->top(4);
+
+        $title = 'Home';
         
-        return view('welcome', compact('recent','mostLikedVideos'));
+        return view('welcome', compact('recent','mostLikedVideos', 'title'));
     }
 }
