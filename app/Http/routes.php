@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,7 @@ Route::post('user/changeAvatar', 'UsersController@changeAvatar');
 
 
 Route::get('categories/add', 'CategoriesController@add');
+Route::get('categories', 'CategoriesController@index');
 Route::get('categories/{id}', 'CategoriesController@show');
 Route::post('categories/create', 'CategoriesController@create');
 Route::get('categories/{id}/edit', 'CategoriesController@edit');

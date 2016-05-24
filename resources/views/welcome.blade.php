@@ -71,6 +71,7 @@
 
                 <div id="top-videos">
                     <h2 class="video-group-title">Top Videos</h2>
+                    <hr />
 
                     <div class="trending-videos">
                         <div class="row">
@@ -85,6 +86,7 @@
 
                 <div id="recent-videos">
                     <h2 class="video-group-title">Most Recent Videos</h2>
+                    <hr />
 
                     <div class="recent-videos">
                         <div class="row">

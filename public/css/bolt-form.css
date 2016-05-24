@@ -25,6 +25,10 @@
       box-sizing: border-box;
       font-size: 14px;
     }
+    .bolt-form select {
+      padding: 0px;
+      color: #312C32;
+    }
     textarea {
       resize: none;
     }

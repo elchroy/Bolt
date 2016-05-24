@@ -25,7 +25,7 @@
 
                     <li id="search-list">
                         <form class="bolt-form" method="GET" action="{{ url('videos/search') }}" id="search-form">
-                            <input class="" id="search-videos" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
+                            <input class="" id="search-videos" value="{{ $toSearch or null }}" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
                         </form>
                     </li>
 
@@ -33,7 +33,7 @@
 
                     <!-- Authentication Links -->
                     @if (Auth::user())
-                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                        <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <span class="">{{ Auth::user()->name }}</span>
@@ -41,6 +41,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -49,12 +50,33 @@
                                 <img class="hidden-xs" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
                             </a>
                         </li> -->
-                        <!-- <li> <a href="{{ url('/videos/add') }}"><button class="bolt-calling">Upload</button></a></li> -->
-                        
+                        <!-- <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li> -->
+                    @else
+                        @if(!(Request::is('/')))
+                            <li><a style="background: #C52020; color: #333;" href="{{ url('/login') }}">Login</a></li>
+                            <li><a style="background: #C52020; color: #333;" href="{{ url('/register') }}">Register</a></li>
+                        @endif
                     @endif
 
+                </ul>
+
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <img class="image-responsive" id="processor" src="{{ asset('img/processor.gif') }}">
+                    </li>
                 </ul>
                 
             </div>
         </div>
+        
     </nav>
+
+    <style type="text/css">
+        .navbar-nav li form {
+            background: #F2F2F2;
+            border-radius: 1PX;
+            color: #312C32;
+            box-shadow: none;
+        }
+
+    </style>
