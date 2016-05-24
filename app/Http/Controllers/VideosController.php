@@ -60,15 +60,18 @@ class VideosController extends Controller
     {
         $video = Video::find($request->id);
         $comments = $video->comments()->latest()->paginate(15);
+        $title = "Edit $video->title";
 
-        return view('videos.show', compact('video', 'comments'));
+        return view('videos.show', compact('video', 'comments', 'title'));
     }
 
     public function add()
     {
     	$this->middleware('auth');
 
-    	return view('videos.add');
+        $title = 'Add Video';
+
+    	return view('videos.add', compact('title'));
     }
 
 
@@ -86,7 +89,9 @@ class VideosController extends Controller
     {
         $video = Video::find($request->id);
 
-        return view('videos.edit', compact('video'));
+        $title = "Edit $video->title";
+
+        return view('videos.edit', compact('video', 'title'));
     }
 
     public function updateVideo(Request $request)
@@ -120,8 +125,9 @@ class VideosController extends Controller
         $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(12);
         $title = "Search results for '$toSearch'";
         $paging = $videos->appends(['search' => $toSearch])->links();
+        $category = null;
 
-        return view('videos.index', compact('videos', 'paging', 'title', 'toSearch'));
+        return view('videos.index', compact('videos', 'paging', 'title', 'toSearch', 'category'));
     }
 
     public function favorite(Request $request)

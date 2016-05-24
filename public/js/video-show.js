@@ -6,14 +6,17 @@ postComment.click( function (e) {
 	
 	e.preventDefault();
 
-	var newComment = $('#new-comment').val();
+	inputComment = $('#new-comment');
+
+	var newComment = inputComment.val();
+	var commenter = inputComment.attr('commenter');
 	commentToken = $('#comment-token').val();
 	action = $('#new-comment-form').attr('action');
 	data = {_token: commentToken, comment: newComment}
 
 	$.post(action, data, function (d) {
 		res = JSON.parse(d);
-		comment = prepareCommentHTML(newComment, res.id);
+		comment = prepareCommentHTML(newComment, res.id, commenter);
 
 		$('#video-comments').find('div.single-comment:last-child').remove();
 		$('#video-comments').prepend(comment);
@@ -24,8 +27,9 @@ postComment.click( function (e) {
 
 '';
 
-var prepareCommentHTML = function (newComment, id) {
-	comment = '<div class="maincontainer one-comment"><div class="leftcolumn commenter-info"><img src="{{ Auth::user()->getAvatar() }}" class="commenter-avatar img-responsive"></div><div class="contentwrapper comment-body"><p class="comment-text">' + newComment + '</p><p class="comment-info"><span class="comment-time">just now</span><a href="" title="Edit" class="pull-right comment-form-openers" comment="' + id + '" for="edit-comment-' + id + '" id="open-edit-for-' + id +'"> <i class="fa fa-edit"></i></a><a href="#" title="Delete" class="pull-right comment-form-openers" comment="' + id + '" for="delete-comment-' + id + '" id="open-delete-for-' + id + '"> <i class="fa fa-trash"></i></a></p></div></div>';
+var prepareCommentHTML = function (newComment, id, commenter) {
+	comment = '<div class="maincontainer one-comment"><div class="leftcolumn commenter-info"><img src="' + commenter + '" class="commenter-avatar img-responsive"></div><div class="contentwrapper comment-body"><p class="comment-text">' + newComment + '</p><p class="comment-info"><span class="comment-time">just now</span><a href="" title="Edit" class="pull-right comment-form-openers" comment="' + id + '" for="edit-comment-' + id + '" id="open-edit-for-' + id +'"> <i class="fa fa-edit"></i></a><a href="#" title="Delete" class="pull-right comment-form-openers" comment="' + id + '" for="delete-comment-' + id + '" id="open-delete-for-' + id + '"> <i class="fa fa-trash"></i></a></p></div></div>';
+	console.log(comment);
 	return comment;
 }
 

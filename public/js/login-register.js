@@ -1,6 +1,8 @@
 $('.message a').click(function(e){
 	e.preventDefault();
 	except = $(this).attr('for');
-    $('.bolt-forms').not('#' + except).animate({height: "toggle", opacity: "toggle"}, "slow");
-    $('#' + except).animate({ height: "toggle", opacity: "toggle"}, 1000); 
+	console.log(except);
+	animdata = {height: "toggle", opacity: "toggle"};
+    $('.bolt-forms').not('#' + except).animate( animdata, "slow");
+    $('#' + except).animate( animdata, 1000); 
 });

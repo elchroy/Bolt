@@ -20,7 +20,16 @@
                             <!-- <a href="{{ url('videos') }}" class="list-group-item cat-list-item">All Videos</a> -->
                             <div class="cat-list-item">Categories</div>
                             <!-- <hr> -->
+
                             @foreach(Bolt\Category::all() as $cat)
+                                <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item {{ $cat == $category ? 'active' : ''}}">
+                                    <i class="fa fa-tags fa-lg"></i>
+                                    <span class="cat-name truncate">{{ $cat->name }}</span>
+                                    <span class="cat-video-num badge header-badge truncate pull-right" style="right: 10px; position:absolute; background:#312C32; color: #fff;">{{ $cat->videos->count() }}
+                                </a>
+                            @endforeach
+
+                           <!--  @foreach(Bolt\Category::all() as $cat)
 
                                 @if($cat == $category)
                                     <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item active">
@@ -36,7 +45,7 @@
                                     </a>
                                 @endif
 
-                            @endforeach
+                            @endforeach -->
                         </div>
                         
             </div>

@@ -51,7 +51,7 @@ ul {
 	padding: 40px;
 	color-profile: none;
 	color: #312C32 !important;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	/*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 
 .bolt-button {
@@ -84,9 +84,9 @@ ul {
 
 .navbar-default {
 	background-color: #312c32;
-    border-color: #FFFFFF;
-    color: #fff;
-    margin: 0px;
+  border-color: transparent;
+  color: #fff;
+  margin: 0px;
 }
 
 .navbar-default a {
@@ -178,7 +178,7 @@ body .bolt-section {
   margin: 70px 20px;
   background: #fff;
   border-radius: 2px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 
 
