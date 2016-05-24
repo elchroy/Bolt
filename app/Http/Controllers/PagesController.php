@@ -42,9 +42,10 @@ class PagesController extends Controller
     {
         $recent = $this->state->recent(8);
         $mostLikedVideos = $this->state->top(4);
+        $top = $this->state->mostLiked();
 
         $title = 'Home';
         
-        return view('welcome', compact('recent','mostLikedVideos', 'title'));
+        return view('welcome', compact('recent','mostLikedVideos', 'title', 'top'));
     }
 }
