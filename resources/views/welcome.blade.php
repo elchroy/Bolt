@@ -19,7 +19,7 @@
 @section('welcome')
     <div class="container">
         
-        <div class="row">
+        <div class="row" style="background: rgba(255, 255, 255, 0.6)">
             <!-- <div class="col-md-4 col-sm- col-xs-12">
                 <img src="{{ asset('uploads/bolt-logo.png') }}" class="img-responsive welcome-logo center-block">
 
@@ -48,7 +48,7 @@
 
                 </div>
             </div> -->
-            <div class="col-md-4 col-sm-4 hidden-xs">
+            <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="welcome-note bolt-div bolt-form">
 
                     <p class="welcome-header">With Bolt</p>
@@ -69,7 +69,7 @@
                             <button class="bolt-calling">
                                 Recent Videos
                             </button>
-                        </a>o
+                        </a>
                     </p>
 
                 </div>
@@ -84,6 +84,9 @@
                         @include('partials.social')
                     </div>
                 @else
+                    <div class="bolt-form" style="background: transparent; padding: 0px; border:none;">
+                    @include('videos.video-item', ['video' => $top])
+                    </div>
                 @endif
             </div>
             
