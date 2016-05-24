@@ -58,6 +58,8 @@
     top:0;
 }
 
+.video-info {}
+
 .video-title,
 .video-time {
   z-index: 100;
@@ -70,6 +72,23 @@
   text-align: right;
   border-radius: 1px; 
   width: 100%;
+}
+
+.overlay-info {
+  text-align: left;
+  bottom: 0px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 10px 0; 
+  border-radius: 1px;
+  color: #312C32;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  left: 0px;
+  line-height: 15px;
+  font-size: small;
+  font-weight: bold;
 }
 
 .video-time {

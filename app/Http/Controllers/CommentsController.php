@@ -42,10 +42,11 @@ class CommentsController extends Controller
     	$data['video_id'] = $request->id;
 
         $user = Auth::user();
-        $user->comments()->create($data);
+        $comment = $user->comments()->create($data);
 
         if ($request->ajax()) {
             $output = [
+                'id'     => $comment->id,
                 'status' => 'success',
             ];
 

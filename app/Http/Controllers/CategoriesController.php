@@ -37,6 +37,14 @@ class CategoriesController extends Controller
         ]]);
     }
 
+    public function index()
+    {
+        $categories = Category::orderBy('name')->paginate(30);
+        $paging = $categories->render();
+
+        return view('categories.index', compact('categories', 'paging'));
+    }
+
     public function add(Request $request)
     {
     	return view('categories.add');

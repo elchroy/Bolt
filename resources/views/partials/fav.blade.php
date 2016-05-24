@@ -4,13 +4,14 @@
 </form>
 
 <style type="text/css">
-	.button-favorite {
-		background: rgba(26, 38, 41, 0.41);
-		color: #172E35;
-	}
 
 	.button-favorite,
 	.button-unfavorite {
-		font-size: 120%;
+		font-size: medium;
+	    font-weight: bolder;
+	    width: auto;
+	    display: inline-block;
+	    right: 0;
+	    float: right;
 	}
 </style>

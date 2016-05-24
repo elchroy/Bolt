@@ -64,6 +64,7 @@
                     </div>
 
                     <div class="video-group-title" id="user-videos"><h2>Your Videos</h2></div>
+                    <hr>
                     <div class="row main-panel">
                         @foreach($videos as $video)
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -73,6 +74,7 @@
                     </div>
 
                     <div class="video-group-title" id="fav-videos"><h2>Favorite Videos</h2></div>
+                    <hr>
                     <div class="row main-panel">
                         @foreach($favs as $video)
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -86,7 +88,7 @@
                         @foreach($categories as $category)
                             <div class="col-md-3 col-sm-6 col-xs-12 list-group">
                                 <div class="list-group-item">
-                                    <a href="{{ url('categories/' . $category->id) . '/edit' }}">
+                                    <a href="{{ url('categories/' . $category->id) }}">
                                         <h3> <span class="badge"> {{$category->numberOfVideos()}} </span> {{$category->name}}</h3>
                                     </a>
                                 </div>

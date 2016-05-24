@@ -13,6 +13,22 @@ body {
   border-radius: 2px;
 }
 
+#processor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: none;
+  width: auto;
+  background: rgb(242, 242, 242);
+  height: 30px;
+}
+
+.header-badge{
+  height: inherit;
+  background: #C52020;
+  border-radius: 1px;
+}
+
 a:hover {
 
     -webkit-transition: all .3s ease-in 0s;
@@ -177,10 +193,11 @@ body .bolt-section div.row {
 }
 .video-group-title,
 .section-header {
-    text-align: left;
-    background: #C52020;
-    color: #fff;
+    text-align: center;
+    background: #F2F2F2 url('/../img/bolt-icon.png') right no-repeat;
+    color: #C52020;
     padding: 0 5px;
+    padding-right: 70px;
     border-radius: 2px;
     font-weight: 100;
 }
@@ -231,4 +248,8 @@ ul.pagination li a:hover{
 .bolt-presenter .alert {
   margin: 0px;
   border-radius: 1px;
+}
+
+.link-info {
+  text-align: center;
 }
