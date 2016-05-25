@@ -1,6 +1,6 @@
   <div class="video-box">
      <a href="/videos/{{ $video->id }}">
-        <img class="img-responsive video-image" src="{{ asset('img/bolt-icon.png') }}" sgrc="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+        <img class="img-responsive video-image" srdc="{{ asset('img/bolt-icon.png') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
 
         <div>
 
@@ -38,5 +38,3 @@
       @endunless
     </a>
   </div>
-  <!-- <p class="video-handles"><a href="{{ url('/videos/' . $video->id . '/edit') }}"><i class="fa fa-edit"></i> Edit</a></p> -->
-

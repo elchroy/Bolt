@@ -20,34 +20,6 @@
     <div class="container">
         
         <div class="row">
-            <!-- <div class="col-md-4 col-sm- col-xs-12">
-                <img src="{{ asset('uploads/bolt-logo.png') }}" class="img-responsive welcome-logo center-block">
-
-                <div class="welcome-note bolt-div">
-
-                    <p class="welcome-header">With Bolt</p>
-
-                    <div class="welcome-body">
-                        <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
-                        <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
-                        <p><i class="fa fa-check fa-lg"></i> You are in control </p>
-                    </div>
-
-                    <p>
-                        <a href="#top-videos">
-                            <button class="bolt-calling">
-                                See Top Videos
-                            </button>
-                        </a>
-                        <a href="#recent-videos">
-                            <button class="bolt-calling">
-                                Recent Videos
-                            </button>
-                        </a>o
-                    </p>
-
-                </div>
-            </div> -->
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="welcome-note bolt-div bolt-form">
 

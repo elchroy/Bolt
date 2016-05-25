@@ -123,9 +123,9 @@ class VideoTest extends TestCase
         $user = Bolt\User::find(1);
         $page = $this->actingAs($user)
                 ->visit('videos/1/edit')
-                ->press('Delete')
-                // ->seePageIs('dashboard')
-                // ->see('Video Deleted')
+                ->press('submit-delete-form')
+                ->seePageIs('dashboard')
+                ->see('Video Deleted')
                 ;
 
         // $this->assertSessionHas('success', 'Please Login.');

@@ -34,6 +34,7 @@ class PasswordTest extends TestCase
     public function testRedirectAuthUser()
     {
         $this->createTTModels();
+        
         $user = Bolt\User::find(1);
         $response = $this->actingAs($user)->visit('password/reset')
                         ->seePageIs('/')

@@ -4,6 +4,8 @@ namespace Bolt\Http\Middleware;
 
 use Closure;
 use Validator;
+use Illuminate\Http\Request;
+
 
 class ValidateCategory
 {
@@ -16,19 +18,21 @@ class ValidateCategory
      */
     public function handle($request, Closure $next)
     {
-        $validator = $this->validateCategory($request->all());
+        $validator = $this->validateCategory($request);
         
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->messages());
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         
         return $next($request);
     }
 
-    protected function validateCategory(array $data)
+    protected function validateCategory(Request $request)
     {
+        $data = $request->all();
+        $id = $request->id;
         return Validator::make($data, [
-            'name'         => 'required|max:50|unique:categories',
+            'name'         => 'required|max:50|unique:categories,name,' . $id,
             'brief'        => 'required|max:255',
         ]);
     }

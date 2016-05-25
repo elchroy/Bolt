@@ -4,6 +4,6 @@
 
 {!! csrf_field() !!}
 
-<input type="text" required maxlength="50" value="{{ $category->name or old('name') }}" name="name" placeholder="name of category.">
+<input type="text" required maxlength="50" value="{{ $category->name or Input::old('name') }}" name="name" placeholder="name of category.">
 
-<textarea required maxlength="255" placeholder="brief description of this category" name="brief">{{ $category->brief or old('brief') }}</textarea>
+<textarea required maxlength="255" placeholder="brief description of this category" name="brief">{{ $category->brief or Input::old('brief') }}</textarea>

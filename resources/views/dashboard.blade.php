@@ -36,7 +36,7 @@
             <div class="list-group row">
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-cats" id="add-category" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div>
                 <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
             </div>

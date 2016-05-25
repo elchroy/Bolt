@@ -25,7 +25,6 @@ class UserTest extends TestCase
     					->type('teacher', 'password_confirmation')
     					->press('Register')
     					->seePageIs('dashboard')
-    					// ->see('Your Favored Videos')
     					;
     }
 
@@ -37,7 +36,7 @@ class UserTest extends TestCase
     					->type('teacher', 'password')
     					->press('Login')
     					->seePageIs('dashboard')
-    					// ->see('royally@example.com')
+    					->see('royally@example.com')
     					;
     }
 

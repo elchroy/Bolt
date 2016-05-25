@@ -29,7 +29,7 @@ class CategoriesController extends Controller
 
         $this->middleware('category', ['only' => [
             'create',
-            // 'update'
+            'update',
         ]]);
 
         $this->middleware('owner:' . $request->id . ',' . Category::class, ['only' => [

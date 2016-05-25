@@ -31,8 +31,8 @@ class VideoState extends Controller
 
     public function mostLiked()
     {
-        // dd($query);
-    	return $this->groupedLikes->first()->first()->favoritable;
+        $result = ( null != $this->groupedLikes->first() ) ? $this->groupedLikes->first()->first()->favoritable : $this->recent(1)->first();
+       	return $result;
     }
 
     public function top($number = 10)
@@ -44,6 +44,6 @@ class VideoState extends Controller
 
     public function recent($number = 10)
     {
-    	return Video::latest()->take($number)->get();
+        return Video::latest()->take($number)->get();
     }
 }
