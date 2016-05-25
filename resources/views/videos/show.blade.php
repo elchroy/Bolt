@@ -55,25 +55,25 @@
                     	<button class="bolt-button button-full" id="post-comment" type="submit">POST</button>
 					</form>
 				@else
-					<button class="bolt-button">Login to comment</button>
+					<a href="{{ url('/login') }}"><button class="bolt-button bolt-calling">Login to comment</button></a>
 	    		@endif
 
 		    	<div class="bolt-div" id="video-comments">
 		    		@foreach($comments as $comment)
 
-		    		<div class="maincontainer one-comment">
+		    		<div class="maincontainer one-comment" id="single-comment-{{ $comment->id }}">
 					    <div class="leftcolumn commenter-info">
 					    	<img src="{{ $comment->user->getAvatar() }}" class="commenter-avatar img-responsive">
 					    </div>
 					 
 					    <div class="contentwrapper comment-body">
-					    	<p class="comment-text">{{ $comment->comment }}</p>
+					    	<p class="comment-text" id="comment-text-{{$comment->id}}">{{ $comment->comment }}</p>
 		    				<p class="comment-info">
-		    					<span class="comment-time">{{ $comment->commentedAt() }}</span>
+		    					<span class="comment-time" id="comment-time-{{ $comment->id }}">{{ $comment->commentedAt() }}</span>
 		    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span>
 								@if(Auth::user())
 									@if(Auth::user()->owns($comment))
-										<a href="" title="Edit" class="pull-right comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i></a>
+										<a href="#" title="Edit" class="pull-right comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i></a>
 		    							<a href="#" title="Delete" class="pull-right comment-form-openers" comment="{{$comment->id}}" for="delete-comment-{{ $comment->id }}" id="open-delete-for-{{$comment->id}}"> <i class="fa fa-trash"></i></a>
 									@endif
 								@endif
@@ -100,7 +100,7 @@
 			    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
 										<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
 										<input type="hidden" name="_method" id="delete-method" value="delete">
-										<div> Are you sure you want to delete this video?</div>
+										<div> Are you sure you want to delete this comment?</div>
 				                    	<button class="button-full submit-comment-delete-buttons" comment="{{$comment->id}}" id="submit-comment-delete-{{$comment->id}}" type="submit">Delete</button>
 									</form>
 			    				</div>

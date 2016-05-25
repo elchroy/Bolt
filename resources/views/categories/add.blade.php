@@ -10,6 +10,8 @@
 
 			<form class="bolt-form" method="POST" action="{{ url('categories/create') }}">
 				@include('categories.form-fields')
+
+				<button type="submit">Add</button>
 			</form>	
 
 		</div>

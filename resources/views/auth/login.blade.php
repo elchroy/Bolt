@@ -5,6 +5,10 @@
         <div class="row bolt-login">
             <div class="col-md-12 trad-login" id="trad-login">
             	<div class="bolt-form">
+	            	@if (count($errors) > 0)
+			           @include('videos.video-errors')
+			        @endif
+			        
 					@include('auth.register-form')
 
 					@include('auth.login-form')
@@ -21,6 +25,11 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/login-register.js') }}"></script>
+<script type="text/javascript">
+	$('.login-form').submit( function () {
+		{!! count($errors) > 0 ? '$(".message a[for=login]").trigger("click");' : '' !!}
+	});
+</script>
 @endsection
 
 @section('styles')

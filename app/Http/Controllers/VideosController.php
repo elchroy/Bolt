@@ -48,7 +48,7 @@ class VideosController extends Controller
     
     public function index()
     {
-        $videos = Video::latest()->paginate(24);
+        $videos = Video::latest()->paginate(60);
         $categories = Category::all();
         $paging = $videos->render();
         $category = null;
@@ -122,7 +122,7 @@ class VideosController extends Controller
         $data = $request->all();
 
         $toSearch = $data['search'];
-        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(12);
+        $videos = Video::where('title', 'LIKE', "%$toSearch%")->latest()->paginate(60);
         $title = "Search results for '$toSearch'";
         $paging = $videos->appends(['search' => $toSearch])->links();
         $category = null;

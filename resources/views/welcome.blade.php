@@ -19,7 +19,7 @@
 @section('welcome')
     <div class="container">
         
-        <div class="row" style="background: rgba(255, 255, 255, 0.6)">
+        <div class="row">
             <!-- <div class="col-md-4 col-sm- col-xs-12">
                 <img src="{{ asset('uploads/bolt-logo.png') }}" class="img-responsive welcome-logo center-block">
 
@@ -84,8 +84,8 @@
                         @include('partials.social')
                     </div>
                 @else
-                    <div class="bolt-form" style="background: transparent; padding: 0px; border:none;">
-                    @include('videos.video-item', ['video' => $top])
+                    <div class="bolt-form" id="top-video">
+                        @include('videos.video-item', ['video' => $top])
                     </div>
                 @endif
             </div>
@@ -130,6 +130,10 @@
                     </div>
                 </div>
 
+                <div class="pull-right bolt-div">
+                    <a href="{{ url('/videos') }}"><button class="bolt-calling button-half">Browse more videos</button></a>
+                </div>
+
             </div>
         </div>
 </div>
@@ -145,6 +149,28 @@
 
     .bolt-form {
         /*max-width: 500px;*/
+    }
+
+    .bolt-form#top-video {
+        background: transparent;
+        padding: 0px;
+        border:none;
+        border-radius: 5px;
+    }
+
+    .bolt-form#top-video .video-box {
+        background: transparent;
+        padding: 0px;
+        border:none;
+    }
+
+    .bolt-form#top-video .video-box a {
+        margin: 0px;
+    }
+
+    .bolt-form#top-video .video-box a p {
+        background: rgba(192, 32, 32, 0.7);
+        line-height: 50px;
     }
 
     #most-liked {
@@ -180,47 +206,4 @@
     }
 
 </style>
-@endsection
-
-@section('dcontent')
-<div class="container">
-    <div class="row bolt-home-page fadeInLeft animated" id="page-1">
-        <div class="col-md-9 bolt-home-logo">
-            <img class="img-responsive" src="{{ asset('uploads/banner.jpg') }}">
-            <button class="bolt-button .button-half" id="show-page-2">Browse more videos</button>
-        </div>
-        @if(Auth::guest())
-            <div class="col-md-3 bolt-home-main">
-        
-                <div class="bolt-home-forms">
-                    <div class="bolt-home-form animated fadeInDown" style="display: block;" id="form-login">
-                        <h3>Login</h3>
-                        @include('auth.login-form')
-                        <a id="show-register">Do not have an account? Register</a>
-                    </div>
-                    <div class="bolt-home-form animated fadeInUp" id="form-register">
-                        <h3>Register</h3>
-                        @include('auth.register-form')
-                        <a id="show-login">Have an account? Login</a>
-                    </div>
-                </div>
-                <div style="bottom: 0px; display: block;">
-                    @include('partials.social')
-                </div>
-            </div>
-        @endif
-    </div>
-    <div class="row bolt-home-page fadeInRight animated" id="page-2">
-
-        @if(Auth::guest())
-            <button class="bolt-button .button-half" id="show-page-1">Login or Register</button>
-        @else
-            <button class="bolt-button .button-full">Upload</button>
-        @endif
-
-        @foreach( Bolt\Video::latest()->take(12)->get()  as $video)
-            @include('videos.video-item')
-        @endforeach
-    </div>
-</div>
 @endsection

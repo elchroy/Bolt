@@ -36,8 +36,8 @@ $factory->define(Bolt\Video::class, function (Faker\Generator $faker) {
         'title'         => $faker->sentence(rand(6, 10), true),
         'description'   => $faker->text(200),
         'url'           => "https://www.youtube.com/watch?v=$random_str",
-        'category_id'   => rand(1, 5),
-        'user_id'       => rand(1, 5),
+        'category_id'   => rand(1, 40),
+        'user_id'       => rand(1, 50),
     ];
 });
 
@@ -45,7 +45,7 @@ $factory->define(Bolt\Category::class, function (Faker\Generator $faker) {
     return [
         'name'      => $faker->name,
         'brief'     => $faker->sentence(rand(5, 10), true),
-        'user_id'   => rand(1, 5),
+        'user_id'   => rand(1, 20),
     ];
 });
 
@@ -53,8 +53,8 @@ $factory->define(Bolt\Category::class, function (Faker\Generator $faker) {
 $factory->define(Bolt\Comment::class, function (Faker\Generator $faker) {
     return [
         'comment'       => $faker->sentence(rand(3, 6), true),
-        'video_id'      => rand(1, 5),
-        'user_id'       => rand(1, 5)
+        'video_id'      => rand(1, 10),
+        'user_id'       => rand(1, 10)
     ];
 });
 
@@ -65,8 +65,9 @@ $factory->define(Bolt\Favorite::class, function (Faker\Generator $faker) {
     ];
     $choice = rand(0, 1);
     return [
-        'user_id'           => rand(1, 5),
-        'favoritable_id'    => rand(1, 5),
+        'user_id'           => rand(1, 20),
+        'favoritable_id'    => rand(1, 20),
+        'status'            => 1,
         'favoritable_type'  => $favored[$choice],
     ];
 });

@@ -25,11 +25,12 @@
 
                     <li id="search-list">
                         <form class="bolt-form" method="GET" action="{{ url('videos/search') }}" id="search-form">
-                            <input class="" id="search-videos" value="{{ $toSearch or null }}" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
+                            <input class="" required id="search-videos" value="{{ $toSearch or null }}" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
                         </form>
                     </li>
 
                     <li><a href="{{ url('/videos') }}">Videos</a></li>
+                    <li><a href="{{ url('/categories') }}">Categories</a></li>
 
                     <!-- Authentication Links -->
                     @if (Auth::user())

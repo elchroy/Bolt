@@ -14,15 +14,15 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        factory('Bolt\User', 5)->create();
+        factory('Bolt\User', 50)->create();
 
-        factory('Bolt\Video', 5)->create();
+        factory('Bolt\Video', 50)->create();
 
-        factory('Bolt\Category', 4)->create();
+        factory('Bolt\Category', 40)->create();
 
-        factory('Bolt\Comment', 15)->create();
+        factory('Bolt\Comment', 50)->create();
 
-        factory('Bolt\Favorite', 15)->create();
+        factory('Bolt\Favorite', 50)->create();
 
         Model::reguard();
     }

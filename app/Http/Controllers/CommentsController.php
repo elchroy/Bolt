@@ -47,6 +47,8 @@ class CommentsController extends Controller
         if ($request->ajax()) {
             $output = [
                 'id'     => $comment->id,
+                'deltoken'  => csrf_token(),
+                'edittoken'  => csrf_token(),
                 'status' => 'success',
             ];
 
@@ -63,6 +65,9 @@ class CommentsController extends Controller
     	if ($request->ajax()) {
             $output = [
                 'status' => 'success',
+                'time'   => $comment->created_at->diffForHumans(),
+                'edited' => $comment->is_edited(),
+                
             ];
 
             return json_encode($output);

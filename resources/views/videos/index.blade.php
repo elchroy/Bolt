@@ -17,35 +17,14 @@
             <div class="col-md-2 col-sm-2 hidden-xs section-body" id="category-bar">
 
                         <div class="list-group">
-                            <!-- <a href="{{ url('videos') }}" class="list-group-item cat-list-item">All Videos</a> -->
-                            <div class="cat-list-item">Categories</div>
-                            <!-- <hr> -->
-
-                            @foreach(Bolt\Category::all() as $cat)
-                                <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item {{ $cat == $category ? 'active' : ''}}">
+                            <div class="cat-list-item">Top Categories</div>
+                            @foreach(Bolt\Category::hasVideo()->sortBy('name') as $cat)
+                                <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item {{ ( isset($category) ) ? ($cat->id == $category->id ? 'active' : '') : '' }}">
                                     <i class="fa fa-tags fa-lg"></i>
                                     <span class="cat-name truncate">{{ $cat->name }}</span>
                                     <span class="cat-video-num badge header-badge truncate pull-right" style="right: 10px; position:absolute; background:#312C32; color: #fff;">{{ $cat->videos->count() }}
                                 </a>
                             @endforeach
-
-                           <!--  @foreach(Bolt\Category::all() as $cat)
-
-                                @if($cat == $category)
-                                    <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item active">
-                                        <span class="cat-icon">+</span>
-                                        <span class="cat-video-num truncate">{{ $cat->videos->count() }}</span>
-                                        <span class="cat-name truncate">{{ $cat->name }}</span>
-                                    </a>
-                                @else
-                                    <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item">
-                                        <span class="cat-icon">+</span>
-                                        <span class="cat-video-num truncate">{{ $cat->videos->count() }}</span>
-                                        <span class="cat-name truncate">{{ $cat->name }}</span>
-                                    </a>
-                                @endif
-
-                            @endforeach -->
                         </div>
                         
             </div>

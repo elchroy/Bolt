@@ -53,8 +53,9 @@ var keepSideBar = function (sidebarId)
 
 var toggleDiv = function (buttonID, divID, commonClass, time = null)
 {
-  // console.log(buttonID);
-    $('#' + buttonID).click(function () {
+    $('#' + buttonID).click(function (e) {
+        e.preventDefault();
+
         performToggle(buttonID, divID, commonClass, time);
     });
 }
@@ -64,7 +65,14 @@ var performToggle = function (buttonID, divID, commonClass, time = null) {
   // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);
   // $('#'+divID).toggle('fade');
   $('#'+divID).toggle(time);
-  // $('#'+divID).fadeToggle(600);
+}
+
+var toggPerform = function (buttonID, divID, commonClass, time = null) {
+
+  $('#' + buttonID).click(function () {
+    $('.' + commonClass + '#' + divID).toggle(time);
+    // $('#'+divID).fadeToggle(600);
+  });
 }
 
 

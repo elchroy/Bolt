@@ -24,8 +24,15 @@ class Category extends Model
     	return count($this->videos()->get());
     }
 
-    public function user()
+    public function user()  
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeHasVideo()
+    {
+        return Category::all()->filter( function ($cat) {
+            return $cat->videos->count() > 0;}
+        );
     }
 }

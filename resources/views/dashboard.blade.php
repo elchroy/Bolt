@@ -23,21 +23,22 @@
 
             <div class="user-info video-tidtle">
                 <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
-                <div id="user-manage-overlay">
-                    <button class="bolt-button" id="edit-profile"><i class="fa fa-edit"></i> Edit Profile</button>
-                    <button class="bolt-button" id="change-avatar"><i class="fa fa-image"></i> Change Avatar</button>
-                </div>
                 <div class="user-image-overlay">
                     <h3 id="user-name" class="truncate">{{ $user->name }}</h3>
                     <h4 id="user-email" class="truncate">{{ $user->email }}</h4>
+                    <p id="user-manage">
+                        <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="hidden-sm hidden-xs">Edit Profile</span></span>
+                        <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class="hidden-sm hidden-xs">Change Avatar</span></span>
+                    </p>
                 </div>
             </div>
 
             <div class="list-group row">
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"><span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"><span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorite Videos</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><button id="add-new-video-button" class="list-group-item"><span class="user-badge badge">+</span>Upload Video</button></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item">Add Category</a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-cats" id="add-category" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div>
+                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
             </div>
             <div>
                 <div id="edit-profile-form" class="sideforms" hidden>
@@ -56,8 +57,6 @@
         <div class="col-md-10" id="user-mainbar">
 
                 <div>
-
-                    <!-- <div id="add-video-form" id="user-videos"><h2>Add new video</h2></div> -->
                     
                     <div id="add-video-form" class="BounceInUp video-forms" hidden style="font-size: 100% !important;">
                         @include('videos.add-video-form')
@@ -86,13 +85,7 @@
                     <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
                     <div class="row main-panel">
                         @foreach($categories as $category)
-                            <div class="col-md-3 col-sm-6 col-xs-12 list-group">
-                                <div class="list-group-item">
-                                    <a href="{{ url('categories/' . $category->id) }}">
-                                        <h3> <span class="badge"> {{$category->numberOfVideos()}} </span> {{$category->name}}</h3>
-                                    </a>
-                                </div>
-                            </div>
+                            @include('categories.item')
                         @endforeach
                     </div>
                     <!-- {!! $videos->render() !!} -->
@@ -104,6 +97,7 @@
 @endsection
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/category-item.css') }}">
 
 
 <style type="text/css">
@@ -111,6 +105,11 @@
     .main-panel {
         /*overflow: auto;*/
         /*max-height: 100vh;*/
+    }
+    .sideforms .bolt-form {
+        padding: 10px 5px !important;
+        margin: 0 !important;
+        line-height: 80%; 
     }
 
     .title,max-height: {
@@ -124,16 +123,29 @@
 
     }
 
-    #user-manage-overlay {
-        opacity: 0;
-        position: absolute;
-        left: 0;
-        top: 0;
+    p#user-manage {
         padding: 10px;
         background: rgb(49, 44, 50);
         color: #fff;
         font-weight: bolder;
         border-radius: 1px;
+        font-size: 78%;
+
+    }
+
+    p#user-manage span {
+        padding: 2px 1px;
+        border-radius: 2px;
+    }
+
+    p#user-manage span:hover {
+        background: #F2F2F2;
+        color: #312C32;
+    }
+
+    p#user-manage i,
+    p#user-manage span {
+        cursor: pointer;
     }
 
     div.user-info:hover #user-manage-overlay {
@@ -241,28 +253,3 @@
     }
 
 </style>
-
-@section('page')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-
-                    <form enctype="multipart/form-data" method="POST" action={{ url('user/changeAvatar') }}>
-                        <input type="file" name="file">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit">Upload</button>
-                    </form>
-                    <a href="{{ url('profile/edit') }}">Edit Profile</a>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection

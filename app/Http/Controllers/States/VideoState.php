@@ -31,6 +31,7 @@ class VideoState extends Controller
 
     public function mostLiked()
     {
+        // dd($query);
     	return $this->groupedLikes->first()->first()->favoritable;
     }
 

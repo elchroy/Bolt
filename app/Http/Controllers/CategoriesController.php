@@ -39,10 +39,9 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $categories = Category::orderBy('name')->paginate(30);
-        $paging = $categories->render();
+        $categories = Category::orderBy('name')->get();
 
-        return view('categories.index', compact('categories', 'paging'));
+        return view('categories.index', compact('categories'));
     }
 
     public function add(Request $request)
@@ -63,7 +62,7 @@ class CategoriesController extends Controller
     {
     	$category = Category::find($request->id);
     	$title = $category->name;
-    	$videos = $category->videos()->paginate(24);
+    	$videos = $category->videos()->paginate(60);
     	$paging = $videos->render();
 
     	return view('videos.index', compact('category', 'videos', 'paging', 'title'));

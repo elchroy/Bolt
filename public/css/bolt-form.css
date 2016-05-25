@@ -66,6 +66,10 @@ textarea {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
+.button-half {
+  width: auto;
+}
 .bolt-form button:hover,.bolt-form button:active,.bolt-form button:focus {
   background: rgb(98, 94, 99);
 }
