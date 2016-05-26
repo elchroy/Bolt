@@ -46,4 +46,6 @@ class UsersController extends Controller
 
         return redirect('dashboard');
     }
+
+    // public function
 }

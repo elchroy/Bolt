@@ -60,7 +60,7 @@ class VideosController extends Controller
     {
         $video = Video::find($request->id);
         $comments = $video->comments()->latest()->paginate(15);
-        $title = "Edit $video->title";
+        $title = "$video->title";
 
         return view('videos.show', compact('video', 'comments', 'title'));
     }

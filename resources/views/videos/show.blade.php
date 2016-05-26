@@ -15,34 +15,51 @@
 	    		</div>
 
 	    		<div class="row">
-		    		<div class="col-md-10 col-sm-10 video-group-title">
+		    		<div class="col-md-12 col-sm-12" style="color: #312C32;">
 				    	<h2>{{ $video->title }}</h2>
+				    	<div class="video-details video-details-show">
+				    		<div style="display: inline-block;">
+				    			<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> {{ $video->category->name }}</a></h5>
+					    		<h6> <strong> Owner: </strong>{{ $video->user->name }}</h6>
+					    		<h6> <strong> At: </strong>{{ $video->created_at->diffForHumans() }}</h6>
+				    		</div>
+				    			
+
+				    		<div class="pull-right" style="display: inline-block; float: right;">
+				    			@if(Auth::user())
+								    @if( Auth::user()->favors($video) )
+								        @include('partials.fav', [
+								        	'action' => 'unfavorite',
+								        	'model' => 'videos',
+								        	'id' => $video->id,
+								        ])
+								    @else
+								        @include('partials.fav', [
+								        	'action' => 'favorite',
+									        'model' => 'videos',
+									        'id' => $video->id,
+								       	])
+								    @endif
+								@else
+									<a href="{{ url('/login') }}">Like this video? <button class="bolt-button button-half"> Login</button></a>
+								@endif
+				    		</div>
+				    	</div>
 				    </div>
-		    		<div class="col-md-2 col-sm-2" id="like-button">
-				    	@if(Auth::user())
-							<div>
-							    @if( Auth::user()->favors($video) )
-							        @include('partials.fav', [
-							        	'action' => 'unfavorite',
-							        	'model' => 'videos',
-							        	'id' => $video->id,
-							        	'button' => 'Unlike',
-							        ])
-							    @else
-							        @include('partials.fav', [
-							        	'action' => 'favorite',
-								        'model' => 'videos',
-								        'id' => $video->id,
-								        'button' => 'Like',
-							       	])
-							    @endif
-							</div>
-						@else
-							<a href="{{ url('/login') }}"><button class="bolt-button button-half">Like this video</button></a>
-						@endif
-				    </div>
+
 	    		</div>
-	    			
+	    		<hr>
+
+	    		<div class="row">
+	    			<div class="hidden-sm hidden-xs">
+	    				<div class="section-header"><h2> Related Videos </h2></div>
+	    				    @foreach($video->siblings(12) as $v)
+	                            <div class="col-md-3 col-sm-6 col-xs-12">
+	                                @include('videos.video-item', ['video' => $v])
+	                            </div>
+	                        @endforeach
+	    			</div>
+	    		</div>
 	    	</div>
 	    	<div class="col-md-3 video-right">
 	    		@if(Auth::user())
@@ -120,6 +137,16 @@
 		height: 0;
 		/*padding-top: 25px;*/
 		padding-bottom: 56.25%; /* 16:9 */
+	}
+
+	.video-details-show {
+		background: #F2F2F2;
+    	border-radius: 2px;
+	}
+
+	.video-details-show {
+		background: #F2F2F2;
+    	border-radius: 2px;
 	}
 
 	#video-screen iframe {

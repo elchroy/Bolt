@@ -38,7 +38,7 @@ class CommentsController extends Controller
 	}
     public function createComment(Request $request)
     {
-    	$data = $request->all();
+        $data = $request->all();
     	$data['video_id'] = $request->id;
 
         $user = Auth::user();

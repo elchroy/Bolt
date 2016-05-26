@@ -31,7 +31,8 @@
 
             <div class="col-md-10 col-sm-10 col-xs-12 section-body" id="user-mainbar">
 
-                        <div class="video-group-title" id="user-videos"><h2>{{ $title }} <span class="badge header-badge">+</span></h2></div>
+                        <div class="video-group-title" id="user-videos"><h2>{{ $title }} <span class="badge header-badge">+</span></h2>
+                        </div>
                         <hr>
                         <div class="row main-panel">
                             @if( count($videos) )

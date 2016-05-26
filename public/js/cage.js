@@ -60,6 +60,15 @@ var toggleDiv = function (buttonID, divID, commonClass, time = null)
     });
 }
 
+var closeDiv = function (divClass)
+{
+  $('.close-form').click( function (e) {
+      e.preventDefault();
+      id = $(this).attr('id');
+      $('.' + divClass + '#' + id).hide(600);
+  });
+}
+
 var performToggle = function (buttonID, divID, commonClass, time = null) {
   $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide(time);
   // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);

@@ -6,7 +6,7 @@ postComment.click( function (e) {
 	
 	e.preventDefault();
 
-	inputComment = $('#new-comment');
+	var inputComment = $('#new-comment');
 
 	var newComment = inputComment.val();
 	var commenter = inputComment.attr('commenter');
@@ -27,6 +27,9 @@ postComment.click( function (e) {
 		$('#video-comments').find('div.single-comment:last-child').remove();
 		$('#video-comments').prepend(comment);
 
+		inputComment.val( function () {
+			return null;
+		});
 		toggleDiv("open-edit-for-" + id, "edit-comment-" + id , "comment-forms", 600);
 		toggleDiv("open-delete-for-" + id, "delete-comment-" + id , "comment-forms", 600);
 		watchforedit('submit-comment-edit-buttons');
@@ -62,10 +65,10 @@ fav.click( function (e) {
 
 		if (id == 'button-favorite') {
 			replaceClass = 'button-unfavorite';
-			replaceHTML = '<i class="fa fa-lg fa-heart"></i> Unlike';
+			replaceHTML = '<i class="fa fa-lg fa-heart"></i>';
 		} else if (id == 'button-unfavorite') {
 			replaceClass = 'button-favorite';
-			replaceHTML = '<i class="fa fa-lg fa-heart-o"></i> Like';
+			replaceHTML = '<i class="fa fa-lg fa-heart-o"></i>';
 		}
 
 		
@@ -132,7 +135,6 @@ var watchforedit = function (editbutton) {
 
 		$.post(action, data, function (d) {
 			d = JSON.parse(d);
-			console.log(d);
 			time = d.time;
 			edited = d.edited;
 			$('#open-edit-for-' + commentID).trigger('click');

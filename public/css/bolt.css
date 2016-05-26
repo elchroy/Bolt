@@ -2,9 +2,10 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  /*font-family: "Roboto", sans-serif;*/
   color: #312C32;
   background: #fff url('/../uploads/bolt-skin.jpg') repeat center top fixed;
+
+
 }
 
 .bolt-logo {
@@ -31,6 +32,8 @@ body {
 
 a:hover {
 
+  text-decoration: none;
+
     -webkit-transition: all .3s ease-in 0s;
        -moz-transition: all .3s ease-in 0s;
         -ms-transition: all .3s ease-in 0s;
@@ -51,7 +54,6 @@ ul {
 	padding: 40px;
 	color-profile: none;
 	color: #312C32 !important;
-	/*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 
 .bolt-button {
@@ -178,7 +180,6 @@ body .bolt-section {
   margin: 70px 20px;
   background: #fff;
   border-radius: 2px;
-  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 
 
@@ -206,8 +207,16 @@ body .bolt-section div.row {
   padding: 0 20px;
 }
 
+.pagination-div {
+  width: 100%;
+  display: block;
+}
+
 ul.pagination {
   border: none;
+  margin: 0px;
+  width: 100%;
+  float: right;
 }
 
 ul.pagination li.disabled span {
@@ -236,18 +245,19 @@ ul.pagination li a:hover{
 }
 
 .bolt-presenter {
-  padding: 3px;
+  padding: 1px;
   background: #312C32;
   max-width: 200px;
   position: fixed;
-  z-index: 999;
-  top: 60;
+  z-index: 1999;
+  top: 47px;
   border: 1px solid #fff;
 }
 
 .bolt-presenter .alert {
   margin: 0px;
   border-radius: 1px;
+  background: #f2f2f2;
 }
 
 .link-info {

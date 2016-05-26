@@ -42,16 +42,15 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                <li><a href="{{ url('/dashboard') }}"> <i class="fa fa-btn fa-user"></i> Dashboard</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                        <!-- <li class="dropdown" id="avatar">
+                        <li class="dropdown" id="avatar">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <img class="hidden-xs" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
                             </a>
-                        </li> -->
-                        <!-- <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li> -->
+                        </li>
                     @else
                         @if(!(Request::is('/')))
                             <li><a style="background: #C52020; color: #333;" href="{{ url('/login') }}">Login</a></li>

@@ -56,7 +56,8 @@
                         @include('partials.social')
                     </div>
                 @else
-                    <div class="bolt-form" id="top-video">
+                    <div class="bolt-form hidden-xs" id="top-video">
+                        <div class="bolt-calling"> <i class="fa fa-star"></i>  Trending Now</div>
                         @include('videos.video-item', ['video' => $top])
                     </div>
                 @endif
@@ -121,28 +122,6 @@
 
     .bolt-form {
         /*max-width: 500px;*/
-    }
-
-    .bolt-form#top-video {
-        background: transparent;
-        padding: 0px;
-        border:none;
-        border-radius: 5px;
-    }
-
-    .bolt-form#top-video .video-box {
-        background: transparent;
-        padding: 0px;
-        border:none;
-    }
-
-    .bolt-form#top-video .video-box a {
-        margin: 0px;
-    }
-
-    .bolt-form#top-video .video-box a p {
-        background: rgba(192, 32, 32, 0.7);
-        line-height: 50px;
     }
 
     #most-liked {

@@ -157,9 +157,9 @@ class VideoTest extends TestCase
         $page = $this->actingAs($user)
                 ->visit('videos/1')
                 ->see('Like')
-                ->press('Like')
+                ->press('button-favorite')
                 ->seePageIs('videos/1')
-                ->see('Unlike')
+                ->see('Unfavorite')
                 ;
         $status = $user->favors($video);
         $this->assertEquals(1, $status);
@@ -174,8 +174,8 @@ class VideoTest extends TestCase
         $video = Bolt\Video::find(1);
         $page = $this->actingAs($user)
                 ->visit('videos/1')
-                ->see('Unlike')
-                ->press('Unlike')
+                // ->see('Unlike')
+                ->press('button-unfavorite')
                 ->seePageIs('videos/1')
                 ->see('Like')
                 ;

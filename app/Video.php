@@ -57,4 +57,14 @@ class Video extends Model
     {
         return $this->morphMany('Bolt\Favorite', 'favoritable');
     }
+
+    public function siblings($number = null)
+    {
+        $sibs =  $number == null || $number == 0 ? $this->category->videos : $this->category->videos->take($number);
+        $sibs = ($sibs->reject( function ($each) {
+           return $each->id == $this->id;
+        }));
+        
+        return $sibs;
+    }
 }

@@ -71,8 +71,8 @@ class UserTest extends TestCase
     {
         $response = $this->call('GET', 'auth/facebook');
         $target = $response->headers->get('location');
-        $expectedTarget = 'https://www.facebook.com/v2.5/dialog/oauth?client_id=';
-        $this->assertEquals($expectedTarget, substr($target, 0, 53));
+        $expectedTarget = 'https://www.facebook.com';
+        $this->assertEquals($expectedTarget, substr($target, 0, 24));
         $this->assertResponseStatus(302);
     }
 
@@ -83,7 +83,6 @@ class UserTest extends TestCase
         $user = $this->createUser();
         $page = $this->actingAs($user)
                 ->visit('/dashboard')
-                // ->click('Change Avatar')
                 ->attach($uploadedFile, 'file')
                 ->press('submit-new-avatar')
                 ->seePageIs('dashboard')
@@ -99,7 +98,6 @@ class UserTest extends TestCase
         $page = $this->actingAs($user)
                 ->visit('/dashboard')
                 ->see('Change Avatar')
-                // ->click('Change Avatar')
                 ->attach($uploadedFile, 'file')
                 ->press('submit-new-avatar')
                 ->seePageIs('dashboard')

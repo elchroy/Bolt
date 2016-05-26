@@ -17,6 +17,6 @@
         
         @include('videos.category-field', ['video' => null])
 
-        <button type="submit" class="bolt-button">Add</button>
+        <button type="submit" class="bolt-button button-half">Add</button>
 
 </form>

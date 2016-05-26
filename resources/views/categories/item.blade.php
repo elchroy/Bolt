@@ -11,7 +11,7 @@
 	@if(Auth::user())
 		@if(Auth::user()->owns($category))
 			<div class="right-section" style="float: none; text-align: center;">
-				<a href="{{ url('categories/' . $category->id) . '/edit' }}" style="float: none; text-align: left;"> <i class="fa fa-edit"></i> Edit </a>
+				<a href="{{ url('categories/' . $category->id) . '/edit' }}" style="float: right; text-align: left; text-transform: lowercase; padding-right: 10px;"> <i class="fa fa-edit"></i> Edit </a>
 			</div>
 		@endif
 	@endif
