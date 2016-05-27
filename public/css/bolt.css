@@ -195,7 +195,7 @@ body .bolt-section div.row {
 .video-group-title,
 .section-header {
     text-align: center;
-    background: #F2F2F2 url('/../img/bolt-icon.png') right no-repeat;
+    background: #F2F2F2;
     color: #C52020;
     padding: 0 5px;
     padding-right: 70px;

@@ -69,10 +69,10 @@ class User extends Authenticatable
 
     public function favoriteVideos()
     {
-        $videoLikes = $this->favorites()->where('favoritable_type', 'Bolt\Video')->where('status', 1)->get();
-        $favVids = array_map(function ($like) {
-            return \Bolt\Video::find($like['favoritable_id']);
-        }, $videoLikes->toArray());
+        $videoLikes = $this->favorites()->isVideo()->get();
+        $favVids = $videoLikes->map( function ($f) {
+            return $f->favoritable;
+        });
 
         return $favVids;
     }

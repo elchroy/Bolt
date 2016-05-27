@@ -40,18 +40,20 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::orderBy('name')->get();
+        $title = "All Categories";
 
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories', 'title'));
     }
 
     public function add(Request $request)
     {
-    	return view('categories.add');
+        $title = "Add Category";
+    	return view('categories.add', compact('title'));
     }
 
     public function create(Request $request)
     {
-    	$user = Auth::user();
+        $user = Auth::user();
     	$user->categories()->create($request->all());
 
     	$request->session()->flash('success', 'Created');
@@ -70,9 +72,10 @@ class CategoriesController extends Controller
 
     public function edit(Request $request)
     {
-    	$category = Category::find($request->id);
+        $category = Category::find($request->id);
+        $title = "Edit Category - $category->name";
 
-    	return view('categories.edit', compact('category'));
+    	return view('categories.edit', compact('category', 'title'));
     }
 
     public function update(Request $request)

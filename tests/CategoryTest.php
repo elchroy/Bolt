@@ -167,7 +167,21 @@ class CategoryTest extends TestCase
 			;
 	}
     
-	// public function testCategoryCreate();
+	public function testCategoryIndex()
+    {
+        $this->createTTModels();
+
+        factory(Bolt\Category::class)->create([
+            'name' => 'PHP',
+            'user_id' => 2
+        ]);
+
+        $user = Bolt\User::find(1);
+        $this->actingAs($user)->visit('/categories')
+            ->see('PHP')
+            ->see('MsDotNet')
+            ;
+    }
     
 	// public function testCategoryCreate();
     

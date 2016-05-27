@@ -4,17 +4,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        toggleDiv("add-new-video-button", "add-video-form", "video-forms", 600);
-        toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
-        toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
+        // toggleDiv("add-new-video-button", "add-video-form", "video-forms", 600);
+        // toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
+        // toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
         // toggleDiv("add-video", "add-video-form", "sideforms", 600);
 
         
 
-        closeDiv("sideforms");
-        closeDiv("video-forms");
+        // closeDiv("sideforms");
+        // closeDiv("video-forms");
         
-        {!! count($errors) > 0 ? '$("#add-new-video-button").trigger("click");' : '' !!}
+        // {!! count($errors) > 0 ? '$("#add-new-video-button").trigger("click");' : '' !!}
 
     });
 </script>

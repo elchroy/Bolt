@@ -100,7 +100,7 @@ class VideosController extends Controller
 
         $video->update($request->all());
 
-        return redirect()->back();
+        return redirect()->to('dashboard');
     }
 
     public function deleteVideo(Request $request)
