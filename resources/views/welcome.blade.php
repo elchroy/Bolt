@@ -20,8 +20,8 @@
     <div class="container">
         
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="welcome-note bolt-div bolt-form">
+            <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+                <div class="welcome-note bolt-form">
 
                     <p class="welcome-header">With Bolt</p>
 
@@ -46,9 +46,9 @@
 
                 </div>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
                 @if(Auth::guest())
-                    <div class="bolt-form">
+                    <div class="bolt-form home-form">
                         @include('auth.register-form')
 
                         @include('auth.login-form')
@@ -56,9 +56,13 @@
                         @include('partials.social')
                     </div>
                 @else
-                    <div class="bolt-form hidden-xs" id="top-video">
-                        <div class="bolt-calling"> <i class="fa fa-star"></i>  Trending Now</div>
-                        @include('videos.video-item', ['video' => $top])
+                    <div class="hidden-xs hidden-sm" id="top-video">
+                        <img src="{{ asset('uploads/monitor.png') }}" class="img-responsive monitor-frame">
+                        <div class="img-responsive monitor-screen">
+                            <div class="video-box" id="video-screen">
+                                <iframe id="video-frame" src="{{ $top->srcFrame() }}" frameborder="0"></iframe>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </div>
@@ -114,47 +118,5 @@
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
-<style type="text/css">
-
-    .bolt-form .register-form {
-        display: none;
-    }
-
-    .bolt-form {
-        /*max-width: 500px;*/
-    }
-
-    #most-liked {
-        background: #B76868;
-        border-radius: 3px;
-        padding: 0 5px;
-        color: #312C32;
-        font-weight: bolder;
-    }
-
-    .welcome-logo {
-        margin: 0 auto;
-    }
-
-    .welcome-note {
-        padding: 20px;
-        font-size: larger;
-        font-weight: 300;
-        background: #FFFFFF
-    }
-
-    .welcome-note p.welcome-header{
-        background: #312C32;
-        color: #fff;
-        border-radius: 2px;
-        padding: 10px;
-        font-size: xx-large;
-    }
-
-    .welcome-note div.welcome-body{
-        background: #FAFFBD ;
-        padding: 10px;
-    }
-
-</style>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/home-page.css') }}">
 @endsection

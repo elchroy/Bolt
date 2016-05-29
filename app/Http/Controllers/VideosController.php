@@ -127,7 +127,7 @@ class VideosController extends Controller
         $paging = $videos->appends(['search' => $toSearch])->links();
         $category = null;
 
-        return view('videos.index', compact('videos', 'paging', 'title', 'toSearch', 'category'));
+        return view('videos.search', compact('videos', 'paging', 'title', 'toSearch', 'category'));
     }
 
     public function favorite(Request $request)

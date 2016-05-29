@@ -93,7 +93,7 @@ class AuthController extends Controller
     private function continueHandling($user, $link, Request $request)
     {
         $authUser = $this->findOrCreateSocialUser($user, $link);
-        dd();
+        
         if ($authUser) {
             Auth::login($authUser, true);
 
@@ -113,7 +113,6 @@ class AuthController extends Controller
      */
     private function findOrCreateSocialUser($socialUser, $socialLink)
     {
-        // dd($socialUser);
         if ($authUser = User::where('social_id', $socialUser->id)->first()) {
             return $authUser;
         }

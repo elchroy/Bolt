@@ -128,9 +128,10 @@ ul {
 }
 .navbar-nav li form input#search-videos {
 	background: inherit;
-    border: none;
-    display: block;
-    height: 30px;
+  border: none;
+  display: block;
+  height: 30px;
+  padding: 0px;
 }
 
 .container {

@@ -23,30 +23,29 @@
 
 @section('content')
     <div class="row bolt-puppy">
-        <div class="col-md-2 bolt-div" id="user-sidebar">
+        <div class="col-md-2 col-sm-2" id="user-sidebar">
 
-            <div class="user-info video-tidtle">
+            <div class="user-info video-title">
                 <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
                 <div class="user-image-overlay">
-                    <h3 id="user-name" class="truncate">{{ $user->name }}</h3>
-                    <h4 id="user-email" class="truncate">{{ $user->email }}</h4>
+                    <h3 id="user-name" class="truncate hidden-sm hidden-xs">{{ $user->name }}</h3>
                     <p id="user-manage">
-                        <a href="{{ url('profile/edit') }}"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="hidden-sm hidden-xs">Edit Profile</span></span></a>
-                        <a href="{{ url('profile/edit') }}"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class="hidden-sm hidden-xs">Change Avatar</span></span></a>
+                        <a href="{{ url('profile/edit') }}"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="">Edit Profile</span></span></a>
+                        <a href="{{ url('profile/edit') }}"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a>
                     </p>
                 </div>
             </div>
 
             <div class="list-group row">
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
-                <div class="col-md-12 col-sm-6 col-xs-6"> <a href="{{ url('videos/add') }}"> <button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div></a>
-                <div class="col-md-12 col-sm-6 col-xs-6"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-2"> <a href="{{ url('videos/add') }}"> <button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div></a>
+                <div class="col-md-12 col-sm-12 col-xs-2"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
             </div>
         </div>
 
-        <div class="col-md-10" id="user-mainbar">
+        <div class="col-md-10 col-sm-10" id="user-mainbar">
                 <div style="position: absolute; box-shadow: #312C32 0 0 10px; max-width: 300px;">
                     <div id="edit-profile-form" class="sideforms" hidden>
                         <buttom class="pull-right close close-form" id="edit-profile-form"> Close </buttom>
@@ -73,6 +72,7 @@
                             @foreach($videos as $video)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     @include('videos.video-item')
+                                    <p class="pull-right"> <a href="{{ url('videos/'. $video->id .'/edit') }}"> <i class="fa fa-edit fa-lg"></i> Edit</a> </p>
                                 </div>
                             @endforeach
                         @else
@@ -98,6 +98,8 @@
                     </div>
 
                     <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
+                    <hr>
+                    
                         <div class="row main-panel">
                             @if(count($categories))
                                 @foreach($categories as $category)

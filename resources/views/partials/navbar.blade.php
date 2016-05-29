@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top hidden-xs hidden-sm">
+<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -19,7 +19,7 @@
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse hidden-sms hidden-xss" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
 
@@ -36,7 +36,7 @@
                     @if (Auth::user())
                         <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle truncate" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <span class="">{{ Auth::user()->name }}</span>
                                 <span class="caret"></span>
                             </a>
@@ -47,8 +47,9 @@
                             </ul>
                         </li>
                         <li class="dropdown" id="avatar">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img class="hidden-xs" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
+
+                             <a href="{{ url('/dashboard') }}" class="truncate">
+                                <img class="hidden-xs hidden-sm" title="{{Auth::user()->name}}" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
                             </a>
                         </li>
                     @else
@@ -59,29 +60,11 @@
                     @endif
 
                 </ul>
-
-                <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <img class="image-responsive" id="processor" src="{{ asset('img/processor.gif') }}">
-                    </li>
-                </ul>
                 
             </div>
         </div>
         
     </nav>
-
-    <div class="hidden-lg hidden-md navbar-static-top" >
-        <div class="small-screen-nav">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <div class="bolt-logo">
-                    <img class="img-responsive" src="{{ asset('img/bolt-logo.png') }}">
-                </div>
-            </a>
-        </div>
-        <div class="small-screen-nav"><a href="{{ url('/videos') }}">Videos</a></div>
-        <div class="small-screen-nav"></div>
-    </div>
 
     <style type="text/css">
         .navbar-nav li form {
@@ -89,10 +72,6 @@
             border-radius: 1PX;
             color: #312C32;
             box-shadow: none;
-        }
-
-        .small-screen-nav {
-            display: inline-block;
         }
 
     </style>

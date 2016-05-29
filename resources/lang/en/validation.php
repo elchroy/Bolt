@@ -80,6 +80,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
+    // 'yt_video'             => "Invalid Youtube video :attribute :value .",
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

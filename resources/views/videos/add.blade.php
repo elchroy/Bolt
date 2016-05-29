@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <div class="section-title text-center">
+        <div class="section-header text-center">
             <h2> <i class="fa fa-lg fa-plus"></i> Add Video Learning Resource</h2>
         </div>
 
