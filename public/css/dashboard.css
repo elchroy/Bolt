@@ -39,6 +39,11 @@
         color: #312C32;
     }
 
+    .list-group-item {
+        font-size: 80%;
+        font-weight: bold;
+    }
+
     p#user-manage i,
     p#user-manage span {
         cursor: pointer;
@@ -174,4 +179,8 @@
 	    padding: 1px 10px;
 	    border-radius: 2px;
 	    margin-bottom: 2px;
+    }
+
+    .user-section {
+        
     }

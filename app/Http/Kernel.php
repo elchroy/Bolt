@@ -55,5 +55,6 @@ class Kernel extends HttpKernel
         'owner' => \Bolt\Http\Middleware\CheckOwnership::class,
         'category' => \Bolt\Http\Middleware\ValidateCategory::class,
         'available' => \Bolt\Http\Middleware\ModelIsAvailable::class,
+        'userUpdate' => \Bolt\Http\Middleware\ValidateUserUpdate::class,
     ];
 }

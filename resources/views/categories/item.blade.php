@@ -1,12 +1,12 @@
 <div class="cat-bar other-cat" for="{{ $category->videos->count() > 0 ? $category->id : 'no' }}" ini="{{ strtolower($category->name)[0] }}" id="bolt-{{ strtolower($category->name) }}">
 	<div class="left-section pull-left">
-		<a href="{{ url('categories/' . $category->id) }}"> <i class="fa fa-bars"></i> {{ $category->name }}</a>
+		<a href="{{ url('categories/' . $category->id) }}"> <i class="devicon-{{ strtolower($category->name) }}-plain colored"></i> {{ $category->name }}</a>
 	</div>
-	<div class="middle-section pull-right" id="toggle-cat-{{ $category->id }}">
+	<div class="middle-section pull-right" id="toggle-cat-{{ $category->id }}"> &nbsp; 
 		<i class="fa fa-angle-down"></i>
 	</div>
 	<div class="middle-section pull-right">
-		Videos : {{ $category->videos->count() }}
+		<i class="fa fa-film"></i> {{ $category->videos->count() }}
 	</div>
 	@if(Auth::user())
 		@if(Auth::user()->owns($category))

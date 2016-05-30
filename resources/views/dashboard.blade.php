@@ -26,22 +26,23 @@
         <div class="col-md-2 col-sm-2" id="user-sidebar">
 
             <div class="user-info video-title">
-                <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-sm hidden-xs">
+                <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-xs">
                 <div class="user-image-overlay">
                     <h3 id="user-name" class="truncate hidden-sm hidden-xs">{{ $user->name }}</h3>
                     <p id="user-manage">
-                        <a href="{{ url('profile/edit') }}"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="">Edit Profile</span></span></a>
-                        <a href="{{ url('profile/edit') }}"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a>
+                        <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="">Edit Profile</span></span></a>
+                        <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a>
                     </p>
                 </div>
             </div>
 
             <div class="list-group row">
-                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><i class="fa fa-movie"></i>Your Videos</a></div>
-                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
-                <div class="col-md-12 col-sm-12 col-xs-2"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
-                <div class="col-md-12 col-sm-12 col-xs-2"> <a href="{{ url('videos/add') }}"> <button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div></a>
-                <div class="col-md-12 col-sm-12 col-xs-2"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-3"><a href="#user-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ count($user->videos) }}</span><span class="user-badge badge"></span><i class="fa fa-movie"></i>Your Videos</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-3"><a href="#fav-videos" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->numFavVids() }}</span>Favorites</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-3"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-3"> <a href="{{ url('videos/add') }}"> <button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div></a>
+                <div class="col-md-12 col-sm-12 col-xs-3"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
+                <div class="col-xs-3 col-sm-12 hidden-md hidden-lg "><a href="{{ url('profile/edit') }}" id="add-category" class="list-group-item"> <i class="fa fa-edit"></i> Edit Profile</a></div>
             </div>
         </div>
 

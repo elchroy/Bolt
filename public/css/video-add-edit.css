@@ -10,9 +10,10 @@
 
 
 
-.add-video-form div label {
+.add-video-form div label,
+.edit-video-form div label {
     font-weight: bolder;
-    text-align: left;
+    text-align: left !important;
 } 
 
 

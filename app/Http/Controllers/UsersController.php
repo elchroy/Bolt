@@ -20,6 +20,10 @@ class UsersController extends Controller
             'edit',
             'update',
         ]]);
+
+        $this->middleware('userUpdate', ['only' => [
+            'update',
+        ]]);
 	}
     public function changeAvatar(Request $request, Uploader $uploader)
     {
@@ -47,6 +51,4 @@ class UsersController extends Controller
 
         return redirect('dashboard');
     }
-
-    // public function
 }

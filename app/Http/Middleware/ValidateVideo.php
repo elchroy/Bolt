@@ -52,7 +52,7 @@ class ValidateVideo
     {
         $url = "http://www.youtube.com/oembed?url=" . $value . "&format=json";
         $headers = get_headers($url);
-        
+
         return (substr($headers[0], 9, 3) !== "404") ? true : false;
     }
 }

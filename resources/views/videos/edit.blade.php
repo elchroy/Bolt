@@ -9,11 +9,11 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-lg-8 col-md-8 col-sm-6 col-sm-12">
                 @include('videos.edit-video-form', $video)
             </div>
-            <div class="col-md-4">
-                <img class="img-responsive video-image" sdrc="{{ asset('uploads/banner.jpg') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                <img class="img-responsive video-image hidden-sm hidden-xs" title="{{ $video->title }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                 
                 <div class="row">
                     <div class="col-md-8">

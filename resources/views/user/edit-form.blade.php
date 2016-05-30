@@ -1,4 +1,4 @@
-<form class="bolt-form" role="form" method="POST" action="{{ url('/profile/update') }}">
+<form class="bolt-form edit" role="form" method="POST" action="{{ url('/profile/update') }}">
     {!! csrf_field() !!}
 
     <input type="text" class="" name="name" value="{{ $user->name }}">

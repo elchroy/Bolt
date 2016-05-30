@@ -19,7 +19,7 @@
 				    	<h2>{{ $video->title }}</h2>
 				    	<div class="video-details video-details-show">
 				    		<div style="display: inline-block;">
-				    			<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> {{ $video->category->name }}</a></h5>
+				    			<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> <i class="devicon-{{ strtolower($video->category->name) }}-plain colored"></i> {{ $video->category->name }}</a></h5>
 					    		<h6> <strong> Owner: </strong>{{ $video->user->name }}</h6>
 					    		<h6> <strong> At: </strong>{{ $video->created_at->diffForHumans() }}</h6>
 				    		</div>
