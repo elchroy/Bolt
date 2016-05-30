@@ -2,14 +2,14 @@
 
 namespace Bolt;
 
-use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-	protected $fillable = [
-		'user_id',
-	];
+    protected $fillable = [
+        'user_id',
+    ];
 
     public function favoritable()
     {

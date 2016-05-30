@@ -3,8 +3,6 @@
 namespace Bolt;
 
 use Illuminate\Database\Eloquent\Model;
-use Bolt\Video;
-use Bolt\User;
 
 class Category extends Model
 {
@@ -21,18 +19,19 @@ class Category extends Model
 
     public function numberOfVideos()
     {
-    	return count($this->videos()->get());
+        return count($this->videos()->get());
     }
 
-    public function user()  
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     public function scopeHasVideo()
     {
-        return Category::all()->filter( function ($cat) {
-            return $cat->videos->count() > 0;}
+        return self::all()->filter(function ($cat) {
+            return $cat->videos->count() > 0;
+        }
         );
     }
 }

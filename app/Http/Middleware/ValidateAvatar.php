@@ -10,8 +10,9 @@ class ValidateAvatar
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -31,7 +32,7 @@ class ValidateAvatar
     protected function validateAvatar(array $data)
     {
         return Validator::make($data, [
-            'image' => 'mimes:jpeg,jpg,png,gif|required|max:150' // max 150kb
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:150', // max 150kb
         ]);
     }
 }

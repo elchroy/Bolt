@@ -24,12 +24,12 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     }
 
     /**
-     * Default preparation for each test
+     * Default preparation for each test.
      */
     public function setUp()
     {
         parent::setUp();
-     
+
         $this->prepareForTests();
     }
 
@@ -49,6 +49,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'email'     => 'royally@example.com',
             'password'  => bcrypt('teacher'),
         ]);
+
         return $user;
     }
 
@@ -57,8 +58,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $category = factory(Bolt\Category::class)->create([
             'name'      => 'MsDotNet',
             'user_id'   => 1,
-            'brief'     => 'This section deals with lessons on MsDotNet.'
+            'brief'     => 'This section deals with lessons on MsDotNet.',
         ]);
+
         return $category;
     }
 
@@ -71,6 +73,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'description'   => 'This is an introduction to the Microsoft DotNet Framework. It is very powerful.',
             'category_id'   => 1,
         ]);
+
         return $video;
     }
 
@@ -81,6 +84,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'video_id'  => 1,
             'user_id'   => 1,
         ]);
+
         return $comment;
     }
 
@@ -93,7 +97,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function createFavoriteFor($model)
     {
         $favorite = factory(Bolt\Favorite::class)->create([
-            'user_id' => 1,
+            'user_id'           => 1,
             'favoritable_id'    => 1,
             'favoritable_type'  => get_class($model),
             'status'            => 1,
@@ -103,12 +107,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     }
 
     /**
-    * Verify the number of dom elements
-    * @param  string   $selector the dom selector (jquery style)
-    * @param  int      $number   how many elements should be present in the dom
-    * 
-    * @return $this
-    */
+     * Verify the number of dom elements.
+     *
+     * @param string $selector the dom selector (jquery style)
+     * @param int    $number   how many elements should be present in the dom
+     *
+     * @return $this
+     */
     public function countElements($selector, $number)
     {
         $this->assertCount($number, $this->crawler->filter($selector));

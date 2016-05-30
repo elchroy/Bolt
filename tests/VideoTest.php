@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VideoTest extends TestCase
 {
@@ -18,27 +15,26 @@ class VideoTest extends TestCase
 
     public function testVideoIndex()
     {
-    	$category = $this->createCategory();
-    	$this->visit('/videos')
-    		->seePageIs('videos');
-    		// ->see('MsDotNet');
+        $category = $this->createCategory();
+        $this->visit('/videos')
+            ->seePageIs('videos');
+            // ->see('MsDotNet');
     }
 
     public function testVideoShowWithoutAuthUser()
     {
-    	$this->createVideo();
-    	$this->visit('videos/1')
+        $this->createVideo();
+        $this->visit('videos/1')
                 // ->see('roy')
-    			// ->see('A Introduction to MsDotNet')
-    			;	
+                // ->see('A Introduction to MsDotNet')
+;
         // $this->countElements('.video-user', 1);
     }
 
     public function testAddVideoLinkFailsForNoAuth()
     {
         $page = $this->visit('videos/add')
-                    ->seePageIs('login')
-                    ;
+                    ->seePageIs('login');
     }
 
     public function testAddVideoSucceeds()
@@ -55,7 +51,7 @@ class VideoTest extends TestCase
                     ->press('Add')
                     ->seePageIs('dashboard')
                     // ->see('A new title')
-                    ;
+;
     }
 
     public function testAddVideoValidatorFails()
@@ -72,7 +68,7 @@ class VideoTest extends TestCase
                     ->press('Add')
                     ->seePageIs('videos/add')
                     // ->see('A new title')
-                    ;
+;
     }
 
     public function testVideoEditPage()
@@ -88,8 +84,7 @@ class VideoTest extends TestCase
                 ->select(1, 'category_id')
                 ->see('Save')
                 ->press('Save')
-                ->seePageIs('dashboard')
-                ;
+                ->seePageIs('dashboard');
         $video = Bolt\Video::find(1);
         $this->assertEquals('This is the updated description.', $video->description);
     }
@@ -97,24 +92,22 @@ class VideoTest extends TestCase
     public function testEditVideoLinkFailsForNoAuth()
     {
         $page = $this->visit('videos/1/edit')
-                    ->seePageIs('login')
-                    ;
+                    ->seePageIs('login');
     }
 
     public function testEditVideoLinkFailsForWrongOwner()
     {
-    	$this->createTTModels();
+        $this->createTTModels();
 
-    	factory(Bolt\User::class)->create([
+        factory(Bolt\User::class)->create([
             'id'   => 100,
         ]);
 
         $user = Bolt\User::find(100);
 
         $page = $this->actingAs($user)
-        			->visit('videos/1/edit')
-                    ->seePageIs('dashboard')
-                    ;
+                    ->visit('videos/1/edit')
+                    ->seePageIs('dashboard');
     }
 
     public function testVideoDelete()
@@ -126,8 +119,7 @@ class VideoTest extends TestCase
                 ->visit('videos/1/edit')
                 ->press('submit-delete-form')
                 ->seePageIs('dashboard')
-                ->see('Video Deleted')
-                ;
+                ->see('Video Deleted');
 
         // $this->assertSessionHas('success', 'Please Login.');
         $this->countElements('.delete_video', 0);
@@ -145,7 +137,7 @@ class VideoTest extends TestCase
                 // ->press("Search")
                 // ->seePageIs('/videos')
                 // ->see()
-                ;
+;
         $this->assertEquals(200, $response->status());
     }
 
@@ -160,8 +152,7 @@ class VideoTest extends TestCase
                 ->see('Like')
                 ->press('button-favorite')
                 ->seePageIs('videos/1')
-                ->see('Unfavorite')
-                ;
+                ->see('Unfavorite');
         $status = $user->favors($video);
         $this->assertEquals(1, $status);
     }
@@ -178,8 +169,7 @@ class VideoTest extends TestCase
                 // ->see('Unlike')
                 ->press('button-unfavorite')
                 ->seePageIs('videos/1')
-                ->see('Like')
-                ;
+                ->see('Like');
         $status = $user->favors($video);
         $this->assertEquals(0, $status);
     }

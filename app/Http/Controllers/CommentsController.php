@@ -2,31 +2,27 @@
 
 namespace Bolt\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Auth;
-use Bolt\Video;
 use Bolt\Comment;
-use Bolt\Http\Requests;
+use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
-
-	public function __construct(Request $request)
-	{
-		$this->middleware('auth', ['only' => [
+    public function __construct(Request $request)
+    {
+        $this->middleware('auth', ['only' => [
             'createComment',
             'updateComment',
             'deleteComment',
         ]]);
 
         // Next confirm that the requested comment of given ID is available.
-        $this->middleware('available:' . Comment::class, ['only' => [
+        $this->middleware('available:'.Comment::class, ['only' => [
             'updateComment',
             'deleteComment',
         ]]);
 
-        $this->middleware('owner:' . $request->id . ',' . Comment::class, ['only' => [
+        $this->middleware('owner:'.$request->id.','.Comment::class, ['only' => [
             'updateComment',
             'deleteComment',
         ]]);
@@ -35,21 +31,22 @@ class CommentsController extends Controller
             'createComment',
             'updateComment',
         ]]);
-	}
+    }
+
     public function createComment(Request $request)
     {
         $data = $request->all();
-    	$data['video_id'] = $request->id;
+        $data['video_id'] = $request->id;
 
         $user = Auth::user();
         $comment = $user->comments()->create($data);
 
         if ($request->ajax()) {
             $output = [
-                'id'     => $comment->id,
-                'deltoken'  => csrf_token(),
+                'id'         => $comment->id,
+                'deltoken'   => csrf_token(),
                 'edittoken'  => csrf_token(),
-                'status' => 'success',
+                'status'     => 'success',
             ];
 
             return json_encode($output);
@@ -57,17 +54,18 @@ class CommentsController extends Controller
 
         return redirect()->back();
     }
+
     public function updateComment(Request $request)
     {
-    	$comment = Comment::find($request->id);
-    	$comment->update($request->all());
-    	
-    	if ($request->ajax()) {
+        $comment = Comment::find($request->id);
+        $comment->update($request->all());
+
+        if ($request->ajax()) {
             $output = [
                 'status' => 'success',
                 'time'   => $comment->created_at->diffForHumans(),
                 'edited' => $comment->is_edited(),
-                
+
             ];
 
             return json_encode($output);
@@ -78,9 +76,9 @@ class CommentsController extends Controller
 
     public function deleteComment(Request $request)
     {
-    	$id = $request->id;
+        $id = $request->id;
         Comment::destroy($id);
-        
+
         if ($request->ajax()) {
             $output = [
                 'status' => 'success',
@@ -91,6 +89,4 @@ class CommentsController extends Controller
 
         return redirect()->back();
     }
-
-    
 }

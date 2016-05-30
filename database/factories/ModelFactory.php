@@ -12,23 +12,22 @@
 */
 
 $factory->define(Bolt\User::class, function (Faker\Generator $faker) {
-    
+
     // prevent uniquness violations
     $number = rand(100, 1000);
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt('bolt'),
+        'name'           => $faker->name,
+        'email'          => $faker->safeEmail,
+        'password'       => bcrypt('bolt'),
         'remember_token' => str_random(10),
-        'social_id' => "{$faker->word}_$number",
-        'social_link' => 'facebook',
+        'social_id'      => "{$faker->word}_$number",
+        'social_link'    => 'facebook',
     ];
 });
 
 $factory->define(Bolt\Video::class, function (Faker\Generator $faker) {
-
-    $strings= array('5mPggfOb6Us', '3oT9PQcFZKc', 'wCA6jCUbaFQ', 'zi3ZWe_kTHU', 'zISkHobZ8OM', 'CQp9kEq9kgM', 'k6ZiPqsBvEQ', '9E_vwHbR5Ag', 'yp_gH3zPfbo');
+    $strings = ['5mPggfOb6Us', '3oT9PQcFZKc', 'wCA6jCUbaFQ', 'zi3ZWe_kTHU', 'zISkHobZ8OM', 'CQp9kEq9kgM', 'k6ZiPqsBvEQ', '9E_vwHbR5Ag', 'yp_gH3zPfbo'];
     $random_key = array_rand($strings, 1);
     $random_str = $strings[$random_key];
 
@@ -54,7 +53,7 @@ $factory->define(Bolt\Comment::class, function (Faker\Generator $faker) {
     return [
         'comment'       => $faker->sentence(rand(3, 6), true),
         'video_id'      => rand(1, 10),
-        'user_id'       => rand(1, 10)
+        'user_id'       => rand(1, 10),
     ];
 });
 
@@ -64,6 +63,7 @@ $factory->define(Bolt\Favorite::class, function (Faker\Generator $faker) {
         'Bolt\Comment',
     ];
     $choice = rand(0, 1);
+
     return [
         'user_id'           => rand(1, 20),
         'favoritable_id'    => rand(1, 20),

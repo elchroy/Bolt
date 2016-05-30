@@ -10,8 +10,9 @@ class ValidateComment
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -21,13 +22,15 @@ class ValidateComment
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->messages());
         }
+
         return $next($request);
     }
 
     /**
      * Get a validator for an incoming video addition request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validateComment(array $data)
