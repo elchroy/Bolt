@@ -88,6 +88,7 @@ class VideoTest extends TestCase
                 ->select(1, 'category_id')
                 ->see('Save')
                 ->press('Save')
+                ->seePageIs('dashboard')
                 ;
         $video = Bolt\Video::find(1);
         $this->assertEquals('This is the updated description.', $video->description);

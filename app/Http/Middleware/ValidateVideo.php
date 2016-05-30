@@ -32,11 +32,27 @@ class ValidateVideo
      */
     protected function validateVideo(array $data)
     {
+        $messages = [
+            'yt_video' => "A youtube video with the url, " . $data['url'] . ", does not exist. Please enter a valid youtube video address.",
+        ];
+        
         return Validator::make($data, [
             'title'         => 'required|max:255',
             'description'   => 'required',
             'category_id'   => 'required',
-            'url'           => array('required', 'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/i')
-        ]);
+            'url'           => [
+                'required',
+                'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/i',
+                'yt_video',
+            ],
+        ], $messages);
+    }
+
+    public function videoExists($attribute, $value)
+    {
+        $url = "http://www.youtube.com/oembed?url=" . $value . "&format=json";
+        $headers = get_headers($url);
+        
+        return (substr($headers[0], 9, 3) !== "404") ? true : false;
     }
 }

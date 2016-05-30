@@ -1,6 +1,6 @@
-  <div class="video-box">
+  <div class="video-box" title="{{ $video->title }}">
     <div>
-      <img class="img-responsive video-image" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+      <img class="img-responsive video-image" srcd="{{ asset('uploads/def_pr') }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
       <div class="video-info">
         <p class="video-details">
             <span class="pull-left video-likes"><i class="fa fa-heart"></i> {{ $video->favorites->count() }}</span>

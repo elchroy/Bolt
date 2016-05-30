@@ -42,6 +42,11 @@ class Favorite extends Model
         return $query->where('status', 1);
     }
 
+    public function scopeIsVideo($query)
+    {
+        return $query->isLiked()->where('favoritable_type', 'Bolt\Video');
+    }
+
     public function activate()
     {
         $this->status = 1;

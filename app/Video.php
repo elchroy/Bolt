@@ -48,11 +48,6 @@ class Video extends Model
         return $srcFrame;
     }
 
-    public function shortTitle()
-    {
-        return substr($this->title, 0, 10);
-    }
-
     public function favorites()
     {
         return $this->morphMany('Bolt\Favorite', 'favoritable');

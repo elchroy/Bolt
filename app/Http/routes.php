@@ -49,3 +49,9 @@ Route::get('categories/{id}', 'CategoriesController@show');
 Route::post('categories/create', 'CategoriesController@create');
 Route::get('categories/{id}/edit', 'CategoriesController@edit');
 Route::patch('categories/{id}', 'CategoriesController@update');
+// Route::get('check/{url}', 'VideosController@check')->where()['url' => '/[A-Za-z0-9]+/i'];
+// Route::any('check/(.*)', function( $page ){
+    // dd($page);
+// });
+
+Route::any('check', 'VideosController@check');

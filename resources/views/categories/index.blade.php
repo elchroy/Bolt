@@ -3,11 +3,33 @@
 @section('scripts')
 
 	<script type="text/javascript">
+
+	Array.prototype.unique = function()
+	{
+	    var tmp = {}, out = [];
+	    for(var i = 0, n = this.length; i < n; ++i)
+	    {
+	        if(!tmp[this[i]]) { tmp[this[i]] = true; out.push(this[i]); }
+	    }
+	    return out;
+	}
 		$(document).ready( function () {
 
-			var string = 'abcdefghijklmnopqrstuvwxyz';
-			var letters = string.split('');
-			var menuitems = letters.map( function (l) {
+			var catbars = $('.cat-bar');
+			var letas = [];
+			
+			$.each(catbars, function (catbar) {
+				vc = $(this).attr('for');
+				name = $(this).attr('ini');
+				letas.push(name);
+				if (vc != 'no') {
+					toggPerform("toggle-cat-" + vc, "cat-collapse-" + vc, "cat-collapse", 600);
+				}
+			});
+
+			letas = letas.unique();
+			
+			var menuitems = letas.map( function (l) {
 				data = '<a href="#" to="' + l + '" class="list-group-item goto">' + l + '</a>';
 				return data;
 			});
@@ -16,17 +38,6 @@
 
 			catSelect.html(menuitems);
 			
-			var catbars = $('.cat-bar');
-			
-			$.each(catbars, function (catbar) {
-				vc = $(this).attr('for');
-				name = $(this).attr('ini');
-				if (vc != 'no') {
-					toggPerform("toggle-cat-" + vc, "cat-collapse-" + vc, "cat-collapse", 600);
-				}
-			});
-			
-			var count = catbars.length;
 			$('.goto').click( function (e) {
 				e.preventDefault();
 				var target = $(this).attr('to');
@@ -51,12 +62,19 @@
 	</div>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12" id="main">
-				@foreach($categories as $category)
-					@include('categories.item')
-				@endforeach
+		<div id="main">
+			<div class="cat-bar all-cat" id="bolt-*" ini="*">
+				<div class="left-section pull-left">
+					All Categories
+				</div>
+				<div class="middle-section pull-right">
+					Total : {{ Bolt\Category::all()->count() }}
+				</div>
 			</div>
+
+			@foreach($categories as $category)
+				@include('categories.item')
+			@endforeach
 		</div>
 	</div>
 
@@ -67,6 +85,11 @@
 	<style type="text/css">
 		.cat-box {
 			box-shadow: none;
+		}
+
+		.cat-bar.all-cat {
+			background: #312C32;
+    		color: #F2F2F2;
 		}
 
 		.cat-overlay {
@@ -86,14 +109,15 @@
     		float: left;
     		position: fixed;
     		left: 0;
-    		bottom: 30px;
-    		/*top: 30px;*/
+    		bottom: 121px;
+		    /* top: 30px; */
+		    margin-bottom: 50px;
     		z-index: 1999;
     		display: inline-block;
 		}
 
 		#main {
-			width: 90%;
+			width: 100%;
 			display: inline-block;
 		}
 
@@ -110,7 +134,7 @@
 			width: 100%;
 			display: block;
 			font-weight: bold;
-			background: #C52020;
+			background: #312C32;
 			color: #FFFFFF;
 			text-transform: uppercase;
 			padding: 10px 5px;

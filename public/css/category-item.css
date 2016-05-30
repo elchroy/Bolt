@@ -12,6 +12,6 @@
 	cursor: pointer;
 }
 
-.cat-bar:hover{
+.cat-bar.other-cat:hover{
 	background: rgb(199, 199, 199);
 }

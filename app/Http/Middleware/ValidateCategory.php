@@ -31,8 +31,10 @@ class ValidateCategory
     {
         $data = $request->all();
         $id = $request->id;
+        $nameVal = $id == null ? 'required|max:50|unique:categories' : 'required|max:50|unique:categories,name,' . $id;
+        
         return Validator::make($data, [
-            'name'         => 'required|max:50|unique:categories,name,' . $id,
+            'name'         => $nameVal,
             'brief'        => 'required|max:255',
         ]);
     }

@@ -1,4 +1,4 @@
-<div class="cat-bar" for="{{ $category->videos->count() > 0 ? $category->id : 'no' }}" ini="{{ strtolower($category->name)[0] }}" id="bolt-{{ strtolower($category->name) }}">
+<div class="cat-bar other-cat" for="{{ $category->videos->count() > 0 ? $category->id : 'no' }}" ini="{{ strtolower($category->name)[0] }}" id="bolt-{{ strtolower($category->name) }}">
 	<div class="left-section pull-left">
 		<a href="{{ url('categories/' . $category->id) }}"> <i class="fa fa-bars"></i> {{ $category->name }}</a>
 	</div>

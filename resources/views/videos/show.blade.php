@@ -40,8 +40,6 @@
 									        'id' => $video->id,
 								       	])
 								    @endif
-								@else
-									<a href="{{ url('/login') }}">Like this video? <button class="bolt-button button-half"> Login</button></a>
 								@endif
 				    		</div>
 				    	</div>
@@ -52,12 +50,14 @@
 
 	    		<div class="row">
 	    			<div class="hidden-sm hidden-xs">
-	    				<div class="section-header"><h2> Related Videos </h2></div>
+	    				@if($video->siblings()->count())
+		    				<div class="section-header"><h2> Related Videos </h2></div>
 	    				    @foreach($video->siblings(12) as $v)
 	                            <div class="col-md-3 col-sm-6 col-xs-12">
 	                                @include('videos.video-item', ['video' => $v])
 	                            </div>
 	                        @endforeach
+	    				@endif
 	    			</div>
 	    		</div>
 	    	</div>

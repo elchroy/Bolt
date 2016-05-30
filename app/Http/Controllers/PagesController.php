@@ -30,7 +30,7 @@ class PagesController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        $videos = $user->videos()->paginate(30);
+        $videos = $user->videos()->paginate(60);
         $favs = $user->favoriteVideos();
         $categories = $user->categories()->paginate(10);
         $title = $user->name;

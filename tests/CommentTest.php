@@ -35,8 +35,8 @@ class CommentTest extends TestCase
                 ->type('This is another comment', 'comment')
                 ->press('POST')
                 ->seePageIs('videos/1')
+                ->see('This is another comment')
                 ;
-                // ->see('This is another comment')
         // $this->countElements('.comment_comment', 2);
         // $this->countElements('.like-model', 3);
         // $this->countElements('.like-comment', 2);
@@ -52,7 +52,7 @@ class CommentTest extends TestCase
                 ->type('', 'comment')
                 ->press('POST')
                 ->seePageIs('videos/1')
-                // ->see('The comment field is required.')
+                ->see('The comment field is required.')
                 ;
         // $this->countElements('.comment_comment', 1);
         // $this->countElements('.like-model', 2);
@@ -69,7 +69,7 @@ class CommentTest extends TestCase
                 ->type('sdlkfjbnslkdfjbnlks dnflkbjnlsdnfkblksndlkvbn lsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsksdlkfjbnslkdfjbnlksdnflkbjnlsdnfkblksndlkvbnlsk', 'comment')
                 ->press('POST')
                 ->seePageIs('videos/1')
-                // ->see('The comment may not be greater than 255 characters')
+                ->see('The comment may not be greater than 255 characters')
                 ;
     }
 

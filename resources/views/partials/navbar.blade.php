@@ -36,7 +36,7 @@
                     @if (Auth::user())
                         <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle truncate" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <span class="">{{ Auth::user()->name }}</span>
                                 <span class="caret"></span>
                             </a>
@@ -47,8 +47,9 @@
                             </ul>
                         </li>
                         <li class="dropdown" id="avatar">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img class="hidden-xs" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
+
+                             <a href="{{ url('/dashboard') }}" class="truncate">
+                                <img class="hidden-xs hidden-sm" title="{{Auth::user()->name}}" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
                             </a>
                         </li>
                     @else
@@ -58,12 +59,6 @@
                         @endif
                     @endif
 
-                </ul>
-
-                <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <img class="image-responsive" id="processor" src="{{ asset('img/processor.gif') }}">
-                    </li>
                 </ul>
                 
             </div>

@@ -87,17 +87,22 @@ class AuthController extends Controller
             $user->email = $user->id . time() . '@twitter.com';
         }
 
-        return $this->continueHandling($user, $link);
+        return $this->continueHandling($user, $link, $request);
     }
 
-    private function continueHandling($user, $link)
+    private function continueHandling($user, $link, Request $request)
     {
-
         $authUser = $this->findOrCreateSocialUser($user, $link);
+        
+        if ($authUser) {
+            Auth::login($authUser, true);
 
-        Auth::login($authUser, true);
+            return redirect('dashboard');
+        }
 
-        return redirect('dashboard');
+        $request->session()->flash('error', "There is a problem with this account on the $link network.");
+
+        return redirect()->back();
     }
 
     /**
@@ -112,14 +117,22 @@ class AuthController extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $data = [
             'name' => $socialUser->name,
             'email' => $socialUser->email,
             'social_id' => $socialUser->id,
             'social_link' => $socialLink,
             'password' => bcrypt('mybolt'),
             'avatar' => $socialUser->avatar
-        ]);
+        ];
+
+        $validator = $this->validateSocialUser($data);
+
+        if ($validator->fails()) {
+            return false;
+        }
+
+        return User::create($data);
     }
 
     /**
@@ -134,6 +147,22 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validateSocialUser(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'social_id' => 'required|unique:users',
+            'avatar' => 'required|unique:users'
         ]);
     }
 }
