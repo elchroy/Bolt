@@ -59,6 +59,7 @@ class VideosController extends Controller
 
     public function show(Request $request)
     {
+        return "hihihih";
         $video = Video::find($request->id);
         $comments = $video->comments()->latest()->paginate(15);
         $title = "$video->title";
