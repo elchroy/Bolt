@@ -192,8 +192,7 @@ class VideosController extends Controller
 
     public function check(Request $request)
     {
-        $url = $request->url;
-        $url = "http://www.youtube.com/oembed?url=" . $url . "&format=json";
+        $url = "http://www.youtube.com/oembed?url=" . $request->url . "&format=json";
         $headers = get_headers($url);
         
         return substr($headers[0], 9, 3) !== "404" ? 'found' : 'not found';
