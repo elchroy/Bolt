@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use Bolt\Video;
+use GuzzleHttp\Client as GuzzleClient;
 use Bolt\Category;
 use Bolt\Http\Requests;
 
@@ -187,5 +188,14 @@ class VideosController extends Controller
         foreach ($video->favorites as $favorite) {
             $favorite->delete();
         }
+    }
+
+    public function check(Request $request)
+    {
+        $url = $request->url;
+        $url = "http://www.youtube.com/oembed?url=" . $url . "&format=json";
+        $headers = get_headers($url);
+        
+        return substr($headers[0], 9, 3) !== "404" ? 'found' : 'not found';
     }
 }

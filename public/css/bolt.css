@@ -43,6 +43,7 @@ a:hover {
 
 ul {
   list-style: none;
+  text-align: left;
 }
 
 .bolt-div {
