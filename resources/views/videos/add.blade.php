@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="section-header text-center">
-            <h2> <i class="fa fa-lg fa-plus"></i> Add Video Learning Resource</h2>
+            <h2> <i class="fa fa-lg fa-plus"></i> Add Video </h2>
         </div>
 
         @include('videos.add-video-form')

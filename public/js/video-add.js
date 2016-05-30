@@ -1,9 +1,9 @@
 var showError = function () {
-	$('#url-check').removeClass('alert-success').addClass('alert-danger').html('<i class="fa fa-times fa-lg"></i>Video not found on YouTube.');
+	$('#url-check').removeClass('alert-success').addClass('alert-danger').html('<i class="fa fa-times fa-lg"></i> Invalid youtube video.');
 }
 
 var showSuccess = function () {
-	$('#url-check').removeClass('alert-danger').addClass('alert-success').html('<i class="fa fa-check fa-lg"></i>');
+	$('#url-check').removeClass('alert-danger').addClass('alert-success').html('<i class="fa fa-check fa-lg"></i> Video Found.');
 }
 
 $(document).ready( function () {

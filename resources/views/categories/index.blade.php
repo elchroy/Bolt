@@ -109,7 +109,7 @@
     		float: left;
     		position: fixed;
     		left: 0;
-    		bottom: 121px;
+    		bottom: 60px;
 		    /* top: 30px; */
 		    margin-bottom: 50px;
     		z-index: 1999;

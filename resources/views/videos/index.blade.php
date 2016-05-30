@@ -11,13 +11,13 @@
 
                 <div class="list-group">
                     <div class="cat-list-item">Top Categories</div>
-                    @foreach(Bolt\Category::hasVideo()->sortByDesc('videos')->take(10) as $cat)
-                        <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item {{ ( isset($category) ) ? ($cat->id == $category->id ? 'active' : '') : '' }}">
-                            <i class="fa fa-tags fa-lg"></i>
-                            <span class="cat-name truncate">{{ $cat->name }}</span>
-                            <span class="cat-video-num badge header-badge truncate pull-right" style="">{{ $cat->videos->count() }}
-                        </a>
-                    @endforeach
+                        @foreach(Bolt\Category::hasVideo()->sortByDesc('videos')->take(10) as $cat)
+                            <a href="{{ url('categories/' . $cat->id) }}" class="list-group-item truncate cat-list-item {{ ( isset($category) ) ? ($cat->id == $category->id ? 'active' : '') : '' }}">
+                                <i class="devicon-{{ strtolower($cat->name) }}-plain colored"></i>
+                                <span class="cat-name truncate">{{ $cat->name }}</span>
+                                <span class="cat-video-num badge header-badge truncate pull-right" style="">{{ $cat->videos->count() }}
+                            </a>
+                        @endforeach
                     <a href="{{ url('categories') }}" class="list-group-item truncate cat-list-item" id="other-cats">
                         <i class="fa fa-tags fa-lg"></i>
                         <span class="cat-name truncate"> Other Categories </span>
