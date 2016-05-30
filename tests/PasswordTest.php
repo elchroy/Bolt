@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PasswordTest extends TestCase
 {
@@ -18,12 +15,11 @@ class PasswordTest extends TestCase
 
     public function testForgotPassword()
     {
-    	$page = $this->visit('password/reset')
+        $page = $this->visit('password/reset')
                     ->see('Reset Password')
                     ->see('E-Mail Address')
                     ->type('royaldaddy@example.com', 'email')
-                    ->press('Send Password Reset Link')
-                    ;
+                    ->press('Send Password Reset Link');
     }
 
     public function testPasswordEmailReset()
@@ -34,11 +30,10 @@ class PasswordTest extends TestCase
     public function testRedirectAuthUser()
     {
         $this->createTTModels();
-        
+
         $user = Bolt\User::find(1);
         $response = $this->actingAs($user)->visit('password/reset')
-                        ->seePageIs('/')
-                        ;
+                        ->seePageIs('/');
         $this->assertResponseStatus(200);
         $this->assertResponseOk();
     }
@@ -53,10 +48,10 @@ class PasswordTest extends TestCase
     {
         $this->createTTModels();
         $user = Bolt\User::find(1);
-        $return = $this->visit('dashboard', ['title' =>'A new title'])
+        $return = $this->visit('dashboard', ['title' => 'A new title'])
              // ->seeJson([
                  // 'created' => true,
              // ])
-            ;
+;
     }
 }

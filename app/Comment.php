@@ -3,15 +3,13 @@
 namespace Bolt;
 
 use Illuminate\Database\Eloquent\Model;
-use Bolt\Video;
-use Bolt\User;
 
 class Comment extends Model
 {
     public $table = 'comments';
 
     public $fillable = [
-        'comment', 'video_id'
+        'comment', 'video_id',
     ];
 
     public function video()

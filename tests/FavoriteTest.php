@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FavoriteTest extends TestCase
 {
@@ -18,23 +15,23 @@ class FavoriteTest extends TestCase
 
     public function testFavorite()
     {
-    	$this->createTTModels();
+        $this->createTTModels();
 
-    	$user = Bolt\User::find(1);
-    	$video = Bolt\Video::find(1);
-    	$favorite = $this->createFavoriteFor($video);
-    	$favVid = $favorite->favoritable;
-    	$this->assertEquals($video, $favVid);
+        $user = Bolt\User::find(1);
+        $video = Bolt\Video::find(1);
+        $favorite = $this->createFavoriteFor($video);
+        $favVid = $favorite->favoritable;
+        $this->assertEquals($video, $favVid);
     }
 
     public function testFavoriter()
     {
-    	$this->createTTModels();
+        $this->createTTModels();
 
-    	$user = Bolt\User::find(1);
-    	$video = Bolt\Video::find(1);
-    	$favorite = $this->createFavoriteFor($video);
-    	$favOwner = $favorite->favoriter();
-    	$this->assertEquals($user, $favOwner);
+        $user = Bolt\User::find(1);
+        $video = Bolt\Video::find(1);
+        $favorite = $this->createFavoriteFor($video);
+        $favOwner = $favorite->favoriter();
+        $this->assertEquals($user, $favOwner);
     }
 }

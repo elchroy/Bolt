@@ -3,15 +3,11 @@
 namespace Bolt;
 
 use Illuminate\Database\Eloquent\Model;
-use Bolt\User;
-use Bolt\Category;
-use Bolt\Comment;
-use Bolt\Favorite;
 
 class Video extends Model
 {
     protected $fillable = [
-        'title', 'url', 'description', 'category_id'
+        'title', 'url', 'description', 'category_id',
     ];
 
     public function user()
@@ -27,6 +23,7 @@ class Video extends Model
     public function linkId()
     {
         $p = (explode('=', $this->url));
+
         return end($p);
     }
 
@@ -39,12 +36,14 @@ class Video extends Model
     {
         preg_match('@^(?:http://)?(?:https://)?([^/]+)@i', $this->url, $matches);
         $host = $matches[1];
+
         return $host;
     }
 
     public function srcFrame()
     {
-        $srcFrame = "http://" . $this->urlHost() . '/embed/' . $this->linkId();
+        $srcFrame = 'http://'.$this->urlHost().'/embed/'.$this->linkId();
+
         return $srcFrame;
     }
 
@@ -55,11 +54,11 @@ class Video extends Model
 
     public function siblings($number = null)
     {
-        $sibs =  $number == null || $number == 0 ? $this->category->videos : $this->category->videos->take($number);
-        $sibs = ($sibs->reject( function ($each) {
-           return $each->id == $this->id;
+        $sibs = $number == null || $number == 0 ? $this->category->videos : $this->category->videos->take($number);
+        $sibs = ($sibs->reject(function ($each) {
+            return $each->id == $this->id;
         }));
-        
+
         return $sibs;
     }
 }

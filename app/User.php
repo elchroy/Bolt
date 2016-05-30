@@ -2,9 +2,6 @@
 
 namespace Bolt;
 
-use Bolt\Video;
-use Bolt\Category;
-use Bolt\Favorite;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -26,8 +23,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
 
     public function videos()
     {
@@ -60,8 +55,8 @@ class User extends Authenticatable
     }
 
     /**
-    * Get all of the staff member's photos.
-    */
+     * Get all of the staff member's photos.
+     */
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
@@ -70,7 +65,7 @@ class User extends Authenticatable
     public function favoriteVideos()
     {
         $videoLikes = $this->favorites()->isVideo()->get();
-        $favVids = $videoLikes->map( function ($f) {
+        $favVids = $videoLikes->map(function ($f) {
             return $f->favoritable;
         });
 

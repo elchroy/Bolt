@@ -2,14 +2,13 @@
 
 namespace Bolt\Http\Controllers;
 
-use Bolt\Http\Controllers\States\VideoState;
-use Bolt\Http\Requests;
-use Illuminate\Http\Request;
 use Auth;
+use Bolt\Http\Controllers\States\VideoState;
 
 class PagesController extends Controller
 {
     protected $state;
+
     /**
      * Create a new controller instance.
      *
@@ -17,7 +16,7 @@ class PagesController extends Controller
      */
     public function __construct(VideoState $state)
     {
-        $this->middleware('auth', [ 'only' => 'dashboard']);
+        $this->middleware('auth', ['only' => 'dashboard']);
 
         $this->state = $state;
     }
@@ -45,7 +44,7 @@ class PagesController extends Controller
         $top = $this->state->mostLiked();
 
         $title = 'Home';
-        
-        return view('welcome', compact('recent','mostLikedVideos', 'title', 'top'));
+
+        return view('welcome', compact('recent', 'mostLikedVideos', 'title', 'top'));
     }
 }

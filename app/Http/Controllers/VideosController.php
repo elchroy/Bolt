@@ -2,21 +2,17 @@
 
 namespace Bolt\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Auth;
-use Bolt\Video;
-use GuzzleHttp\Client as GuzzleClient;
 use Bolt\Category;
-use Bolt\Http\Requests;
+use Bolt\Video;
+use Illuminate\Http\Request;
 
 class VideosController extends Controller
 {
-
-	public function __construct(Request $request)
-	{
+    public function __construct(Request $request)
+    {
         // First confirm if the user is authenticated
-		$this->middleware('auth', ['only' => [
+        $this->middleware('auth', ['only' => [
             'add',
             'createVideo',
             'edit',
@@ -27,7 +23,7 @@ class VideosController extends Controller
         ]]);
 
         // Next confirm that the requested video of given ID is available.
-        $this->middleware('available:' . Video::class, ['only' => [
+        $this->middleware('available:'.Video::class, ['only' => [
             'edit',
             'show',
             'updateVideo',
@@ -35,7 +31,7 @@ class VideosController extends Controller
         ]]);
 
         // Next confirm that the user is the correct owner of the requested video.
-        $this->middleware('owner:' . $request->id . ',' . Video::class, ['only' => [
+        $this->middleware('owner:'.$request->id.','.Video::class, ['only' => [
             'edit',
             'deleteVideo',
         ]]);
@@ -45,8 +41,8 @@ class VideosController extends Controller
             'createVideo',
             'updateVideo',
         ]]);
-	}
-    
+    }
+
     public function index()
     {
         $videos = Video::latest()->paginate(60);
@@ -54,6 +50,7 @@ class VideosController extends Controller
         $paging = $videos->render();
         $category = null;
         $title = 'All Videos';
+
         return view('videos.index', compact('videos', 'categories', 'paging', 'title', 'category'));
     }
 
@@ -68,21 +65,21 @@ class VideosController extends Controller
 
     public function add()
     {
-    	$this->middleware('auth');
+        $this->middleware('auth');
 
         $title = 'Add Video';
 
-    	return view('videos.add', compact('title'));
+        return view('videos.add', compact('title'));
     }
-
 
     public function createVideo(Request $request)
     {
         $user = Auth::user();
 
         $data = $request->all();
-        
+
         $user->videos()->create($data);
+
         return redirect('dashboard');
     }
 
@@ -115,6 +112,7 @@ class VideosController extends Controller
         $video->delete();
 
         $request->session()->flash('success', 'Video Deleted');
+
         return redirect()->to('dashboard');
     }
 
@@ -136,7 +134,7 @@ class VideosController extends Controller
         $video = Video::find($request->id);
 
         $liked = $video->favorites()->liked()->first();
-        
+
         if ($liked == null) {
             $liked = $video->favorites()->create([
                         'user_id' => Auth::user()->id,
@@ -145,10 +143,9 @@ class VideosController extends Controller
 
         $liked->activate();
 
-        if($request->ajax()){
-            
+        if ($request->ajax()) {
             $output = [
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Done',
             ];
 
@@ -166,10 +163,9 @@ class VideosController extends Controller
 
         $liked->deactivate();
 
-        if($request->ajax()){
-            
+        if ($request->ajax()) {
             $output = [
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Done',
             ];
 
@@ -192,9 +188,9 @@ class VideosController extends Controller
 
     public function check(Request $request)
     {
-        $url = "http://www.youtube.com/oembed?url=" . $request->url . "&format=json";
+        $url = 'http://www.youtube.com/oembed?url='.$request->url.'&format=json';
         $headers = get_headers($url);
 
-        return substr($headers[0], 9, 3) !== "404" ? 'found' : 'not found';
+        return substr($headers[0], 9, 3) !== '404' ? 'found' : 'not found';
     }
 }

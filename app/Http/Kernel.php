@@ -44,17 +44,17 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Bolt\Http\Middleware\Authenticate::class,
+        'auth'       => \Bolt\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \Bolt\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'video' => \Bolt\Http\Middleware\ValidateVideo::class,
-        'avatar' => \Bolt\Http\Middleware\ValidateAvatar::class,
-        'comment' => \Bolt\Http\Middleware\ValidateComment::class,
-        'owner' => \Bolt\Http\Middleware\CheckOwnership::class,
-        'category' => \Bolt\Http\Middleware\ValidateCategory::class,
-        'available' => \Bolt\Http\Middleware\ModelIsAvailable::class,
+        'can'        => \Illuminate\Foundation\Http\Middleware\Authorize::class,
+        'guest'      => \Bolt\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'video'      => \Bolt\Http\Middleware\ValidateVideo::class,
+        'avatar'     => \Bolt\Http\Middleware\ValidateAvatar::class,
+        'comment'    => \Bolt\Http\Middleware\ValidateComment::class,
+        'owner'      => \Bolt\Http\Middleware\CheckOwnership::class,
+        'category'   => \Bolt\Http\Middleware\ValidateCategory::class,
+        'available'  => \Bolt\Http\Middleware\ModelIsAvailable::class,
         'userUpdate' => \Bolt\Http\Middleware\ValidateUserUpdate::class,
     ];
 }

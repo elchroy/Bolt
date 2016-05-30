@@ -2,44 +2,41 @@
 
 namespace Bolt\Http\Controllers\States;
 
-use Illuminate\Http\Request;
-
-use Bolt\Video;
 use Bolt\Favorite;
-use Bolt\Http\Requests;
 use Bolt\Http\Controllers\Controller as Controller;
+use Bolt\Video;
 
 class VideoState extends Controller
 {
+    protected $groupedLikes;
 
-	protected $groupedLikes;
-
-	public function __construct()
-	{
-		$this->groupedLikes = $this->groupedLikes();
-	}
+    public function __construct()
+    {
+        $this->groupedLikes = $this->groupedLikes();
+    }
 
     public function groupedLikes()
     {
-    	return $this->likedVideos()->groupBy('favoritable_id')->sort()->reverse();
+        return $this->likedVideos()->groupBy('favoritable_id')->sort()->reverse();
     }
 
     public function likedVideos()
     {
-    	return Favorite::where('favoritable_type', 'Bolt\Video')->isLiked()->get();
+        return Favorite::where('favoritable_type', 'Bolt\Video')->isLiked()->get();
     }
 
     public function mostLiked()
     {
-        $result = ( null != $this->groupedLikes->first() ) ? $this->groupedLikes->first()->first()->favoritable : $this->recent(1)->first();
-       	return $result;
+        $result = (null != $this->groupedLikes->first()) ? $this->groupedLikes->first()->first()->favoritable : $this->recent(1)->first();
+
+        return $result;
     }
 
     public function top($number = 10)
     {
-    	return $this->groupedLikes->take($number)->keys()->map( function ($t) {
-			return Video::find($t);
-		});
+        return $this->groupedLikes->take($number)->keys()->map(function ($t) {
+            return Video::find($t);
+        });
     }
 
     public function recent($number = 10)

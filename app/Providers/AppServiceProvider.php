@@ -2,8 +2,8 @@
 
 namespace Bolt\Providers;
 
-use Validator;
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {

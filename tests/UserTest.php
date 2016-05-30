@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
@@ -17,34 +14,31 @@ class UserTest extends TestCase
     }
 
     public function testUserRegisteration()
-    {	
-    	$page = $this->visit('/register')
-    					->type('Roy', 'name')
-    					->type('royally@example.com', 'email')
-    					->type('teacher', 'password')
-    					->type('teacher', 'password_confirmation')
-    					->press('Register')
-    					->seePageIs('dashboard')
-    					;
+    {
+        $page = $this->visit('/register')
+                        ->type('Roy', 'name')
+                        ->type('royally@example.com', 'email')
+                        ->type('teacher', 'password')
+                        ->type('teacher', 'password_confirmation')
+                        ->press('Register')
+                        ->seePageIs('dashboard');
     }
 
     public function testUserLogin()
     {
-    	$user = $this->createUser();
-    	$page = $this->visit('/login')
-    					->type('royally@example.com', 'email')
-    					->type('teacher', 'password')
-    					->press('Login')
-    					->seePageIs('dashboard')
-    					->see('royally@example.com')
-    					;
+        $user = $this->createUser();
+        $page = $this->visit('/login')
+                        ->type('royally@example.com', 'email')
+                        ->type('teacher', 'password')
+                        ->press('Login')
+                        ->seePageIs('dashboard')
+                        ->see('royally@example.com');
     }
 
     public function testUserLogout()
     {
-	    $page = $this->visit('/logout')
-	    				->see('Login')
-	    				;
+        $page = $this->visit('/logout')
+                        ->see('Login');
     }
 
     public function testUserDashboard()
@@ -52,19 +46,18 @@ class UserTest extends TestCase
         $user = $this->createUser();
         $this->actingAs($user)
             ->visit('/dashboard')
-            ->seePageIs('dashboard')
-            ;
+            ->seePageIs('dashboard');
     }
 
     public function testUserLoginFails()
     {
-    	$page = $this->visit('/login')
-    					->type('royally@example.com', 'email')
-    					->type('teacher', 'password')
-    					->press('Login')
-    					->seePageIs('login')
-    					// ->see('These credentials do not match our records.')
-    					;
+        $page = $this->visit('/login')
+                        ->type('royally@example.com', 'email')
+                        ->type('teacher', 'password')
+                        ->press('Login')
+                        ->seePageIs('login')
+                        // ->see('These credentials do not match our records.')
+;
     }
 
     public function ntestUserSocialLogin()
@@ -78,21 +71,20 @@ class UserTest extends TestCase
 
     public function ntestUserChangeAvatar()
     {
-        $file = __DIR__ . '/def_profile.png';
+        $file = __DIR__.'/def_profile.png';
         $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.png', 'image/png', 200, null, true);
         $user = $this->createUser();
         $page = $this->actingAs($user)
                 ->visit('/dashboard')
                 ->attach($uploadedFile, 'file')
                 ->press('submit-new-avatar')
-                ->seePageIs('dashboard')
-                ;
+                ->seePageIs('dashboard');
         $this->assertResponseStatus(200);
     }
 
     public function testUserChangeAvatarFails()
     {
-        $file = __DIR__ . '/pix.jpg';
+        $file = __DIR__.'/pix.jpg';
         $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.jpg', 'image/jpeg', 200, null, true);
         $user = $this->createUser();
         $page = $this->actingAs($user)
@@ -100,8 +92,7 @@ class UserTest extends TestCase
                 ->see('Change Avatar')
                 ->attach($uploadedFile, 'file')
                 ->press('submit-new-avatar')
-                ->seePageIs('dashboard')
-                ;
+                ->seePageIs('dashboard');
         $page = $this->assertResponseStatus(200);
     }
 
@@ -109,7 +100,7 @@ class UserTest extends TestCase
     {
         $this->createTTModels();
         $user = Bolt\User::find(1);
-        
+
         $page = $this->actingAs($user)
             ->visit('/dashboard')
             ->see('Edit Profile')
@@ -119,15 +110,14 @@ class UserTest extends TestCase
             ->press('Update')
             ->seePageIs('dashboard')
             ->see('Royale')
-            ->see('royally@example.com')
-            ;
+            ->see('royally@example.com');
     }
 
     public function testUserEdit()
     {
         $this->createTTModels();
         $user = Bolt\User::find(1);
-        
+
         $page = $this->actingAs($user)
             ->visit('/profile/edit')
             ->see('Edit Profile')
@@ -137,16 +127,14 @@ class UserTest extends TestCase
             ->press('Update')
             ->seePageIs('dashboard')
             ->see('Royale')
-            ->see('royally@example.com')
-            ;
+            ->see('royally@example.com');
     }
 
     public function testUserEditNoAuth()
-    {   
+    {
         $page = $this->visit('/dashboard')
             ->seePageIs('login')
-            
-            ->see('Login')
-            ;
+
+            ->see('Login');
     }
 }
