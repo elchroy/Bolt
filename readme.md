@@ -33,33 +33,20 @@ Create a `.env` file at the root of your applicationa add the credentials as fol
 
 
 APP_ENV=local
-
 APP_DEBUG=true
-
 APP_KEY=your_generated_app_key
-
 APP_URL=your_host
 
-
 DB_CONNECTION=pgsql
-
 DB_HOST=database_localhost
-
 DB_PORT=5432
-
 DB_DATABASE=database_name
-
 DB_USERNAME=database_username
-
 DB_PASSWORD=database_password
 
-
 CACHE_DRIVER=file
-
 SESSION_DRIVER=file
-
 QUEUE_DRIVER=sync
-
 
 ```
 
@@ -86,23 +73,15 @@ For social authentication, with Facebook, Twitter and GitHub, include the follow
 ```ENV
 
 FACEBOOK_CLIENT_ID
-
 FACEBOOK_CLIENT_SECRET
-
 FACEBOOK_REDIRECT=http://yourhost:yourport/auth/facebook/callback
 
-
 TWITTER_CLIENT_ID
-
 TWITTER_CLIENT_SECRET
-
 TWITTER_REDIRECT=http://yourhost:yourport/auth/twitter/callback
 
-
 GITHUB_CLIENT_ID
-
 GITHUB_CLIENT_SECRET
-
 GITHUB_REDIRECT=http://yourhost:yourport/auth/github/callback
 
 ```
@@ -114,13 +93,9 @@ Bolt uses Cloudinary to handle image uploads. Ensure your `.env` file includes t
 
 ```ENV
 
-
 CLOUDINARY_CLOUD_NAME
-
 CLOUDINARY_API_KEY
-
 CLOUDINARY_API_SECRET
-
 ```
 
 ### Mails
@@ -129,9 +104,7 @@ All mails sent with Bolt are sent using Swift. To send mails, you need to includ
 
 ```ENV
 
-
 MAIL_USERNAME=your_gmail_username
-
 MAIL_PASSWORD=your_gmail_password
 
 ```
