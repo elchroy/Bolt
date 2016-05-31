@@ -60,7 +60,7 @@ class UserTest extends TestCase
 ;
     }
 
-    public function ntestUserSocialLogin()
+    public function testUserSocialLogin()
     {
         $response = $this->call('GET', 'auth/facebook');
         $target = $response->headers->get('location');
@@ -69,7 +69,7 @@ class UserTest extends TestCase
         $this->assertResponseStatus(302);
     }
 
-    public function ntestUserChangeAvatar()
+    public function testUserChangeAvatar()
     {
         $file = __DIR__.'/def_profile.png';
         $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.png', 'image/png', 200, null, true);
