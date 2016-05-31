@@ -130,6 +130,24 @@ class UserTest extends TestCase
             ->see('royally@example.com');
     }
 
+    public function testUserEditFails()
+    {
+        $this->createTTModels();
+        $user = Bolt\User::find(1);
+
+        $page = $this->actingAs($user)
+            ->visit('/profile/edit')
+            ->see('Edit Profile')
+            ->see('Update')
+            ->type('', 'name')
+            ->type('', 'email')
+            ->press('Update')
+            ->seePageIs('profile/edit')
+            ->see('The email field is required.')
+            ->see('The email field is required.')
+            ;
+    }
+
     public function testUserEditNoAuth()
     {
         $page = $this->visit('/dashboard')
