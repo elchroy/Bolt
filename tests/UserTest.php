@@ -60,7 +60,7 @@ class UserTest extends TestCase
 ;
     }
 
-    public function ntestUserSocialLogin()
+    public function testUserSocialLogin()
     {
         $response = $this->call('GET', 'auth/facebook');
         $target = $response->headers->get('location');
@@ -69,7 +69,7 @@ class UserTest extends TestCase
         $this->assertResponseStatus(302);
     }
 
-    public function ntestUserChangeAvatar()
+    public function testUserChangeAvatar()
     {
         $file = __DIR__.'/def_profile.png';
         $uploadedFile = new Illuminate\Http\UploadedFile($file, 'test.png', 'image/png', 200, null, true);
@@ -128,6 +128,24 @@ class UserTest extends TestCase
             ->seePageIs('dashboard')
             ->see('Royale')
             ->see('royally@example.com');
+    }
+
+    public function testUserEditFails()
+    {
+        $this->createTTModels();
+        $user = Bolt\User::find(1);
+
+        $page = $this->actingAs($user)
+            ->visit('/profile/edit')
+            ->see('Edit Profile')
+            ->see('Update')
+            ->type('', 'name')
+            ->type('', 'email')
+            ->press('Update')
+            ->seePageIs('profile/edit')
+            ->see('The email field is required.')
+            ->see('The email field is required.')
+            ;
     }
 
     public function testUserEditNoAuth()

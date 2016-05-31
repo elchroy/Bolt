@@ -170,7 +170,17 @@ class CategoryTest extends TestCase
             ->see('MsDotNet');
     }
 
-    // public function testCategoryCreate();
+    public function testCategoryCreateDetails()
+    {
+        $this->createTTModels();
+
+        $category = Bolt\Category::find(1);
+        $user = Bolt\User::find(1);
+
+        $catUser = $category->user;
+        $this->assertEquals($user, $catUser);
+        $this->assertEquals(1, $category->numberOfVideos());
+    }
 
     // public function testCategoryCreate();
 

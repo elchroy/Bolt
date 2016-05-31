@@ -113,6 +113,8 @@ class VideoTest extends TestCase
     public function testVideoDelete()
     {
         $this->createTTModels();
+        $video = Bolt\Video::find(1);
+        $this->createFavoriteFor($video);
 
         $user = Bolt\User::find(1);
         $page = $this->actingAs($user)
@@ -215,5 +217,21 @@ class VideoTest extends TestCase
         $status = $favorite->status;
         $this->assertEquals(0, $status);
         $this->assertTrue(0 == $status);
+    }
+
+    public function testVideoCheckFails()
+    {
+        $response = $this->visit('check?url=invalid');
+        $return = $response->response->content();
+
+        $this->assertEquals('not found', $return);
+    }
+
+    public function testVideoCheckPasses()
+    {
+        $response = $this->visit('check?url=https://www.youtube.com/watch?v=RBIJlgIg_w0');
+        $return = $response->response->content();
+
+        $this->assertEquals('found', $return);
     }
 }

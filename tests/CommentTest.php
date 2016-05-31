@@ -122,4 +122,76 @@ class CommentTest extends TestCase
         $this->assertTrue($user == $commenter);
         $this->assertEquals('1 second ago', $commentedAt);
     }
+
+    public function testCommentAddWithAjax()
+    {
+        $this->createTTModels();
+        
+        $user = Bolt\User::find(1);
+
+        $ajaxReturn = $this->actingAs($user)->json('POST', 'videos/1/comments/add', ['comment' => 'This is a new comment.'], ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response = get_object_vars($ajaxReturn)['response'];
+        $jsonResponse = $response->content();
+        $decoded = json_decode($jsonResponse);
+
+        $this->assertEquals(2, $decoded->id);
+        $this->assertEquals('success', $decoded->status);
+        $this->assertEquals(200, $response->status());
+
+        $video = Bolt\Video::find(1);
+
+        $this->assertEquals(2, $video->comments()->count());
+        
+        $comments = $video->comments->toArray();
+        $comment = $comments[1]['comment'];
+        
+        $this->assertEquals('This is a new comment.', $comment);
+    }
+
+    public function testCommentUpdateWithAjax()
+    {
+        $this->createTTModels();
+        
+        $user = Bolt\User::find(1);
+
+        $ajaxReturn = $this->actingAs($user)->json('PATCH', 'comments/1', ['comment' => 'This is the updated comment.'], ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response = get_object_vars($ajaxReturn)['response'];
+        $jsonResponse = $response->content();
+        
+        $result = '{"status":"success","time":"1 second ago","edited":null}';
+
+        $this->assertEquals($result, $jsonResponse);
+        
+        $this->assertEquals(200, $response->status());
+
+        $video = Bolt\Video::find(1);
+
+        $this->assertEquals(1, $video->comments()->count());
+        
+        $comments = $video->comments->toArray();
+        $comment = $comments[0]['comment'];
+        
+        $this->assertEquals('This is the updated comment.', $comment);
+    }
+
+    public function testCommentDeleteWithAjax()
+    {
+        $this->createTTModels();
+        
+        $user = Bolt\User::find(1);
+
+        $ajaxReturn = $this->actingAs($user)->json('DELETE', 'comments/1', ['comment' => 'This is the updated comment.'], ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response = get_object_vars($ajaxReturn)['response'];
+        $jsonResponse = $response->content();
+        
+        $result = '{"status":"success"}';
+
+        $this->assertEquals($result, $jsonResponse);
+        
+        $this->assertEquals(200, $response->status());
+
+        $video = Bolt\Video::find(1);
+
+        $this->assertEquals(0, $video->comments()->count());
+    }
 }
