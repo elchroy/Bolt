@@ -5,108 +5,108 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![Coverage Status](https://coveralls.io/repos/github/andela-celisha-wigwe/Bolt/badge.svg?branch=develop)](https://coveralls.io/github/andela-celisha-wigwe/Bolt?branch=develop)
+[![Build Status](https://travis-ci.org/andela-celisha-wigwe/Bolt.svg?branch=develop)](https://travis-ci.org/andela-celisha-wigwe/Bolt)
+[![StyleCI](https://styleci.io/repos/58325168/shield)](https://styleci.io/repos/58325168)
 
 [Bolt](https://boltt.herokuapp.com) is a Learning Management System built with the [Laravel](http://www.laravel.com), an opensource [PHP](http://www.php.net) framework with an expressive and elegant syntax.
 
 Bolt offers users the ability to manage their learning of some of the best and popular computer programming languages.
 
-## Users
+## Requirements
 
-### User Registration
+To use this application, [PHP](http://www.php.net) 5.5.* is required. Other key requirements include
+- [Composer](http://www.getcomposer.com)
+- Apache
+- Database
 
-Bolt allows users to register and start managing their collection of learning resources. Registration is free and easy. Registration only requires a name, an email address and a password that must be confirmed.
+## Installation
 
-### Traditional Authentication
+You can install the application by forking this repo or cloning it to your desktop.
 
-Bolt allows users to login into the application. There is a traditional authentication system that requires both a unique username and a password.
+Run Migration:
+
+```PHP
+
+php artisan db:migrate
+
+```
+and seed the database with random data:
+
+```PHP
+
+php artisan db:seed
+
+```
+
+## Environment
 
 ### Social Authentication
-Bolt also extends to social users, allowing [Facebook](http://www.facebook.com), [Twitter](http://www.twitter.com) and [GitHub](http://github.com) users to login into the application. Bolt requires at least, that the email used for social registration be made publicly available.
 
-Future versions of Bolt would extend social services to users with [Google](http://www.google.com), [BitBucket](http://www.bitbucket.com), and other social accounts.
+For social authentication, with Facebook, Twitter and GitHub, include the following in you `.env` file with the correct credentials.
 
-### Dashboard
+FACEBOOK_CLIENT_ID
+FACEBOOK_CLIENT_SECRET
+FACEBOOK_REDIRECT=http://yourhost:yourport/auth/facebook/callback
 
-Once a user has been registered or has logged into the application, the user is redirected to his dashboard. This where he can then manage all his learning resources. Only authenticated users have a dashboard.
+TWITTER_CLIENT_ID
+TWITTER_CLIENT_SECRET
+TWITTER_REDIRECT=http://yourhost:yourport/auth/twitter/callback
 
-### Password Reset
+GITHUB_CLIENT_ID
+GITHUB_CLIENT_SECRET
+GITHUB_REDIRECT=http://yourhost:yourport/auth/github/callback
 
-If a user, with an account, forgets the credentials to his account, he can request for resetting his account. On such a request, the users enters his email address, to which a link will be sent. On visiting th link, the users can then enter and confirm his new password. On sucess, he is logged in and redirected to his dashboard. Only guest users are permitted to perform this action. Guest users that have not registered in the past do not have access to this feature.
+### Cloudinary
 
-### User Edit Profile
+Bolt uses Cloudinary to handle image uploads. Ensure your `.env` file includes the correct APP keys and secrets, as follows:
 
-A user can edit his profile and change his name or his email address. However the email must be unique.
-The user can also upload a new image avatar.
+CLOUDINARY_CLOUD_NAME
+CLOUDINARY_API_KEY
+CLOUDINARY_API_SECRET
 
+### Mails
 
-## Videos
+All mails sent with Bolt are sent using Swift. To send mails, you need to include your username also. Note, for security purposes, include your password onlyh when testing this functionality.
 
-### Index
+MAIL_USERNAME=your_gmail_username
+MAIL_PASSWORD=your_gmail_password
 
-Users (both authenticated and guest) can view a collection of videos. The list of videos is paginated if need be, enabling users to continue browsing to other videos.
+## Features
+
+### Users
+
+- User Registration
+- Traditional Authentication
+- Social Authentication (integration with Facebook, Twitter and GitHub)
+- Dashboard (requires authentication)
+- Password Reset (unauthenticated users that have accounts)
+- User Edit Profile (authenticated users)
+
+### Videos
+
+- View all (all users)
+- View by categories (all users)
+- View By Search (all users)
+- Watch a Video (all users)
+- Upload a video resource (only authenticated users, only valid youtube users)
+- Edit a video resource (only authenticated users)
+- Delete a video resource (only authenticated users)
+- Drop Comments on a video (only authenticated users)
+- Favorite a video (only authenticated users)
 
 ### Categories
 
-Apart from viewing all the videos, a user can view only the videos of a particular category. The videos in a category are paginated if need be.
+- View all categories (all users)
+- View all videos under a particular category (all users)
+- Add new category (only authenticated users)
+- Editing a category (only authenticated users)
 
-### Search
+## Tests
 
-In addition to viewing all the videos, a user can search for any video by title. This is available to both authenticated users and guest users. The result of the search is displayed and pagination is used if need be.
+To run tests, using Command Prompt or Terminal ensure to cd into the root of the application's directory.
 
-### Uploading a video resource
-
-Only authenticated users are able to add a new video resource. To add a video link, the title, the url, an a description are required. The category of the video is also required.
-The url must be link to a valid youtube video. As such all validations must be met before the video is added to the collection of video resources.
-
-### Editing a video resource
-
-To edit a video resource, the user must be authenticated and be the correct owner of the video resource. Otherwise the request is rejected. Also the new details of the video are validated, just like during addition.
-
-### Deleting a video resource
-
-Deleting a video resource requires the user to be authenticated. Also a user can only delete his video resource. Once a video is deleted, all other descendants are deleted, including the comments under that video and the traces of the likes and favorites of that video. Deleting a video cannot be undone. Such a video would have to be re-added to the collection of videos.
-
-### Single Video
-
-A user can go further and watch a video that he likes. 
-
-### Comments and Favorites
-
-When viewing one video resource, authenticated users can drop comments on the video resource. In addtion, they can edit and delete the comments.
-
-Authenticated users can also favorite/unfavorite a video resource by simply clicking a button.
-
-Guest users will need to login before they can comment or favorite a video resource.
-
-## Categories
-
-### Index
-
-Each video belong to a category. All the categories can be listed in the categorie page. From this page, a user can view the videos belonging to a particular category. The category page is also available to both authenticated and guest users.
-
-### Single category
-
-A user can view all the videos in a particular category.
-
-### Adding categories
-
-Authenticated users can add categories to the collection. However, the name of the category must be provided and unique. A brief description of the category must also be provided.
-
-**Any authenticated user can add a new category, but only the top categories can be viewed on the video index page.**
-
-### Editing a category
-
-Authenticated users can view and edit their categories from their dashboard. Authenticated users can only edit the details of a category that belongs to them.
-
-
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Run `phpunit`
 
 ## Security Vulnerabilities
 
@@ -114,4 +114,4 @@ If you discover a security vulnerability within Bolt, please send an e-mail to [
 
 ## License
 
-Bolt is built with the Laravel framework, an open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Bolt is built buy [Chijioke Elisha-Wigwe](http://www.github.com/andela-celisha-wigwe) with the Laravel framework, an open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
