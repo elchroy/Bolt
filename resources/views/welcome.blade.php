@@ -7,7 +7,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('h2.login>a').attr('href', function () {
+            $('.title>a.login').attr('href', function () {
                 return '#to-welcome';
             });
         
@@ -35,7 +35,7 @@
                         <h1>Learn with Bolt</h1>
                         <a href="#top-videos"><h2>  Browse to Videos </h2></a> 
                         @if(Auth::guest())
-                           <a href="{{ url('login') }}"> <h2 class="login"> Login </h2></a> 
+                           <a href="{{ url('login') }}" class="login"> <h2> Login </h2></a> 
                         @endif
                     </div>
                 </div>
