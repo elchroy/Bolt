@@ -3,9 +3,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #312C32;
-  background: #fff url('/../uploads/bolt-skin.jpg') repeat center top fixed;
-
-
+  background: #fff url('/../uploads/bolt-skin.jpg') fixed repeat center;
+  background-size: cover;
 }
 
 .bolt-logo {
@@ -39,6 +38,10 @@ a:hover {
         -ms-transition: all .3s ease-in 0s;
          -o-transition: all .3s ease-in 0s;
             transition: all .3s ease-in 0s;
+}
+
+a:focus {
+  text-decoration: none;
 }
 
 ul {
@@ -169,12 +172,13 @@ li.open a.dropdown-toggle {
 	height: 45px;
 }
 
-
-/* WELCOME PAGE */
-
 body .bolt-welcome {
   margin-top: 70px;
-  background: url('/../uploads/noise.png') repeat center top fixed;
+  /*padding-top: 70px;*/
+  /*background: url('/../uploads/hero.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;*/
 }
 
 

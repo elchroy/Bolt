@@ -51,6 +51,8 @@
 
     @include('partials.navbar')
 
+    @yield('landing')
+
     <div class="bolt-welcome">
         @yield('welcome')
     </div>
