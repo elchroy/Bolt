@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExtraTest extends TestCase
 {
@@ -18,14 +15,12 @@ class ExtraTest extends TestCase
 
     public function testModelAvailabilityMiddleWare()
     {
-    	$this->createTTModels();
+        $this->createTTModels();
 
-    	$user = Bolt\User::find(1);
+        $user = Bolt\User::find(1);
 
-    	$this->actingAs($user)
-    			->visit('videos/1200')
-    			->see(404)
-    			;
-
+        $this->actingAs($user)
+                ->visit('videos/1200')
+                ->see(404);
     }
 }
