@@ -7,8 +7,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('.title>a.login').attr('href', function () {
+            var login = $('.title>a.login');
+
+            login.attr('href', function () {
                 return '#to-welcome';
+            });
+        
+            login.attr('id', function () {
+                return 'to-login';
+            });
+        
+            $('#to-login').click(function (e) {
+                e.preventDefault();
+                $('html,body').animate({
+                  scrollTop: $('#to-welcome').offset().top - 70
+                }, 1000);
             });
         
             toggleDiv('show-register', 'form-register', 'bolt-home-form');
@@ -27,13 +40,11 @@
         <div class="wrapperBeta clearfix">
 
             <div class="row landing">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left hidden-xs">
-                    <img src="{{ asset('uploads/big-logo.png') }}" class="img-responsive image">
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 right">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
                     <div class="title">
                         <h1>Learn with Bolt</h1>
-                        <a href="#top-videos"><h2>  Browse to Videos </h2></a> 
+                        <a href="#top-videos"><h2>  Get Started </h2></a> 
+                        &nbsp;
                         @if(Auth::guest())
                            <a href="{{ url('login') }}" class="login"> <h2> Login </h2></a> 
                         @endif

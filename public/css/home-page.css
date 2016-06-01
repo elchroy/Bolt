@@ -47,7 +47,7 @@
 }
 
 .landing {
-    margin: 100px auto;
+    margin: 110px auto;
 }
 
 .hero .title {
@@ -57,7 +57,7 @@
 }
 
 .hero .title h2 {
-    width: 50%;
+    margin: ;
     display: inline-block;
 }
 
@@ -105,6 +105,7 @@
     text-align: center;
 }
 
+
 .hero .title a:hover h2.login {
     color: #312C32;
     background: #f2f2f2;
@@ -149,7 +150,7 @@
     letter-spacing: 1.5px;
     line-height: 0.9;
     word-spacing: .5;
-    font-size: 60px;
+    font-size: 85px;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
     color: #F2F2F2;

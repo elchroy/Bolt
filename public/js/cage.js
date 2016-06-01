@@ -69,7 +69,7 @@ $('#back-top').click(function() {
 var scrollToElement = function(el, ms){
   var speed = (ms) ? ms : 1000;
   $('html,body').animate({
-      scrollTop: $(el).offset().top
+      scrollTop: $(el).offset().top - 70
   }, speed);
 }
 
