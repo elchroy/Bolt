@@ -98,6 +98,7 @@
 
 .hero .title h2 {
     color: #C6AEBF;
+    background: #f2f2f2;
     border: solid 1px #653D5D;
     border-radius: 2px;
     padding: 10px;
@@ -129,7 +130,7 @@
 }
 
 .hero .title h2 a {
-    color: #C6AEBF;
+    color: #312C32;
 }
 
 .hero .title h2:hover {
