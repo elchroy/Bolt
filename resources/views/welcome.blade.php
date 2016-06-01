@@ -48,7 +48,7 @@
 @endsection
 
 @section('welcome')
-    <div class="container" id="to-welcome">
+    <div class="container">
         
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
@@ -77,7 +77,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section" id="to-welcome">
                     @if(Auth::guest())
                         <div class="bolt-form home-form">
                             @include('auth.register-form')
