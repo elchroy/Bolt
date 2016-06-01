@@ -7,16 +7,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('h2.login>a').click( function (e) {
-                e.preventDefault();
-
-                // $(this).removeAttr('href');
-                
-                $(this).attr('href', function () {
-                    return '#to-welcome';
-                });
+            $('h2.login>a').attr('href', function () {
+                return '#to-welcome';
             });
-
+        
             toggleDiv('show-register', 'form-register', 'bolt-home-form');
             toggleDiv('show-login', 'form-login', 'bolt-home-form');
 
@@ -32,15 +26,19 @@
     
         <div class="wrapperBeta clearfix">
 
-            <div class="image">
-                 <img src="{{ asset('uploads/big-logo.png') }}" class="img-responsive">
-            </div>
-            <div class="title">
-                <h1>Learn with Bolt</h1>
-                <h2> <a href="#top-videos"> Browse to Videos </a> </h2>
-                @if(Auth::guest())
-                    <h2 class="login"> <a href="{{ url('login') }}"> Login</a> </h2>
-                @endif
+            <div class="row landing">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left hidden-xs">
+                    <img src="{{ asset('uploads/big-logo.png') }}" class="img-responsive image">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 right">
+                    <div class="title">
+                        <h1>Learn with Bolt</h1>
+                        <h2> <a href="#top-videos"> Browse to Videos </a> </h2>
+                        @if(Auth::guest())
+                            <h2 class="login"> <a href="{{ url('login') }}"> Login</a> </h2>
+                        @endif
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -139,8 +137,8 @@
                     </div>
                 </div>
 
-                <div class="pull-right bolt-div">
-                    <a href="{{ url('/videos') }}"><button class="bolt-calling button-half">Browse more videos</button></a>
+                <div class="bolt-div">
+                    <a href="{{ url('/videos') }}"><button class="bolt-calling">Browse more videos</button></a>
                 </div>
 
             </div>

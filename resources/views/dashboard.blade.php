@@ -42,7 +42,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-3"><a href="#user-cats" class="list-group-item"> <i class="fa fa-bars"></i> <span class="user-badge badge">{{ $user->categories->count() }}</span>Categories</a></div>
                 <div class="col-md-12 col-sm-12 col-xs-3"> <a href="{{ url('videos/add') }}"> <button id="add-new-video-button" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Upload Video</button></div></a>
                 <div class="col-md-12 col-sm-12 col-xs-3"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
-                <div class="col-xs-3 col-sm-12 hidden-md hidden-lg "><a href="{{ url('profile/edit') }}" id="add-category" class="list-group-item"> <i class="fa fa-edit"></i> Edit Profile</a></div>
+                <div class="col-md-12 col-sm-12 col-xs-3 hidden-md hidden-lg"><a href="{{ url('profile/edit') }}" class="list-group-item"> <i class="fa fa-edit"></i> Edit Profile</a></div>
             </div>
         </div>
 

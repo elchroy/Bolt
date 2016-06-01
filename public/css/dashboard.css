@@ -95,8 +95,13 @@
 
     #user-sidebar .list-group {
         background: transparent;
-        padding: 2px;
+        padding: 2px 15px;
         margin-bottom: 0px;
+    }
+
+    #user-sidebar .list-group div {
+        padding: 0px;
+        margin: 0px;
     }
 
     .list-group .list-group-item:hover {

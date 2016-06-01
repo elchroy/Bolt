@@ -28,6 +28,7 @@
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    padding: 35px 0px;
 }
 
 .clearfix:after {
@@ -40,34 +41,58 @@
 }
 
 .wrapperBeta {
-    margin: 0 auto;
+    margin: 0px auto;
     width: 100%;
     max-width: 1200px;
 }
 
+.landing {
+    margin: 100px auto;
+}
+
 .hero .title {
     text-align: right;
+    margin-top: 150px;
+}
+
+.hero .title h2 {
+    width: 50%;
     display: inline-block;
-    width: 30%;
-    margin: 20% 10% 30%;
-    float: right;
-    position: relative;
-    top: -20px;
-    width: 45%;
-    top: 10px;
+}
+
+.hero .title img {
+    text-align: right;
+    margin-top: 150px;
+}
+
+.landing .left.col-xs-12 img,
+.landing .title {
+    margin: 200px 0;
+    margin-top: 70px;
+}
+
+.landing .left.col-xs-12 img {
+    margin: 0px;
+    margin-top: 70px;
+}
+
+.landing .right.col-xs-12 .title{
+    /*margin: 0px;*/
+    /*margin-top: 0px;*/
+    /*margin-bottom: 20px;*/
+    font-size: 50%;
+}
+
+.hero .title,
+.hero .image {
+    /*margin: 290px 0px;*/
+    /*margin-top: 150px;*/
 }
 
 .hero .image {
-    text-align: right;
-    display: inline-block;
-    margin: 15% 0;
-    float: left;
-    position: relative;
-    width: 35%;
-    top: 10px;
+    width: 100%;
     background: #F2F2F2;
     border-radius: 3px;
-    /*left: 10px;*/
 }
 
 .hero .title h2 {
@@ -95,7 +120,7 @@
     letter-spacing: 1.5px;
     line-height: 0.9;
     word-spacing: .5;
-    font-size: 95px;
+    font-size: 100px;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
     color: #F2F2F2;
@@ -260,5 +285,5 @@
 
 
 .welcome-section .bolt-form{
-    margin: 0 10px;
+    margin-top: 10px;
 }
