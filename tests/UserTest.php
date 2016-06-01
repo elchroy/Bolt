@@ -144,8 +144,7 @@ class UserTest extends TestCase
             ->press('Update')
             ->seePageIs('profile/edit')
             ->see('The email field is required.')
-            ->see('The email field is required.')
-            ;
+            ->see('The email field is required.');
     }
 
     public function testUserEditNoAuth()
