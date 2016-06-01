@@ -7,6 +7,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $('h2.login>a').click( function (e) {
+                e.preventDefault();
+
+                // $(this).removeAttr('href');
+                
+                $(this).attr('href', function () {
+                    return '#to-welcome';
+                });
+            });
+
             toggleDiv('show-register', 'form-register', 'bolt-home-form');
             toggleDiv('show-login', 'form-login', 'bolt-home-form');
 
@@ -16,58 +26,80 @@
     </script>
 @endsection
 
-@section('welcome')
-    <div class="container">
-        
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
-                <div class="welcome-note bolt-form">
+@section('landing')
+    
+    <div class="hero clearfix">
+    
+        <div class="wrapperBeta clearfix">
 
-                    <p class="welcome-header">With Bolt</p>
-
-                    <div class="welcome-body">
-                        <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
-                        <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
-                        <p><i class="fa fa-check fa-lg"></i> You are in control </p>
-                    </div>
-
-                    <p>
-                        <a href="#top-videos">
-                            <button class="bolt-calling">
-                                See Top Videos
-                            </button>
-                        </a>
-                        <a href="#recent-videos">
-                            <button class="bolt-calling">
-                                Recent Videos
-                            </button>
-                        </a>
-                    </p>
-
-                </div>
+            <div class="image">
+                 <img src="{{ asset('uploads/big-logo.png') }}" class="img-responsive">
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+            <div class="title">
+                <h1>Learn with Bolt</h1>
+                <h2> <a href="#top-videos"> Browse to Videos </a> </h2>
                 @if(Auth::guest())
-                    <div class="bolt-form home-form">
-                        @include('auth.register-form')
-
-                        @include('auth.login-form')
-
-                        @include('partials.social')
-                    </div>
-                @else
-                    <div class="hidden-xs hidden-sm" id="top-video">
-                        <img src="{{ asset('uploads/monitor.png') }}" class="img-responsive monitor-frame">
-                        <div class="img-responsive monitor-screen">
-                            <div class="video-box" id="video-screen">
-                                <iframe id="video-frame" src="{{ $top->srcFrame() }}" frameborder="0"></iframe>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="login"> <a href="{{ url('login') }}"> Login</a> </h2>
                 @endif
             </div>
-            
-            
+
+        </div>
+
+    </div>
+
+@endsection
+
+@section('welcome')
+    <div class="container" id="to-welcome">
+        
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+                    <div class="welcome-note bolt-form">
+
+                        <p class="welcome-header">With Bolt</p>
+
+                        <div class="welcome-body">
+                            <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
+                            <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
+                            <p><i class="fa fa-check fa-lg"></i> You are in control </p>
+                        </div>
+
+                        <p>`
+                            <a href="#top-videos">
+                                <button class="bolt-calling">
+                                    See Top Videos
+                                </button>
+                            </a>
+                            <a href="#recent-videos">
+                                <button class="bolt-calling">
+                                    Recent Videos
+                                </button>
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+                    @if(Auth::guest())
+                        <div class="bolt-form home-form">
+                            @include('auth.register-form')
+
+                            @include('auth.login-form')
+
+                            @include('partials.social')
+                        </div>
+                    @else
+                        <div class="hidden-xs hidden-sm" id="top-video">
+                            <img src="{{ asset('uploads/monitor.png') }}" class="img-responsive monitor-frame">
+                            <div class="img-responsive monitor-screen">
+                                <div class="video-box" id="video-screen">
+                                    <iframe id="video-frame" src="{{ $top->srcFrame() }}" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                
         </div>
     </div>
 @endsection
