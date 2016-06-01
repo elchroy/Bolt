@@ -51,7 +51,7 @@
     <div class="container">
         
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section">
+                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section hidden-sm hidden-xs">
                     <div class="welcome-note bolt-form">
 
                         <p class="welcome-header">With Bolt</p>

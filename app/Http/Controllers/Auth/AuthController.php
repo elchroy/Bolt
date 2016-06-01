@@ -102,7 +102,7 @@ class AuthController extends Controller
             return redirect('dashboard');
         }
 
-        $request->session()->flash('error', "There is a problem with this account on the $link network.");
+        $request->session()->flash('error', "There is a problem with this account on the $link network. Ensure that your name and email are public.");
 
         return redirect()->back();
     }

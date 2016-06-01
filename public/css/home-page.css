@@ -53,6 +53,7 @@
 .hero .title {
     text-align: right;
     margin-top: 150px;
+    text-align: center;
 }
 
 .hero .title h2 {
@@ -120,7 +121,7 @@
     letter-spacing: 1.5px;
     line-height: 0.9;
     word-spacing: .5;
-    font-size: 100px;
+    font-size: 60px;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
     color: #F2F2F2;
