@@ -95,7 +95,7 @@ class AuthController extends Controller
     private function continueHandling($user, $link, Request $request)
     {
         $authUser = $this->findOrCreateSocialUser($user, $link);
-
+        
         if ($authUser) {
             Auth::login($authUser, true);
 
@@ -121,8 +121,8 @@ class AuthController extends Controller
         }
 
         $data = [
-            'name'        => $socialUser->name,
-            'email'       => $socialUser->email,
+            'name'        => is_null($socialUser->name) ? time() . '-Bolt' : $socialUser->name,
+            'email'       => is_null($socialUser->email) ? $socialUser->id . time() . '@bolt.net' : $socialUser->email,
             'social_id'   => $socialUser->id,
             'social_link' => $socialLink,
             'password'    => bcrypt('mybolt'),

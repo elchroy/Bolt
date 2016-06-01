@@ -96,8 +96,8 @@
     border-radius: 3px;
 }
 
-.hero .title h2 {
-    color: #C6AEBF;
+.hero .title a h2 {
+    color: #312C32;
     background: #f2f2f2;
     border: solid 1px #653D5D;
     border-radius: 2px;
@@ -105,8 +105,35 @@
     text-align: center;
 }
 
-.hero .title h2.login {
+.hero .title a:hover h2.login {
     color: #312C32;
+    background: #f2f2f2;
+    border: solid 1px #653D5D;
+    border-radius: 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.hero .title a:hover h2 {
+    color: #f2f2f2;
+    background: #C52020;
+    border: solid 1px #653D5D;
+    border-radius: 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.hero .title a.login h2 {
+    color: #f2f2f2;
+    background: #C52020;
+    border: solid 1px #653D5D;
+    border-radius: 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.hero .title a h2.login {
+    color: #F2F2F2;
     border: solid 1px #653D5D;
     border-radius: 2px;
     padding: 10px;
@@ -115,7 +142,7 @@
 }
 
 .hero .title h2.login a {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
 }
 
 .hero .title h1 {
@@ -129,18 +156,19 @@
 
 }
 
-.hero .title h2 a {
+.hero .title a {
     color: #312C32;
 }
 
-.hero .title h2:hover {
+.hero .title a:hover {
     color: #312C32;
     background: #f2f2f2;
     cursor: pointer;
 }
 
-.hero .title h2:hover a {
+.hero .title a:hover {
     color: #312C32;
+    background: #C52020;
 }
 
 .hero .title h2.nationalLearn {

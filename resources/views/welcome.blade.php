@@ -33,9 +33,9 @@
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 right">
                     <div class="title">
                         <h1>Learn with Bolt</h1>
-                        <h2> <a href="#top-videos"> Browse to Videos </a> </h2>
+                        <a href="#top-videos"><h2>  Browse to Videos </h2></a> 
                         @if(Auth::guest())
-                            <h2 class="login"> <a href="{{ url('login') }}"> Login</a> </h2>
+                           <a href="{{ url('login') }}"> <h2 class="login"> Login </h2></a> 
                         @endif
                     </div>
                 </div>
