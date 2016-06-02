@@ -17,7 +17,7 @@
 .footer {
   background: #312c32;
   color: #FFFFFF;
-  font-size: smaller;
+  padding: 5px;
   font-weight: bolder;
 }
 

@@ -77,6 +77,7 @@ class VideosController extends Controller
         $user = Auth::user();
 
         $data = $request->all();
+        $data['url'] = $this->createURL($request->url);
 
         $user->videos()->create($data);
 
@@ -192,5 +193,12 @@ class VideosController extends Controller
         $headers = get_headers($url);
 
         return substr($headers[0], 9, 3) !== '404' ? 'found' : 'not found';
+    }
+
+    private function createURL($url)
+    {
+        $videoCode = substr($url, -11);
+        
+        return "https://www.youtube.com/watch?v=$videoCode";
     }
 }

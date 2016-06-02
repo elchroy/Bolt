@@ -8,6 +8,13 @@
         // toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
         // toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
         // toggleDiv("add-video", "add-video-form", "sideforms", 600);
+        toggleDiv("delete-video", "delete-video-form", "video-forms");
+
+        $.each('.video-forms-delete', function () {
+
+
+        });
+
 
         
 
@@ -31,7 +38,7 @@
                     <h3 id="user-name" class="truncate hidden-sm hidden-xs">{{ $user->name }}</h3>
                     <p id="user-manage">
                         <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="">Edit Profile</span></span></a>
-                        <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a>
+                        <!-- <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a> -->
                     </p>
                 </div>
             </div>
@@ -73,7 +80,13 @@
                             @foreach($videos as $video)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     @include('videos.video-item')
-                                    <p class="pull-right"> <a href="{{ url('videos/'. $video->id .'/edit') }}"> <i class="fa fa-edit fa-lg"></i> Edit</a> </p>
+                                    <p class="pull-right">
+                                        <span> <a href="{{ url('videos/'. $video->id .'/edit') }}" title="Edit Video"> <i class="fa fa-edit fa-lg"></i> Edit</a> </span>
+                                        <span> <a href="" title="Delete Video" id="delete-video-{{ $video->id }}"> <i class="fa fa-trash fa-lg"></i> Delete</a> </span>
+                                    </p>
+                                    <div class="video-forms-delete" id="delete-video-form-{{ $video->id }}" hidden>
+                                        @include('videos.delete-video-form')
+                                    </div>
                                 </div>
                             @endforeach
                         @else

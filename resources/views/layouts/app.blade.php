@@ -58,18 +58,14 @@
     </div>
 
     @if(Session::has('success'))
-        <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
-            <div class="alert alert-success success fadeInLeft animated">
-                <p>{{ Session::get('success') }}</p>
-            </div>
+        <div class="bolt-presenter bounceInDown animated ">
+            {{ Session::get('success') }}
         </div>
     @endif
 
     @if(Session::has('error'))
-        <div class="bolt-presenter fadeInLeft animated pull-left" id="bolt-presenter">
-            <div class="alert alert-danger danger fadeInLeft animated">
-                <p>{{ Session::get('error') }}</p>
-            </div>
+        <div class="bolt-presenter bounceInDown animated ">
+            {{ Session::get('error') }}
         </div>
     @endif
     

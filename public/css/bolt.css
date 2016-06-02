@@ -203,10 +203,14 @@ body .bolt-section div.row {
     text-align: center;
     background: #F2F2F2;
     color: #C52020;
-    padding: 0 5px;
-    padding-right: 70px;
+    padding: 5px;
     border-radius: 2px;
     font-weight: 100;
+    font-weight: 100;
+}
+.video-group-title h2,
+.section-header h2{
+  margin: 0px;
 }
 
 .section-body {
@@ -251,13 +255,21 @@ ul.pagination li a:hover{
 }
 
 .bolt-presenter {
-  padding: 1px;
-  background: #312C32;
-  max-width: 200px;
+  background: rgb(237, 185, 185);
   position: fixed;
+  color: #312C32;
   z-index: 1999;
-  top: 47px;
-  border: 1px solid #fff;
+  width: 100%;
+  display: block;
+  top: 50px;
+  text-align: center;
+  font-size: large;
+  font-weight: 400;
+  border-bottom: solid 1px #312C32;
+}
+.bolt-presenter p {
+  margin: 0px;
+  padding: 3px;
 }
 
 .bolt-presenter .alert {

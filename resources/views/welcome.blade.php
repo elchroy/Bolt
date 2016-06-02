@@ -43,7 +43,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
                     <div class="title">
                         <h1>Learn with Bolt</h1>
-                        <a href="#top-videos"><h2>  Get Started </h2></a> 
+                        <a href="#top-videos"><h2> Browse to videos </h2></a> 
                         &nbsp;
                         @if(Auth::guest())
                            <a href="{{ url('login') }}" class="login"> <h2> Login </h2></a> 
@@ -62,33 +62,8 @@
     <div class="container">
         
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section hidden-sm hidden-xs">
-                    <div class="welcome-note bolt-form">
-
-                        <p class="welcome-header">With Bolt</p>
-
-                        <div class="welcome-body">
-                            <p><i class="fa fa-check fa-lg"></i> Learning is fast</p>
-                            <p><i class="fa fa-check fa-lg"></i> Learning is fun</p>
-                            <p><i class="fa fa-check fa-lg"></i> You are in control </p>
-                        </div>
-
-                        <p>`
-                            <a href="#top-videos">
-                                <button class="bolt-calling">
-                                    See Top Videos
-                                </button>
-                            </a>
-                            <a href="#recent-videos">
-                                <button class="bolt-calling">
-                                    Recent Videos
-                                </button>
-                            </a>
-                        </p>
-
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12 col-xs-12 welcome-section" id="to-welcome">
+                
+                <div class="col-md-12 col-sm-12 col-xs-12 welcome-section" id="to-welcome">
                     @if(Auth::guest())
                         <div class="bolt-form home-form">
                             @include('auth.register-form')
@@ -114,7 +89,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container hidden-xs">
         <div class="col-md-12">
             <div class="row">
 
