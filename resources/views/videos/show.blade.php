@@ -18,8 +18,9 @@
 		    		<div class="col-md-12 col-sm-12" style="color: #312C32;">
 				    	<h2>{{ $video->title }}</h2>
 				    	<div class="video-details video-details-show">
-				    		<div style="display: inline-block;">
-				    			<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> <i class="devicon-{{ strtolower($video->category->name) }}-plain colored"></i> {{ $video->category->name }}</a></h5>
+				    		<div id="video-extra">
+				    			<h5> <strong> </strong> <span class=""> {{ $video->description }} </span> </h5>
+					    		<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> <i class="devicon-{{ strtolower($video->category->name) }}-plain colored"></i> {{ $video->category->name }}</a></h5>
 					    		<h6> <strong> Owner: </strong>{{ $video->user->name }}</h6>
 					    		<h6> <strong> At: </strong>{{ $video->created_at->diffForHumans() }}</h6>
 				    		</div>
@@ -65,7 +66,7 @@
 	    		@if(Auth::user())
 			    	<form action="/videos/{{ $video->id }}/comments/add" class="bolt-form" id="new-comment-form" method="POST">
 						<input type="hidden" id="comment-token" name="_token" value="{{ csrf_token() }}">
-						<textarea name="comment" id="new-comment" commenter="{{ Auth::user()->getAvatar() }}" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
+						<textarea name="comment" id="new-comment" commenter="{{ Auth::user()->getAvatar() }}" commenterName="{{ Auth::user()->name }}" placeholder="Post a comment." maxlength="255" required>{{ old('comment') }}</textarea>
 					      <span class="help-block">
                                 <strong>{{ $errors->first('comment') }}</strong>
                             </span>
@@ -86,6 +87,7 @@
 					    <div class="contentwrapper comment-body">
 					    	<p class="comment-text" id="comment-text-{{$comment->id}}">{{ $comment->comment }}</p>
 		    				<p class="comment-info">
+		    					<span class="comment-name truncate" id="comment-name-{{ $comment->id }}">{{ $comment->user->name }}</span>
 		    					<span class="comment-time" id="comment-time-{{ $comment->id }}">{{ $comment->commentedAt() }}</span>
 		    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span>
 								@if(Auth::user())
@@ -147,6 +149,11 @@
 	.video-details-show {
 		background: #F2F2F2;
     	border-radius: 2px;
+	}
+
+	#video-extra {
+		display: inline-block;
+		width: 70%;
 	}
 
 	#video-screen iframe {
@@ -218,6 +225,12 @@
 		padding: 3px;
 		background: #f2f2f2;
 		color: #C52020;
+	}
+
+	.comment-info span.comment-name {
+		display: block;
+		color: #312C32;
+		font-size: larger;
 	}
 
 	.commenter-avatar {
