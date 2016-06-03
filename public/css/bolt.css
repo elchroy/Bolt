@@ -169,16 +169,12 @@ li.open a.dropdown-toggle {
 }
 
 #navbar-avatar {
-	height: 45px;
+  max-height: 45px;
+  max-width: 75px;
 }
 
 body .bolt-welcome {
   margin-top: 70px;
-  /*padding-top: 70px;*/
-  /*background: url('/../uploads/hero.jpg');
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;*/
 }
 
 

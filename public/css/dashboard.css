@@ -17,6 +17,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
+        width: 100%;
     }
 
     .video-delete-form form {
@@ -99,10 +100,8 @@
     }
 
     .user-info img {
-        width: 100%;
         height: auto;
-        margin: 5px 0;
-        /*border: solid rgba(23, 46, 53, 0.33);*/
+        max-height: 250px;
         border-radius: 2px;
     }
 
@@ -159,6 +158,11 @@
         padding: 10px;
         margin: 2px;
         border-radius: 3px;
+        display: block;
+        margin: 0px;
+        position: absolute;
+        border:solid 1px #312C32;
+        max-width: 300px;
     }
 
     .empty-collection {

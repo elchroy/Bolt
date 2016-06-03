@@ -4,6 +4,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        // keepSideBar('user-sidebar');
+
         // toggleDiv("add-new-video-button", "add-video-form", "video-forms", 600);
         // toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
         // toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
@@ -34,12 +36,12 @@
         <div class="col-md-2 col-sm-2" id="user-sidebar">
 
             <div class="user-info video-title">
-                <img align="center" sdrc="{{ asset('uploads/def_profile.png') }}" src="{{ $user->getAvatar() }}" class="hidden-xs">
+                <img align="center" src="{{ $user->getAvatar() }}" class="center-block img-responsive hidden-xs">
                 <div class="user-image-overlay">
                     <h3 id="user-name" class="truncate hidden-sm hidden-xs">{{ $user->name }}</h3>
                     <p id="user-manage">
                         <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span id="edit-profile"> <i class="fa fa-edit" title="Edit Profile"></i> <span class="">Edit Profile</span></span></a>
-                        <!-- <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a> -->
+                        <a href="{{ url('profile/edit') }}" class="hidden-xs hidden-sm"> <span  id="change-avatar"> <i class="fa fa-image" title="Change Avatar"></i> <span class=" ">Change Avatar</span></span></a>
                     </p>
                 </div>
             </div>
@@ -52,21 +54,18 @@
                 <div class="col-md-12 col-sm-12 col-xs-3"><a href="{{ url('categories/add') }}" id="add-category" class="list-group-item"> <i class="fa fa-plus"></i> <span class="user-badge badge">+</span>Add Category</a></div>
                 <div class="col-md-12 col-sm-12 col-xs-3 hidden-md hidden-lg"><a href="{{ url('profile/edit') }}" class="list-group-item"> <i class="fa fa-edit"></i> Edit Profile</a></div>
             </div>
+
+            <div hidden>
+                <div id="edit-profile-form" class="sideforms" hidden>
+                    @include('user.edit-form')
+                </div>
+                <div id="change-avatar-form" class="sideforms" hidden>
+                    @include('user.changeavatar')
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-10 col-sm-10" id="user-mainbar">
-                <div style="position: absolute; box-shadow: #312C32 0 0 10px; max-width: 300px;">
-                    <div id="edit-profile-form" class="sideforms" hidden>
-                        <buttom class="pull-right close close-form" id="edit-profile-form"> Close </buttom>
-                        @include('user.edit-form')
-                    </div>
-                    <div id="change-avatar-form" class="sideforms" hidden>
-                        <buttom class="pull-right close close-form" id="change-avatar-form"> Close </buttom>
-                        @include('user.changeavatar')
-                    </div>
-                </div>
-
-                                    
+        <div class="col-md-10 col-sm-10" id="user-mainbar">                    
                 <div>
                     
                     <div id="add-video-form" class="BounceInUp video-forms" hidden style="font-size: 100% !important;">

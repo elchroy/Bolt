@@ -49,7 +49,7 @@
                         <li class="dropdown" id="avatar">
 
                              <a href="{{ url('/dashboard') }}" class="truncate">
-                                <img class="hidden-xs hidden-sm" title="{{Auth::user()->name}}" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
+                                <img class="hidden-xs hidden-sm img-responsive" title="{{Auth::user()->name}}" src="{{ Auth::user()->getAvatar() }}" id="navbar-avatar">
                             </a>
                         </li>
                     @else
