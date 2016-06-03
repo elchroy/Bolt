@@ -198,7 +198,7 @@ class VideosController extends Controller
     private function createURL($url)
     {
         $videoCode = substr($url, -11);
-        
+
         return "https://www.youtube.com/watch?v=$videoCode";
     }
 }
