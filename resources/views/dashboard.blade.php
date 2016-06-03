@@ -21,7 +21,7 @@
         $('.close-delete-forms').click( function (e) {
             e.preventDefault();
             closeFormID = $(this).attr('for');
-            $('#' + closeFormID).hide(600);
+            $('#' + closeFormID).fadeToggle(600);
         });
 
     });
@@ -75,7 +75,6 @@
                     </div>
 
                     <div class="video-group-title" id="user-videos"><h2>Your Videos</h2></div>
-                    <hr>
                     <div class="row main-panel">
                          @if(count($videos))
                             @foreach($videos as $video)
@@ -94,7 +93,6 @@
                     </div>
 
                     <div class="video-group-title" id="fav-videos"><h2>Favorite Videos</h2></div>
-                    <hr>
                     <div class="row main-panel">
 
                         @if(count($favs))
@@ -111,7 +109,6 @@
                     </div>
 
                     <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
-                    <hr>
                     
                         <div class="row main-panel">
                             @if(count($categories))

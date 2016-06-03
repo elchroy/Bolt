@@ -96,10 +96,10 @@ var closeDiv = function (divClass)
 }
 
 var performToggle = function (buttonID, divID, commonClass, time = null) {
-  $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).hide(time);
+  $('.' + commonClass).not('[id='+divID+']').addClass(['fadeOutUp']).fadeOut();
   // $('.' + commonClass).not('[id='+divID+']').fadeOut(600);
   // $('#'+divID).toggle('fade');
-  $('#'+divID).toggle(time);
+  $('#'+divID).fadeToggle(time);
 }
 
 var toggPerform = function (buttonID, divID, commonClass, time = null) {

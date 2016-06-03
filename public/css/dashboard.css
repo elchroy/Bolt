@@ -15,13 +15,8 @@
 
     .video-delete-form {
         position: absolute;
-        height: 100%;
-        top: 0;
         left: 0;
-        width: 100%;
-        /*border-bottom: solid #C52020 2px;*/
-        border-top: #C52020 solid 1px;
-        background: #fff;
+        bottom: 0;
     }
 
     .video-delete-form form {

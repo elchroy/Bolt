@@ -4,7 +4,7 @@
 			<img src="{{ $user->getAvatar() }}" class="img-responsive center-block">
 		</div>
 		<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 avatar">
-		    <input type="file" name="file">
+		    <input type="file" name="file" accept=".png,.jpg,.jpeg">
 		    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		    <button id="submit-new-avatar" class="bolt-button" type="submit">Upload</button>
 		</div>
