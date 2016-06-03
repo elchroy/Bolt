@@ -43,8 +43,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
                     <div class="title">
                         <h1>Learn with Bolt</h1>
-                        <a href="#top-videos" class="hidden-xs hidden-sm"><h2> Browse to videos </h2></a> 
-                        <!-- <a href="#top-video" id="see-top" class="hidden-xs hidden-sm"><h2> <i class="fa fa-star"></i> </h2></a>  -->
+                        <a href="#top-videos" class="hidden-xs hidden-sm"><h2> Browse to videos </h2></a>
                         <a href="{{ url('videos') }}" class="hidden-md hidden-lg"><h2> Browse to videos </h2></a> 
                         &nbsp;
                         @if(Auth::guest())
@@ -74,15 +73,6 @@
                             @include('auth.login-form')
 
                             @include('partials.social')
-                        </div>
-                    @else
-                        <div class="hidden-xs hidden-sm" id="top-video">
-                            <img src="{{ asset('uploads/monitor.png') }}" class="img-responsive monitor-frame">
-                            <div class="img-responsive monitor-screen">
-                                <div class="video-box" id="video-screen">
-                                    <iframe id="video-frame" src="{{ $top->srcFrame() }}" frameborder="0"></iframe>
-                                </div>
-                            </div>
                         </div>
                     @endif
                 </div>
