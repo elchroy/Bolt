@@ -4,28 +4,31 @@
     
     <div class="container">
 
-        <div class="section-header text-center">
-            <h2> <i class="fa fa-lg fa-edit"></i> Edit</h2>
-        </div>
-
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-6 col-sm-12">
-                @include('videos.edit-video-form', $video)
+
+            <div class="section-header text-center">
+                <h2> <i class="fa fa-lg fa-edit"></i> Edit</h2>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
-                <img class="img-responsive video-image hidden-sm hidden-xs" title="{{ $video->title }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
-                
-                <div class="row">
-                    <div class="col-md-8">
-                        <div id="delete-video-form" class="video-forms" hidden>
-                            @include('videos.delete-video-form')
+
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-sm-12">
+                    @include('videos.edit-video-form', $video)
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
+                    <img class="img-responsive video-image hidden-sm hidden-xs" title="{{ $video->title }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="delete-video-form" class="video-forms" hidden>
+                                @include('videos.delete-video-form')
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button id="delete-video-button" class="bolt-button button-half">Delete</button>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <button id="delete-video-button" class="bolt-button button-half">Delete</button>
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
     
@@ -37,6 +40,7 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
 
 <style type="text/css">
     .bolt-form {

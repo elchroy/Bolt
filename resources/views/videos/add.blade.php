@@ -3,13 +3,16 @@
 @section('content')
 
     <div class="container">
+    	<div class="row">
 
-        <div class="section-header text-center">
-            <h2> <i class="fa fa-lg fa-plus"></i> Add Video </h2>
-        </div>
+	        <div class="section-header text-center">
+	            <h2> <i class="fa fa-lg fa-plus"></i> Add Video </h2>
+	        </div>
 
-        @include('videos.add-video-form')
-    
+	        @include('videos.add-video-form')
+
+	    </div>
+	    
     </div>
 
 @endsection

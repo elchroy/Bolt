@@ -7,7 +7,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var login = $('.title>a.login');
+            var login = $('.title>a#login');
 
             login.attr('href', function () {
                 return '#to-welcome';
@@ -43,10 +43,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
                     <div class="title">
                         <h1>Learn with Bolt</h1>
-                        <a href="#top-videos"><h2> Browse to videos </h2></a> 
+                        <a href="#top-videos" class="hidden-xs hidden-sm"><h2> Browse to videos </h2></a> 
+                        <!-- <a href="#top-video" id="see-top" class="hidden-xs hidden-sm"><h2> <i class="fa fa-star"></i> </h2></a>  -->
+                        <a href="{{ url('videos') }}" class="hidden-md hidden-lg"><h2> Browse to videos </h2></a> 
                         &nbsp;
                         @if(Auth::guest())
-                           <a href="{{ url('login') }}" class="login"> <h2> Login </h2></a> 
+                           <a href="{{ url('login') }}" id="login" class="hidden-xs"> <h2 class="login"> Login </h2></a> 
+                           <a href="{{ url('login') }}" class="hidden-sm hidden-md hidden-lg"> <h2 class="login"> Login </h2></a> 
                         @endif
                     </div>
                 </div>
@@ -59,7 +62,7 @@
 @endsection
 
 @section('welcome')
-    <div class="container">
+    <div class="container hidden-xs">
         
             <div class="row">
                 

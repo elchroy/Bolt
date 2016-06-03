@@ -20,3 +20,22 @@
 .video-image {
     width: 100%;
 }
+
+.close-delete-forms {
+	background: #C52020;
+    padding: 1px 0;
+    margin: 0px;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.actions button {
+	width: 50%;
+	float: right;
+	padding: 10px 0;
+}
+
+.actions button.cancel {
+	background: #C52020;
+}

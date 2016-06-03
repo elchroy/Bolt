@@ -13,6 +13,27 @@
         display: inline-block;
     }
 
+    .video-delete-form {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        /*border-bottom: solid #C52020 2px;*/
+        border-top: #C52020 solid 1px;
+        background: #fff;
+    }
+
+    .video-delete-form form {
+        margin: 0px;
+    }
+
+    .video-delete-form form .alert {
+        border: solid 3px #C52020;
+        background: #F2F2F2;
+        color: #312C32;
+    }
+
     .pagination ul {
         padding: 0;
         margin: 0;

@@ -126,7 +126,8 @@
     text-align: center;
 }
 
-.hero .title a.login h2 {
+.hero .title a#login h2,
+#see-top h2 {
     color: #f2f2f2;
     background: #C52020;
     border: solid 1px #653D5D;
@@ -281,11 +282,16 @@
     padding: 0;
 }
 
-.monitor-screen {
+#top-video {
+    min-height: 1200px;
+}
+
+.monitor-frame img {
     position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
+    padding: 0;
+}
+
+.monitor-screen {
     padding: 18px;
 }
 

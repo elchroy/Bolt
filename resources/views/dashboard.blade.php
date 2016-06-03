@@ -8,20 +8,21 @@
         // toggleDiv("edit-profile", "edit-profile-form", "sideforms", 600);
         // toggleDiv("change-avatar", "change-avatar-form", "sideforms", 600);
         // toggleDiv("add-video", "add-video-form", "sideforms", 600);
-        toggleDiv("delete-video", "delete-video-form", "video-forms");
+        // toggleDiv("delete-video", "delete-video-form", "video-forms");
 
-        $.each('.video-forms-delete', function () {
+        $('.delete-video-openers').click( function (e) {
+            e.preventDefault();
 
-
+            id = $(this).attr('id');
+            divID = $(this).attr('for');
+            performToggle(id, divID, "video-delete-form", 600);
         });
 
-
-        
-
-        // closeDiv("sideforms");
-        // closeDiv("video-forms");
-        
-        // {!! count($errors) > 0 ? '$("#add-new-video-button").trigger("click");' : '' !!}
+        $('.close-delete-forms').click( function (e) {
+            e.preventDefault();
+            closeFormID = $(this).attr('for');
+            $('#' + closeFormID).hide(600);
+        });
 
     });
 </script>
@@ -80,11 +81,9 @@
                             @foreach($videos as $video)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     @include('videos.video-item')
-                                    <p class="pull-right">
-                                        <span> <a href="{{ url('videos/'. $video->id .'/edit') }}" title="Edit Video"> <i class="fa fa-edit fa-lg"></i> Edit</a> </span>
-                                        <span> <a href="" title="Delete Video" id="delete-video-{{ $video->id }}"> <i class="fa fa-trash fa-lg"></i> Delete</a> </span>
-                                    </p>
-                                    <div class="video-forms-delete" id="delete-video-form-{{ $video->id }}" hidden>
+                                        <span class="pull-left"> <a href="{{ url('videos/'. $video->id .'/edit') }}" title="Edit Video"> <i class="fa fa-edit fa-lg"></i> Edit</a> </span>
+                                        <span class="pull-right"> <a href="" title="Delete Video" class="delete-video-openers" for="delete-video-form-{{$video->id}}" id="open-del-form-{{ $video->id }}"> <i class="fa fa-trash fa-lg"></i> Delete</a> </span>
+                                    <div class="video-delete-form" id="delete-video-form-{{ $video->id }}" hidden>
                                         @include('videos.delete-video-form')
                                     </div>
                                 </div>
@@ -134,4 +133,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/bolt-form.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/category-item.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/video-add-edit.css') }}">
 @endsection
