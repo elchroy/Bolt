@@ -6,7 +6,7 @@
 
 ![alt tag](https://github.com/andela-celisha-wigwe/Bolt/blob/develop/public/img/bolt-logo.png)
 
-[Bolt](https://boltt.herokuapp.com) is a Learning Management System built with the [Laravel](http://www.laravel.com), an opensource [PHP](http://www.php.net) framework with an expressive and elegant syntax.
+[Bolt](http://boltt.herokuapp.com) is a Learning Management System built with the [Laravel](http://www.laravel.com), an opensource [PHP](http://www.php.net) framework with an expressive and elegant syntax.
 
 Bolt offers users the ability to manage their learning of some of the best and popular computer programming languages.
 
