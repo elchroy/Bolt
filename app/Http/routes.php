@@ -1,21 +1,19 @@
-	<?php
+<?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+// All the ID parameters will accept only recieve integer patterns.
+// All other patterns will return to an unfriendly 404 response.
 
 Route::get('/', 'PagesController@welcome');
 
 Route::auth();
 
+// Rser Dashboard Route
 Route::get('/dashboard', 'PagesController@dashboard');
+
+// User change avatar
+Route::post('user/changeAvatar', 'UsersController@changeAvatar');
+
+// User edit profile
 Route::get('profile/edit', 'UsersController@edit');
 Route::post('profile/update', 'UsersController@update');
 
@@ -23,31 +21,66 @@ Route::post('profile/update', 'UsersController@update');
 Route::get('auth/{link}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{link}/callback', 'Auth\AuthController@handleProviderCallback');
 
-
-// Routes for comments
-Route::post('videos/{id}/comments/add', 'CommentsController@createComment');
-Route::post('videos/add', 'VideosController@createVideo');
-Route::get('videos/add', 'VideosController@add');
-Route::get('videos/search', 'VideosController@search');
-Route::get('videos/{id}/edit', 'VideosController@edit');
-Route::post('videos/{id}/update', 'VideosController@updateVideo');
-Route::delete('videos/{id}/delete', 'VideosController@deleteVideo');
-Route::post('videos/{id}/favorite', 'VideosController@favorite');
-Route::post('videos/{id}/unfavorite', 'VideosController@unfavorite');
-
-Route::get('videos/{id}', 'VideosController@show');
-Route::get('videos', 'VideosController@index');
-Route::patch('comments/{id}', 'CommentsController@updateComment');
-Route::delete('comments/{id}', 'CommentsController@deleteComment');
-
-Route::post('user/changeAvatar', 'UsersController@changeAvatar');
-
-
-Route::get('categories/add', 'CategoriesController@add');
-Route::get('categories', 'CategoriesController@index');
-Route::get('categories/{id}', 'CategoriesController@show');
-Route::post('categories/create', 'CategoriesController@create');
-Route::get('categories/{id}/edit', 'CategoriesController@edit');
-Route::patch('categories/{id}', 'CategoriesController@update');
-
 Route::any('check', 'VideosController@check');
+
+// Video Routes
+Route::group(['prefix' => 'videos'], function () {
+
+	// View a collection of videos.
+	Route::get('', 'VideosController@index');
+	
+	// Add a video
+	Route::post('/add', 'VideosController@createVideo');
+	Route::get('/add', 'VideosController@add');
+
+	//Search for a video
+	Route::get('/search', 'VideosController@search');
+
+	Route::group(['prefix' => '/{id}'], function () {
+		// Post a comment to a video
+		Route::post('/comments/add', 'CommentsController@createComment');
+
+		// Edit a video
+		Route::get('/edit', 'VideosController@edit');
+		Route::post('/update', 'VideosController@updateVideo');
+
+		// Delete a video
+		Route::delete('/delete', 'VideosController@deleteVideo');
+
+		// Favorite a video
+		Route::post('/favorite', 'VideosController@favorite');
+
+		// Unfavorite a video
+		Route::post('/unfavorite', 'VideosController@unfavorite');
+
+		// Visit/Watch a video.
+		Route::get('', 'VideosController@show');
+	});
+});
+
+// Comment Routes
+Route::group(['prefix' => 'comments/{id}'], function () {
+	Route::patch('', 'CommentsController@updateComment');
+	Route::delete('', 'CommentsController@deleteComment');
+});
+
+//Category Routes
+Route::group(['prefix' => 'categories'], function () {
+
+	// Show all categories
+	Route::get('', 'CategoriesController@index');
+
+	// Add a category
+	Route::get('add', 'CategoriesController@add');
+	Route::post('create', 'CategoriesController@create');
+
+	Route::group(['prefix' => '/{id}'], function () {
+
+		// Show a cateory and the vides under it.
+		Route::get('', 'CategoriesController@show');
+
+		// Edit a category
+		Route::get('/edit', 'CategoriesController@edit');
+		Route::patch('', 'CategoriesController@update');
+	});
+});

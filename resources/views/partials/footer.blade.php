@@ -1,4 +1,4 @@
-<div class="navbar-fixed-bottom footer" id="footer">
+<div class="footer" id="footer">
   <div class="container">
     
     <div class="row">
@@ -15,6 +15,9 @@
 <style type="text/css">
 
 .footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   background: #312c32;
   color: #FFFFFF;
   padding: 5px;

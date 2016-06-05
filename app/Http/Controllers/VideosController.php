@@ -122,7 +122,7 @@ class VideosController extends Controller
         $data = $request->all();
 
         $toSearch = $data['search'];
-        $condition = env('APP_ENV') == 'production' ? 'ILIKE' : 'LIKE';
+        $condition = env('DB_CONNECTION') == 'pgsql' ? 'ILIKE' : 'LIKE';
         $videos = Video::where('title', $condition, "%$toSearch%")->latest()->paginate(60);
         $title = "Search results for '$toSearch'";
         $paging = $videos->appends(['search' => $toSearch])->links();

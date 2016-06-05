@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: #312C32;
