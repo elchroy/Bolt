@@ -26,61 +26,61 @@ Route::any('check', 'VideosController@check');
 // Video Routes
 Route::group(['prefix' => 'videos'], function () {
 
-	// View a collection of videos.
-	Route::get('', 'VideosController@index');
-	
-	// Add a video
-	Route::post('/add', 'VideosController@createVideo');
-	Route::get('/add', 'VideosController@add');
+    // View a collection of videos.
+    Route::get('', 'VideosController@index');
 
-	//Search for a video
-	Route::get('/search', 'VideosController@search');
+    // Add a video
+    Route::post('/add', 'VideosController@createVideo');
+    Route::get('/add', 'VideosController@add');
 
-	Route::group(['prefix' => '/{id}'], function () {
-		// Post a comment to a video
-		Route::post('/comments/add', 'CommentsController@createComment');
+    //Search for a video
+    Route::get('/search', 'VideosController@search');
 
-		// Edit a video
-		Route::get('/edit', 'VideosController@edit');
-		Route::post('/update', 'VideosController@updateVideo');
+    Route::group(['prefix' => '/{id}'], function () {
+        // Post a comment to a video
+        Route::post('/comments/add', 'CommentsController@createComment');
 
-		// Delete a video
-		Route::delete('/delete', 'VideosController@deleteVideo');
+        // Edit a video
+        Route::get('/edit', 'VideosController@edit');
+        Route::post('/update', 'VideosController@updateVideo');
 
-		// Favorite a video
-		Route::post('/favorite', 'VideosController@favorite');
+        // Delete a video
+        Route::delete('/delete', 'VideosController@deleteVideo');
 
-		// Unfavorite a video
-		Route::post('/unfavorite', 'VideosController@unfavorite');
+        // Favorite a video
+        Route::post('/favorite', 'VideosController@favorite');
 
-		// Visit/Watch a video.
-		Route::get('', 'VideosController@show');
-	});
+        // Unfavorite a video
+        Route::post('/unfavorite', 'VideosController@unfavorite');
+
+        // Visit/Watch a video.
+        Route::get('', 'VideosController@show');
+    });
 });
 
 // Comment Routes
 Route::group(['prefix' => 'comments/{id}'], function () {
-	Route::patch('', 'CommentsController@updateComment');
-	Route::delete('', 'CommentsController@deleteComment');
+    Route::patch('', 'CommentsController@updateComment');
+    Route::delete('', 'CommentsController@deleteComment');
 });
 
 //Category Routes
 Route::group(['prefix' => 'categories'], function () {
 
-	// Show all categories
-	Route::get('', 'CategoriesController@index');
+    // Show all categories
+    Route::get('', 'CategoriesController@index');
 
-	// Add a category
-	Route::get('add', 'CategoriesController@add');
-	Route::post('create', 'CategoriesController@create');
+    // Add a category
+    Route::get('add', 'CategoriesController@add');
+    Route::post('create', 'CategoriesController@create');
 
-	Route::group(['prefix' => '/{id}'], function () {
+    Route::group(['prefix' => '/{id}'], function () {
 
-		// Show a cateory and the vides under it.
-		Route::get('', 'CategoriesController@show');
+        // Show a cateory and the vides under it.
+        Route::get('', 'CategoriesController@show');
 
-		// Edit a category
-		Route::get('/edit', 'CategoriesController@edit');
-		Route::patch('', 'CategoriesController@update');
-	});
+        // Edit a category
+        Route::get('/edit', 'CategoriesController@edit');
+        Route::patch('', 'CategoriesController@update');
+    });
 });
