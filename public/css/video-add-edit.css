@@ -22,7 +22,7 @@
 }
 
 .close-delete-forms {
-	background: #C52020;
+	background: var(--bolt-dele);
     padding: 1px 0;
     margin: 0px;
     color: #fff;
@@ -37,5 +37,9 @@
 }
 
 .actions button.cancel {
-	background: #C52020;
+    background: var(--bolt-hovr);
+    color: var( --bolt-dark);
+}
+
+.actions button.confirm {
 }

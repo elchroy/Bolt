@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="bolt-div">
-                    <a href="{{ url('/videos') }}"><button class="bolt-calling">Browse more videos</button></a>
+                    <a href="{{ url('/videos') }}"><button class="bolt-calling center-block" id="browse-more">Browse more videos</button></a>
                 </div>
 
             </div>

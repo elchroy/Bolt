@@ -2,7 +2,8 @@
 
 namespace Bolt\Http\Controllers;
 
-use Cloudinary as Cloudinary;
+use Cloudinary;
+use Cloudinary\Uploader as Uploader;
 use Illuminate\Foundation\Application as App;
 use Illuminate\Http\UploadedFile as UploadedFile;
 
@@ -17,7 +18,7 @@ class BoltUploader extends Cloudinary
 
     public function uploadAvatar(UploadedFile $file)
     {
-        return    Cloudinary\Uploader::upload($file, [
+        return    Uploader::upload($file, [
                     'crop'   => 'limit',
                     'width'  => 140,
                     'height' => 140,

@@ -34,7 +34,7 @@
 
                     <!-- Authentication Links -->
                     @if (Auth::user())
-                        <li><a style="background: #C52020; color: #333;" href="{{ url('videos/add') }}">Upload</a></li>
+                        <li><a style="background: #daad86; color: #312c32 !important;" href="{{ url('videos/add') }}">Upload</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle truncate" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <span class="">{{ Auth::user()->name }}</span>
@@ -54,8 +54,8 @@
                         </li>
                     @else
                         @if(!(Request::is('/')))
-                            <li><a style="background: #C52020; color: #333;" href="{{ url('/login') }}">Login</a></li>
-                            <li><a style="background: #C52020; color: #333;" href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}" class="unauth" id="login">Login</a></li>
+                            <li><a href="{{ url('/register') }}" class="unauth" id="register">Register</a></li>
                         @endif
                     @endif
 
@@ -72,6 +72,18 @@
             border-radius: 1PX;
             color: #312C32;
             box-shadow: none;
+        }
+
+        li a.unauth {
+            color: var(--bolt-dark) !important;
+        }
+
+        li a.unauth#login {
+            background: var(--bolt-link);
+        }
+
+        li a.unauth#register {
+            background: var(--bolt-hovr);
         }
 
     </style>

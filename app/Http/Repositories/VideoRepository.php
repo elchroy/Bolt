@@ -1,12 +1,13 @@
 <?php
 
-namespace Bolt\Http\Controllers\States;
+namespace Bolt\Http\Repositories;
 
 use Bolt\Favorite;
-use Bolt\Http\Controllers\Controller as Controller;
+use Bolt\Http\Controllers\Controller;
 use Bolt\Video;
+use Bolt\Category;
 
-class VideoState extends Controller
+class VideoRepository extends Controller
 {
     protected $groupedLikes;
 
@@ -41,6 +42,28 @@ class VideoState extends Controller
 
     public function recent($number = 10)
     {
-        return Video::latest()->take($number)->get();
+        return $this->latestVid()->take($number)->get();
+    }
+
+    public function getLatest($number = 10)
+    {
+        return $this->latestVid()->paginate($number);
+    }
+
+    public function latestVid()
+    {
+        return Video::latest();
+    }
+
+    public function findVideo($id)
+    {
+        return Video::find($id);
+    }
+
+    public function searchVids($search, $number = 10)
+    {
+        $condition = env('DB_CONNECTION') == 'pgsql' ? 'ILIKE' : 'LIKE';
+
+        return Video::where('title', $condition, "%$search%")->latest()->paginate($number);
     }
 }

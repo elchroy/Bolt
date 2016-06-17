@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    /**
+     * The authenticated user instance.
+     * 
+     * @var [type]
+     */
+    protected $user;
+
     public function __construct()
     {
         $this->middleware('avatar', ['only' => [
@@ -22,33 +29,32 @@ class UsersController extends Controller
         $this->middleware('userUpdate', ['only' => [
             'update',
         ]]);
+
+        $this->user = Auth::user();
     }
 
     public function changeAvatar(Request $request, Uploader $uploader)
     {
-        $file = $request->file('file');
+        $result = $uploader->uploadAvatar($request->file('file'));
 
-        $result = $uploader->uploadAvatar($file);
-
-        $user = Auth::user();
-        $user->avatar = $result['url'];
-        $user->save();
+        $this->user->update(['avatar' => $result['url']]);
 
         return redirect()->back();
     }
 
     public function edit()
     {
-        $user = Auth::user();
-        $title = 'Edit Your Profile';
+        $data = [
+            'user' => $this->user,
+            'title' => 'Edit Your Profile',
+        ];
 
-        return view('user.edit', compact('user', 'title'));
+        return view('user.edit', $data);
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
-        $user->update($request->all());
+        $this->user->update($request->all());
 
         return redirect('dashboard');
     }

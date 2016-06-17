@@ -25,7 +25,7 @@
     }
 
     .video-delete-form form .alert {
-        border: solid 3px #C52020;
+        border: solid 2px var(--bolt-hovr);
         background: #F2F2F2;
         color: #312C32;
     }
@@ -55,7 +55,7 @@
     }
 
     p#user-manage span:hover {
-        color: #C52020;
+        color: var(--bolt-hovr);
         text-decoration: underline;
     }
 
@@ -166,7 +166,6 @@
     }
 
     .empty-collection {
-    	background-color: #F2F2F2;
 	    border-color: #312C32;
 	    border-radius: 1px;
 	    border: none;
@@ -176,7 +175,8 @@
     }
 
     .user-badge, .add-badge {
-        background-color: #8F0A0A !important;
+        background-color: var(--bolt-hovr) !important;
+        color: var(--bolt-dark);
         border-radius: 3px !important;
     }
 
@@ -212,4 +212,23 @@
 
     .user-section {
         
+    }
+
+    .delete-video-openers {
+        color: var(--bolt-dele);
+    }
+
+    .edit-video-openers {
+        color: #312c32;
+    }
+
+    .dash-section {
+        border: solid 1px var(--bolt-hovr);
+        border-radius: 2px;
+        margin-bottom: 10px;
+    }
+
+    .dash-section .video-group-title {
+        background: var(--bolt-hovr);
+        padding: 0;
     }

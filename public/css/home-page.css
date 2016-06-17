@@ -100,8 +100,7 @@
 
 .hero .title a h2 {
     color: #312C32;
-    background: #f2f2f2;
-    border: solid 1px #653D5D;
+    background: var(--bolt-main);
     border-radius: 2px;
     padding: 10px;
     text-align: center;
@@ -109,18 +108,16 @@
 
 
 .hero .title a:hover h2.login {
-    color: #312C32;
-    background: #f2f2f2;
-    border: solid 1px #653D5D;
+    color: var(--bolt-dark);
+    background: var(--bolt-hovr);
     border-radius: 2px;
     padding: 10px;
     text-align: center;
 }
 
 .hero .title a:hover h2 {
-    color: #f2f2f2;
-    background: #C52020;
-    border: solid 1px #653D5D;
+    color: #312c32;
+    background: #daad86;
     border-radius: 2px;
     padding: 10px;
     text-align: center;
@@ -129,7 +126,7 @@
 .hero .title a#login h2,
 #see-top h2 {
     color: #f2f2f2;
-    background: #C52020;
+    background: var(--bolt-dele);
     border: solid 1px #653D5D;
     border-radius: 2px;
     padding: 10px;
@@ -137,12 +134,10 @@
 }
 
 .hero .title a h2.login {
-    color: #F2F2F2;
-    border: solid 1px #653D5D;
-    border-radius: 2px;
     padding: 10px;
     text-align: center;
-    background: #C52020;
+    background: var(--bolt-link);
+    color: var(--bolt-dark);
 }
 
 .hero .title h2.login a {
@@ -171,8 +166,8 @@
 }
 
 .hero .title a:hover {
-    color: #312C32;
-    background: #C52020;
+    color: var(--bolt-dark);
+    background: none;
 }
 
 .hero .title h2.nationalLearn {
@@ -325,4 +320,8 @@
 
 .welcome-section .bolt-form{
     margin-top: 10px;
+}
+
+#browse-more {
+    width: auto;
 }

@@ -40,8 +40,15 @@
         a.cat-list-item.active, 
         a.cat-list-item.active:hover,
         #other-cats:hover {
-            background: #C52020;
-            color: #fff;
+            background: var(--bolt-hovr);
+            color: #312c32;
+        }
+
+        a.cat-list-item:hover span.cat-video-num,
+        a.cat-list-item.active span.cat-video-num, 
+        a.cat-list-item.active:hover span.cat-video-num {
+            color: var(--bolt-dark);
+            background: var(--bolt-main);
         }
 
         div.cat-list-item {
@@ -63,12 +70,12 @@
         span.cat-video-num {
             right: 10px;
             position:absolute;
-            background:#312C32;
-            color: #fff;
+            background: var(--bolt-dark);
+            color: var(--bolt-hovr);
         }
 
         #other-cats {
-            background: rgb(229, 154, 154);
+            background: var(--bolt-hovr);
             color: #312C32;
         }
     </style>    

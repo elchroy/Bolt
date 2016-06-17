@@ -53,10 +53,7 @@ class User extends Authenticatable
     {
         return $this->avatar != null;
     }
-
-    /**
-     * Get all of the staff member's photos.
-     */
+    
     public function favorites()
     {
         return $this->hasMany(Favorite::class);

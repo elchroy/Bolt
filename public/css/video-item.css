@@ -4,15 +4,24 @@
 .overlay {
     
 }
+
+.overlay button.bolt-calling {
+  width: auto;
+  background: var(--bolt-hovr);
+  border-radius: 1px;
+  color: #312c32;
+}
+
 .overlay {
     padding: 15px;
     text-align: center;
     position: absolute;
+    background: var(--bolt-dark-trans);
     left: 0;
-    top: 0;
+    top: 47px;
     width: 100%;
     height: auto;
-    color: #fff;
+    color: #312c32;
     
     opacity: 0;
     
@@ -44,8 +53,6 @@
 .video-box:hover {
   background: rgb(225, 138, 138);
   cursor: pointer;
-  box-shadow: #312C32 0 0 4px;
-  /*border: none;*/
   zoom: ease-in;
   -webkit-transition: all .3s ease-in 0s;
        -moz-transition: all .3s ease-in 0s;
@@ -62,12 +69,10 @@
 }
 
 .video-box {
-  margin: 10px auto;
-  padding: 1px;
-  position: relative;
+  margin: 5px auto;
   width: 100%;
-  border: 1px #d4d4d4 solid;
-  border-radius: 1px;
+  position: relative;
+  border: solid var(--bolt-hovr) 1px;
 }
 
 .video-image {
@@ -76,7 +81,7 @@
 }
 
 .video-title {
-    color: #C52020;
+    color: var(--bolt-dark);
     padding: 5px 0;
     border-radius: 1px;
     width: 100%;
@@ -140,7 +145,7 @@ a .video-title:hover {
 
 .video-time {
   background: #fff;
-  color: #900;
+  color: var(--bolt-dark);
   bottom: 25px;
 }
 

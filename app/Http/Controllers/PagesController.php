@@ -3,22 +3,22 @@
 namespace Bolt\Http\Controllers;
 
 use Auth;
-use Bolt\Http\Controllers\States\VideoState;
+use Bolt\Http\Repositories\VideoRepository;
 
 class PagesController extends Controller
 {
-    protected $state;
+    protected $vidRepo;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(VideoState $state)
+    public function __construct(VideoRepository $vidRepo)
     {
         $this->middleware('auth', ['only' => 'dashboard']);
 
-        $this->state = $state;
+        $this->vidRepo = $vidRepo;
     }
 
     /**
@@ -39,9 +39,9 @@ class PagesController extends Controller
 
     public function welcome()
     {
-        $recent = $this->state->recent(8);
-        $mostLikedVideos = $this->state->top(4);
-        $top = $this->state->mostLiked();
+        $recent = $this->vidRepo->recent(8);
+        $mostLikedVideos = $this->vidRepo->top(4);
+        $top = $this->vidRepo->mostLiked();
 
         $title = 'Home';
 

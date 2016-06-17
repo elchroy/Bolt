@@ -73,43 +73,50 @@
                         @include('videos.add-video-form')
                     </div>
 
-                    <div class="video-group-title" id="user-videos"><h2>Your Videos</h2></div>
-                    <div class="row main-panel">
-                         @if(count($videos))
-                            @foreach($videos as $video)
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    @include('videos.video-item')
-                                        <span class="pull-left"> <a href="{{ url('videos/'. $video->id .'/edit') }}" title="Edit Video"> <i class="fa fa-edit fa-lg"></i> Edit</a> </span>
-                                        <span class="pull-right"> <a href="" title="Delete Video" class="delete-video-openers" for="delete-video-form-{{$video->id}}" id="open-del-form-{{ $video->id }}"> <i class="fa fa-trash fa-lg"></i> Delete</a> </span>
-                                    <div class="video-delete-form" id="delete-video-form-{{ $video->id }}" hidden>
-                                        @include('videos.delete-video-form')
-                                    </div>
-                                </div>
-                            @endforeach
-                        @else
-                            @include('partials.empty-collection', ['model' => 'videos'])
-                        @endif
-                    </div>
-
-                    <div class="video-group-title" id="fav-videos"><h2>Favorite Videos</h2></div>
-                    <div class="row main-panel">
-
-                        @if(count($favs))
-                            @foreach($favs as $video)
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    @include('videos.video-item')
-                                </div>
-                            @endforeach
-                        @else
-                            @include('partials.empty-collection', ['model' => 'favorite videos'])
-                        @endif
-
-                        
-                    </div>
-
-                    <div class="section-header" id="user-cats"><h2>Your Categories</h2></div>
-                    
+                    <div class="dash-section">
+                        <div class="video-group-title" id="user-videos"><h2>Your Videos</h2></div>
                         <div class="row main-panel">
+                             @if(count($videos))
+                                @foreach($videos as $video)
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="user-vids">
+                                            @include('videos.video-item')
+                                                <span class="pull-left"> <a href="{{ url('videos/'. $video->id .'/edit') }}" title="Edit Video" class="edit-video-openers"> <i class="fa fa-edit fa-sm"></i></a> </span>
+                                                <span class="pull-right"> <a href="" title="Delete Video" class="delete-video-openers" for="delete-video-form-{{$video->id}}" id="open-del-form-{{ $video->id }}"> <i class="fa fa-trash fa-xs"></i></a> </span>
+                                            <div class="video-delete-form" id="delete-video-form-{{ $video->id }}" hidden>
+                                                @include('videos.delete-video-form')
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                @include('partials.empty-collection', ['model' => 'videos'])
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <div class="video-group-title" id="fav-videos"><h2>Favorite Videos</h2></div>
+                        <div class="row main-panel">
+
+                            @if(count($favs))
+                                @foreach($favs as $video)
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        @include('videos.video-item')
+                                    </div>
+                                @endforeach
+                            @else
+                                @include('partials.empty-collection', ['model' => 'favorite videos'])
+                            @endif
+
+                            
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <div class="video-group-title" id="user-cats"><h2>Your Categories</h2></div>
+                    
+                        <div class="main-panel">
                             @if(count($categories))
                                 @foreach($categories as $category)
                                     @include('categories.item')
@@ -118,6 +125,7 @@
                                 @include('partials.empty-collection', ['model' => 'categories'])
                             @endif
                         </div>
+                    </div>
                 </div>
 
         </div>

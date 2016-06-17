@@ -5,17 +5,33 @@ namespace Bolt\Http\Controllers;
 use Auth;
 use Bolt\Category;
 use Bolt\User;
+use Bolt\Http\Repositories\CategoryRepository as CatRepo;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    public function __construct(Request $request)
+    /**
+     * The authenticated user instance.
+     * @var [type]
+     */
+    protected $user;
+
+    /**
+     * The category repository instance.
+     * @var [type]
+     */
+    protected $catRepo;
+
+    /**
+     * The category instance.
+     */
+    protected $category;
+
+    public function __construct(Request $request, CatRepo $catRepo)
     {
-        $this->middleware('auth', ['only' => [
-            'add',
-            'create',
-            'edit',
-            'update',
+        $this->middleware('auth', ['except' => [
+            'index',
+            'show',
         ]]);
 
         // Next confirm that the requested category of given ID is available.
@@ -32,56 +48,68 @@ class CategoriesController extends Controller
 
         $this->middleware('owner:'.$request->id.','.Category::class, ['only' => [
             'edit',
+            'update',
         ]]);
+
+        $this->user = Auth::user();
+
+        $this->catRepo = $catRepo;
+
+        $this->category = $this->catRepo->findCategory($request->id);
     }
 
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
-        $title = 'All Categories';
+        $data = [
+            'categories' => $this->catRepo->getCatByOrder(),
+            'title' => 'All Categories',
+        ];
 
-        return view('categories.index', compact('categories', 'title'));
+        return view('categories.index', $data);
     }
 
-    public function add(Request $request)
+    public function add()
     {
-        $title = 'Add Category';
-
-        return view('categories.add', compact('title'));
+        return view('categories.add', ['title' => 'Add Category']);
     }
 
     public function create(Request $request)
     {
-        $user = Auth::user();
-        $user->categories()->create($request->all());
+        $this->user->categories()->create($request->all());
 
         $request->session()->flash('success', 'Created');
 
         return redirect()->to('dashboard');
     }
 
-    public function show(Request $request)
+    public function show()
     {
-        $category = Category::find($request->id);
-        $title = $category->name;
-        $videos = $category->videos()->paginate(60);
+        $videos = $this->category->videos()->paginate(60);
         $paging = $videos->render();
 
-        return view('videos.index', compact('category', 'videos', 'paging', 'title'));
+        $data = [
+            'category' => $this->category,
+            'videos' => $videos,
+            'paging' => $paging,
+            'title' => $this->category->name,
+        ];
+
+        return view('videos.index', $data);
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        $category = Category::find($request->id);
-        $title = "Edit Category - $category->name";
+        $data = [
+            'category' => $this->category,
+            'title' => "Edit Category - $this->category->name",
+        ];
 
-        return view('categories.edit', compact('category', 'title'));
+        return view('categories.edit', $data);
     }
 
     public function update(Request $request)
     {
-        $category = Category::find($request->id);
-        $category->update($request->all());
+        $this->category->update($request->all());
 
         $request->session()->flash('success', 'Updated');
 

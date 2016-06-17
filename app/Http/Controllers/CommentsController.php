@@ -5,32 +5,39 @@ namespace Bolt\Http\Controllers;
 use Auth;
 use Bolt\Comment;
 use Illuminate\Http\Request;
+use Bolt\Http\Repositories\CommentRepository as ComRepo;
 
 class CommentsController extends Controller
 {
-    public function __construct(Request $request)
+    /**
+     * The authenticated user instance.
+     * @var [type]
+     */
+    protected $user;
+
+    protected $comRepo;
+
+    public function __construct(Request $request, ComRepo $comRepo)
     {
-        $this->middleware('auth', ['only' => [
+        $this->middleware('auth', ['except' => [
+        ]]);
+
+        // Confirm that the requested comment of given ID is available.
+        $this->middleware('available:'.Comment::class, ['except' => [
             'createComment',
-            'updateComment',
-            'deleteComment',
         ]]);
 
-        // Next confirm that the requested comment of given ID is available.
-        $this->middleware('available:'.Comment::class, ['only' => [
-            'updateComment',
-            'deleteComment',
-        ]]);
-
-        $this->middleware('owner:'.$request->id.','.Comment::class, ['only' => [
-            'updateComment',
-            'deleteComment',
-        ]]);
-
-        $this->middleware('comment', ['only' => [
+        // Confirm that the current user is the owner of the comment.
+        $this->middleware('owner:'.$request->id.','.Comment::class, ['except' => [
             'createComment',
-            'updateComment',
         ]]);
+
+        $this->middleware('comment', ['except' => [
+            'deleteComment',
+        ]]);
+
+        $this->user = Auth::user();
+        $this->comRepo = $comRepo;
     }
 
     public function createComment(Request $request)
@@ -38,12 +45,11 @@ class CommentsController extends Controller
         $data = $request->all();
         $data['video_id'] = $request->id;
 
-        $user = Auth::user();
-        $comment = $user->comments()->create($data);
+        $id = $this->user->comments()->create($data)->id;
 
         if ($request->ajax()) {
             $output = [
-                'id'         => $comment->id,
+                'id'         => $id,
                 'deltoken'   => csrf_token(),
                 'edittoken'  => csrf_token(),
                 'status'     => 'success',
@@ -57,7 +63,7 @@ class CommentsController extends Controller
 
     public function updateComment(Request $request)
     {
-        $comment = Comment::find($request->id);
+        $comment = $this->comRepo->findComment($request->id);
         $comment->update($request->all());
 
         if ($request->ajax()) {
@@ -76,8 +82,7 @@ class CommentsController extends Controller
 
     public function deleteComment(Request $request)
     {
-        $id = $request->id;
-        Comment::destroy($id);
+        $this->comRepo->findComment($request->id)->delete();
 
         if ($request->ajax()) {
             $output = [

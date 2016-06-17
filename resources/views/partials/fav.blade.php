@@ -13,18 +13,17 @@
 	    display: inline-block;
 	    right: 0;
 	    float: right;
-	    border: solid #C52020;
 	    border-radius: 2px;
 	}
 
 	.button-favorite {
-		background: #f2f2f2;
-	    color: #C52020;
+		background: var(--bolt-hovr);;
+	    color: var(--bolt-dark);
 	}
 
 	.button-unfavorite {
-		background: #C52020;
-	    color: #F2F2F2;
+		background: var(--bolt-dark);;
+	    color: var(--bolt-hovr);
 	}
 
 </style>

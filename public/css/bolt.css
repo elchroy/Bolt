@@ -5,6 +5,16 @@ html {
   min-height: 100%;
 }
 
+:root {
+  --bolt-main: #f2f2f2; /* off-white */
+  --bolt-link: #98dafc; /*blue*/
+  --bolt-hovr: #daad86; /* brown */
+  --bolt-dark: #312c32; /* purple-grey */
+  --bolt-dele: #C52020; /* delete-grey */
+  --bolt-edit: #337abe; /* edit-grey */
+  --bolt-dark-trans: rgba(218, 173, 134, 0.4);
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: #312C32;
@@ -14,7 +24,7 @@ body {
 
 .bolt-logo {
   width: 100px;
-  background: #f2f2f2;
+  background: var(--bolt-main);
   border-radius: 2px;
 }
 
@@ -30,7 +40,7 @@ body {
 
 .header-badge{
   height: inherit;
-  background: #C52020;
+  background: var(--bolt-dele);
   border-radius: 1px;
 }
 
@@ -69,9 +79,9 @@ ul {
 	text-transform: uppercase;
 	outline: 0;
 	background: #312C32;
-	width: 100%;
+	/*width: 100%;*/
 	border: 0;
-	padding: 15px;
+	padding: 10px;
 	color: #FFFFFF;
 	font-size: 14px;
 	-webkit-transition: all 0.3 ease;
@@ -82,11 +92,12 @@ ul {
 .bolt-calling {
 	text-transform: uppercase;
 	outline: 0;
-	background: rgb(197, 32, 32);
+	background: var(--bolt-hovr);
 	width: 100%;
+  width: auto;
 	border: 0;
-	padding: 15px;
-	color: #FFFFFF;
+	padding: 10px;
+	color: var(--bolt-dark);
 	font-size: 14px;
 	-webkit-transition: all 0.3 ease;
 	transition: all 0.3 ease;
@@ -153,6 +164,7 @@ ul {
   right: 25px;
   z-index: 10;
   padding: 5px 10px;
+  color: var(--bolt-hovr);
 }
 
 .dropdown-menu {
@@ -202,10 +214,8 @@ body .bolt-section div.row {
 .video-group-title,
 .section-header {
     text-align: center;
-    background: #F2F2F2;
-    color: #C52020;
+    color: var(--bolt-dark);
     padding: 5px;
-    border-radius: 2px;
     font-weight: 100;
     font-weight: 100;
 }
@@ -233,17 +243,20 @@ ul.pagination {
 ul.pagination li.disabled span {
   border-radius: 0px;
 }
+
 ul.pagination li.active span {
   background: #312C32;
   border-radius: 0px;
-  border: 1px solid #312C32;
+  border: none;
   cursor: pointer;
   font-weight: bold;
 }
+
 ul.pagination li.active span:hover {
-  background: #C52020;
-  border: 1px solid #312C32;
-  cursor: pointer;
+  background: var(--bolt-dark);
+  color: var(--bolt-main);
+  border: none;
+  cursor: not-allowed;
 }
 
 ul.pagination li a{
@@ -251,12 +264,12 @@ ul.pagination li a{
 }
 
 ul.pagination li a:hover{
-  color: #FFFFFF;
-  background: #C52020;
+  background: var(--bolt-hovr);
+  color: var(--bolt-dark);
 }
 
 .bolt-presenter {
-  background: rgb(237, 185, 185);
+  background: var(--bolt-hovr);
   position: fixed;
   color: #312C32;
   z-index: 1999;
