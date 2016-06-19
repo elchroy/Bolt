@@ -16,9 +16,6 @@
 
                 <p>
                     <a class="link-info" href="{{ url('videos/add') }}"> <button class="bolt-calling">Upload</button></a>
-                </p>
-
-                <p>
                     <a class="link-info" href="{{ url('/videos') }}"> <button class="bolt-button">View Other Videos</button></a>
                 </p>
 

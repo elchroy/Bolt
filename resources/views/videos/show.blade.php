@@ -73,60 +73,63 @@
                     	<button class="bolt-button button-full" id="post-comment" type="submit">POST</button>
 					</form>
 				@else
-					<a href="{{ url('/login') }}"><button class="bolt-button bolt-calling">Login to comment</button></a>
+					<a href="{{ url('/login') }}"><button class="bolt-button bolt-calling center-block">Login to comment</button></a>
 	    		@endif
 
 		    	<div class="bolt-div" id="video-comments">
-		    		@foreach($comments as $comment)
+		    		@if($comments->count() > 0)
+			    		@foreach($comments as $comment)
 
-		    		<div class="maincontainer one-comment" id="single-comment-{{ $comment->id }}">
-					    <div class="leftcolumn commenter-info">
-					    	<img src="{{ $comment->user->getAvatar() }}" class="commenter-avatar img-responsive">
-					    </div>
-					 
-					    <div class="contentwrapper comment-body">
-					    	<p class="comment-text" id="comment-text-{{$comment->id}}">{{ $comment->comment }}</p>
-		    				<p class="comment-info">
-		    					<span class="comment-name truncate" id="comment-name-{{ $comment->id }}">{{ $comment->user->name }}</span>
-		    					<span class="comment-time" id="comment-time-{{ $comment->id }}">{{ $comment->commentedAt() }}</span>
-		    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span>
-								@if(Auth::user())
-									@if(Auth::user()->owns($comment))
-										<a href="#" title="Edit" class="pull-right comment-form-openers" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i></a>
-		    							<a href="#" title="Delete" class="pull-right comment-form-openers" comment="{{$comment->id}}" for="delete-comment-{{ $comment->id }}" id="open-delete-for-{{$comment->id}}"> <i class="fa fa-trash"></i></a>
+			    		<div class="maincontainer one-comment" id="single-comment-{{ $comment->id }}">
+						    <div class="leftcolumn commenter-info">
+						    	<img src="{{ $comment->user->getAvatar() }}" class="commenter-avatar img-responsive">
+						    </div>
+						 
+						    <div class="contentwrapper comment-body">
+						    	<p class="comment-text" id="comment-text-{{$comment->id}}">{{ $comment->comment }}</p>
+			    				<p class="comment-info">
+			    					<span class="comment-name truncate" id="comment-name-{{ $comment->id }}">{{ $comment->user->name }}</span>
+			    					<span class="comment-time" id="comment-time-{{ $comment->id }}">{{ $comment->commentedAt() }}</span>
+			    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span>
+									@if(Auth::user())
+										@if(Auth::user()->owns($comment))
+											<a href="#" title="Edit" class="pull-right comment-form-openers edit" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i></a>
+			    							<a href="#" title="Delete" class="pull-right comment-form-openers delete" comment="{{$comment->id}}" for="delete-comment-{{ $comment->id }}" id="open-delete-for-{{$comment->id}}"> <i class="fa fa-trash"></i></a>
+										@endif
 									@endif
+			    				</p>
+						    </div>
+						</div>
+							@if(Auth::user())
+								@if(Auth::user()->owns($comment))
+
+									<div class="col-md-12 comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
+				    					<form action="/comments/{{$comment->id}}" class="bolt-form" id="comment-edit-form-{{$comment->id}}" method="POST">
+											<input type="hidden" name="_token" id="edit-token" value="{{ csrf_token() }}">
+											<input type="hidden" name="_method" id="edit-method" value="patch">
+											<textarea name="comment" id="comment" placeholder="Edit a comment." maxlength="255" required>{{ $comment->comment }}</textarea>
+										      <span class="help-block">
+					                                <strong>{{ $errors->first('comment') }}</strong>
+					                            </span>
+					                    	<button class="button-full submit-comment-edit-buttons" comment="{{$comment->id}}" id="submit-comment-edit-{{$comment->id}}" type="submit">Update</button>
+										</form>
+				    				</div>
+
+				    				
+									<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
+				    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
+											<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
+											<input type="hidden" name="_method" id="delete-method" value="delete">
+											<div> Are you sure you want to delete this comment?</div>
+					                    	<button class="button-full submit-comment-delete-buttons" comment="{{$comment->id}}" id="submit-comment-delete-{{$comment->id}}" type="submit">Delete</button>
+										</form>
+				    				</div>
+
 								@endif
-		    				</p>
-					    </div>
-					</div>
-						@if(Auth::user())
-							@if(Auth::user()->owns($comment))
-
-								<div class="col-md-12 comment-forms fadeIn animated" hidden id="edit-comment-{{ $comment->id }}">
-			    					<form action="/comments/{{$comment->id}}" class="bolt-form" id="comment-edit-form-{{$comment->id}}" method="POST">
-										<input type="hidden" name="_token" id="edit-token" value="{{ csrf_token() }}">
-										<input type="hidden" name="_method" id="edit-method" value="patch">
-										<textarea name="comment" id="comment" placeholder="Edit a comment." maxlength="255" required>{{ $comment->comment }}</textarea>
-									      <span class="help-block">
-				                                <strong>{{ $errors->first('comment') }}</strong>
-				                            </span>
-				                    	<button class="button-full submit-comment-edit-buttons" comment="{{$comment->id}}" id="submit-comment-edit-{{$comment->id}}" type="submit">Update</button>
-									</form>
-			    				</div>
-
-			    				
-								<div class="col-md-12 comment-forms alert alert-warning fadeIn animated" hidden id="delete-comment-{{ $comment->id }}">
-			    					<form class="bolt-form" action="/comments/{{$comment->id}}" id="comment-delete-form-{{$comment->id}}" method="POST">
-										<input type="hidden" name="_token" id="delete-token" value="{{ csrf_token() }}">
-										<input type="hidden" name="_method" id="delete-method" value="delete">
-										<div> Are you sure you want to delete this comment?</div>
-				                    	<button class="button-full submit-comment-delete-buttons" comment="{{$comment->id}}" id="submit-comment-delete-{{$comment->id}}" type="submit">Delete</button>
-									</form>
-			    				</div>
-
 							@endif
-						@endif
-		    		@endforeach
+			    		@endforeach
+			    	@else
+					@endif
 		    	</div>
 	    	</div>
 	    </div>
@@ -142,12 +145,6 @@
 	}
 
 	.video-details-show {
-		background: #F2F2F2;
-    	border-radius: 2px;
-	}
-
-	.video-details-show {
-		background: #F2F2F2;
     	border-radius: 2px;
 	}
 
@@ -218,13 +215,21 @@
     	padding: 3px;
 	}
 
+	.comment-form-openers.edit {
+		color: var(--bolt-edit);
+	}
+
+	.comment-form-openers.delete {
+		color: var(--bolt-dele);
+	}
+
 	.comment-info {
 		font-weight: bold;
-		font-size: smaller;
+		font-size: x-small;
 		font-style: italic;
 		padding: 3px;
 		background: #f2f2f2;
-		color: #C52020;
+		color: var(--bolt-edit);
 	}
 
 	.comment-info span.comment-name {
@@ -232,6 +237,8 @@
 		color: #312C32;
 		font-size: larger;
 	}
+
+	#
 
 	.commenter-avatar {
 		width: 100%;

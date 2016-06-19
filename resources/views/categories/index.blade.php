@@ -143,7 +143,7 @@
 
 		#cat-select a:hover {
 			background: #FFFFFF;
-			color: #C52020;
+			color: var(--bolt-dark);
 		}
 
 	</style>

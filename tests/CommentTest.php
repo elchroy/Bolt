@@ -86,12 +86,12 @@ class CommentTest extends TestCase
 
         $this->actingAs($user)->call('PATCH', 'comments/1', ['_token' => csrf_token(), 'comment' => 'This is the updated comment.']);
 
-        $comment = Bolt\Comment::find(1);
-        $text = $comment->comment;
-        $this->assertEquals('This is the updated comment.', $text);
+        $comment = Bolt\Comment::find(1)->comment;
+        // $text = $comment->comment;
+        $this->assertEquals('This is the updated comment.', $comment);
     }
 
-    public function testCommentUpdateFails()
+    public function testCommentUpdateFails() // When user is not looged in.
     {
         $this->createTTModels();
 
@@ -112,6 +112,8 @@ class CommentTest extends TestCase
         $this->assertEquals(null, $comment);
     }
 
+    
+    // Very descriptive
     public function testCommentUserCommentedAt()
     {
         $this->createTTModels();
@@ -168,7 +170,7 @@ class CommentTest extends TestCase
 
         $this->assertEquals(1, $video->comments()->count());
 
-        $comments = $video->comments->toArray();
+        $comments = $video->comments->toArray(); // One line of code.
         $comment = $comments[0]['comment'];
 
         $this->assertEquals('This is the updated comment.', $comment);

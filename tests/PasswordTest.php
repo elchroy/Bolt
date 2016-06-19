@@ -40,12 +40,14 @@ class PasswordTest extends TestCase
 
     public function testArtisanInspire()
     {
+        // should go off
         $response = Artisan::call('inspire');
         $this->assertEquals(0, $response);
     }
 
     public function testBasicExample()
     {
+        // should go out.
         $this->createTTModels();
         $user = Bolt\User::find(1);
         $return = $this->visit('dashboard', ['title' => 'A new title'])

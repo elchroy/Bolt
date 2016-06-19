@@ -15,16 +15,16 @@
                     @include('videos.edit-video-form', $video)
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-sm-12">
-                    <img class="img-responsive video-image hidden-sm hidden-xs" title="{{ $video->title }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
+                    <img class="img-responsive video-image hidden-xs" title="{{ $video->title }}" src="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg" alt="http://img.youtube.com/vi/{{ $video->linkId() }}/2.jpg">
                     
-                    <div class="row">
-                        <div class="col-md-8">
+                    <div class="dele-section row">
+                        <div class="col-md-12">
+                            <button id="delete-video-button" class="bolt-button center-block"><i class="fa fa-trash fa-lg"></i></button>
+                        </div>
+                        <div class="col-md-12">
                             <div id="delete-video-form" class="video-forms" hidden>
                                 @include('videos.delete-video-form')
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <button id="delete-video-button" class="bolt-button button-half">Delete</button>
                         </div>
                     </div>
 
@@ -45,6 +45,26 @@
 <style type="text/css">
     .bolt-form {
         margin: 0px;
+    }
+
+    #delete-video-button {
+        width: auto;
+        background: #c30e0e;
+    }
+
+    #delete-video-form {
+        color: #8a6d3b;
+        background-color: var(--bolt-hovr);
+        border-color: #faebcc;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border: solid 1px;
+        margin: 0px;
+    }
+
+    #delete-video-form form {
+        background-color: #fcf8e3;
     }
 </style>
 

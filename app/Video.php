@@ -22,7 +22,7 @@ class Video extends Model
 
     public function linkId()
     {
-        $p = (explode('=', $this->url));
+        $p = explode('=', $this->url);
 
         return end($p);
     }
@@ -35,9 +35,8 @@ class Video extends Model
     public function urlHost()
     {
         preg_match('@^(?:http://)?(?:https://)?([^/]+)@i', $this->url, $matches);
-        $host = $matches[1];
 
-        return $host;
+        return $matches[1];
     }
 
     public function srcFrame()
@@ -60,5 +59,18 @@ class Video extends Model
         }));
 
         return $sibs;
+    }
+
+    public function deleteChildren()
+    {
+        foreach ($this->comments as $comment) {
+            $comment->delete();
+        }
+
+        foreach ($this->favorites as $favorite) {
+            $favorite->delete();
+        }
+
+        return $this;
     }
 }

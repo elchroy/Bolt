@@ -13,8 +13,9 @@ class FavoriteTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testFavorite()
+    public function testFavorit()
     {
+        // test the video that is being liked
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
@@ -26,6 +27,7 @@ class FavoriteTest extends TestCase
 
     public function testFavoriter()
     {
+        // test the person that liked a video
         $this->createTTModels();
 
         $user = Bolt\User::find(1);

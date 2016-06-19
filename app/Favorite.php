@@ -23,7 +23,8 @@ class Favorite extends Model
 
     public function favoriter()
     {
-        return $this->favoriter = $this->user;
+        return $this->user;
+        // return $this->favoriter = $this->user;
     }
 
     public function scopeLiked($query)

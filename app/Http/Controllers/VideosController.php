@@ -6,20 +6,46 @@ use Auth;
 use Bolt\Category;
 use Bolt\Video;
 use Illuminate\Http\Request;
+use Bolt\Http\Repositories\CategoryRepository as CatRepo;
+use Bolt\Http\Repositories\VideoRepository as VidRepo;
+use Bolt\Http\Repositories\CommentRepository as ComRepo;
 
 class VideosController extends Controller
 {
-    public function __construct(Request $request)
+    /**
+     * The category repo instance
+     * @var [type]
+     */
+    protected $catRepo;
+
+    /**
+     * The video repo instance.
+     * @var [type]
+     */
+    protected $vidRepo;
+
+    /**
+     * The comment repo instance.
+     * @var [type]
+     */
+    protected $comRepo;
+
+    /**
+     * The authenticated user instance.
+     * @var [type]
+     */
+    protected $user;
+
+    /**
+     * A video instance.
+     * @var [type]
+     */
+    protected $video;
+    
+    public function __construct(Request $request, CatRepo $catRepo, VidRepo $vidRepo, ComRepo $comRepo)
     {
-        // First confirm if the user is authenticated
-        $this->middleware('auth', ['only' => [
-            'add',
-            'createVideo',
-            'edit',
-            'updateVideo',
-            'deleteVideo',
-            'favorite',
-            'unfavorite',
+        $this->middleware('auth', [ 'except' => [
+            'index', 'show', 'search', 'check', 'createURL'
         ]]);
 
         // Next confirm that the requested video of given ID is available.
@@ -41,12 +67,22 @@ class VideosController extends Controller
             'createVideo',
             'updateVideo',
         ]]);
+
+        $this->catRepo = $catRepo;
+
+        $this->vidRepo = $vidRepo;
+
+        $this->comRepo = $comRepo;
+
+        $this->user = Auth::user();
+
+        $this->video = $this->vidRepo->findVideo($request->id);
     }
 
     public function index()
     {
-        $videos = Video::latest()->paginate(60);
-        $categories = Category::all();
+        $videos = $this->vidRepo->getLatest(60);
+        $categories = $this->catRepo->getAllCategories();
         $paging = $videos->render();
         $category = null;
         $title = 'All Videos';
@@ -54,13 +90,15 @@ class VideosController extends Controller
         return view('videos.index', compact('videos', 'categories', 'paging', 'title', 'category'));
     }
 
-    public function show(Request $request)
+    public function show()
     {
-        $video = Video::find($request->id);
-        $comments = $video->comments()->latest()->paginate(15);
-        $title = "$video->title";
+        $data = [
+            'video' => $this->video,
+            'title' => $this->video->title,
+            'comments' => $this->comRepo->getLatestComments(15),
+        ];
 
-        return view('videos.show', compact('video', 'comments', 'title'));
+        return view('videos.show', $data);
     }
 
     public function add()
@@ -74,43 +112,35 @@ class VideosController extends Controller
 
     public function createVideo(Request $request)
     {
-        $user = Auth::user();
 
         $data = $request->all();
         $data['url'] = $this->createURL($request->url);
 
-        $user->videos()->create($data);
+        $this->user->videos()->create($data);
 
         return redirect('dashboard');
     }
 
     public function edit(Request $request)
     {
-        $video = Video::find($request->id);
+        $data = [
+            'video' => $this->video,
+            'title' => $this->video->title,
+        ];
 
-        $title = "Edit $video->title";
-
-        return view('videos.edit', compact('video', 'title'));
+        return view('videos.edit', $data);
     }
 
     public function updateVideo(Request $request)
     {
-        $video = Video::find($request->id);
-
-        $video->update($request->all());
+        $this->video->update($request->all());
 
         return redirect()->to('dashboard');
     }
 
     public function deleteVideo(Request $request)
     {
-        $video = Video::find($request->id);
-
-        // First delete all Video's decendanta (comments and favorites)
-        $this->deleteChildrenOf($video);
-
-        // The delete the video.
-        $video->delete();
+        $this->video->deleteChildren()->delete();
 
         $request->session()->flash('success', 'Video Deleted');
 
@@ -122,8 +152,7 @@ class VideosController extends Controller
         $data = $request->all();
 
         $toSearch = $data['search'];
-        $condition = env('DB_CONNECTION') == 'pgsql' ? 'ILIKE' : 'LIKE';
-        $videos = Video::where('title', $condition, "%$toSearch%")->latest()->paginate(60);
+        $videos = $this->vidRepo->searchVids($toSearch, 60);
         $title = "Search results for '$toSearch'";
         $paging = $videos->appends(['search' => $toSearch])->links();
         $category = null;
@@ -133,12 +162,10 @@ class VideosController extends Controller
 
     public function favorite(Request $request)
     {
-        $video = Video::find($request->id);
-
-        $liked = $video->favorites()->liked()->first();
+        $liked = $this->video->favorites()->liked()->first();
 
         if ($liked == null) {
-            $liked = $video->favorites()->create([
+            $liked = $this->video->favorites()->create([
                         'user_id' => Auth::user()->id,
                     ]);
         }
@@ -159,9 +186,7 @@ class VideosController extends Controller
 
     public function unfavorite(Request $request)
     {
-        $video = Video::find($request->id);
-
-        $liked = $video->favorites()->liked()->first();
+        $liked = $this->video->favorites()->liked()->first();
 
         $liked->deactivate();
 
@@ -175,17 +200,6 @@ class VideosController extends Controller
         }
 
         return redirect()->back();
-    }
-
-    private function deleteChildrenOf(Video $video)
-    {
-        foreach ($video->comments as $comment) {
-            $comment->delete();
-        }
-
-        foreach ($video->favorites as $favorite) {
-            $favorite->delete();
-        }
     }
 
     public function check(Request $request)
