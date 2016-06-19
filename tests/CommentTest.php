@@ -112,7 +112,6 @@ class CommentTest extends TestCase
         $this->assertEquals(null, $comment);
     }
 
-    
     // Very descriptive
     public function testCommentUserCommentedAt()
     {

@@ -5,7 +5,6 @@ namespace Bolt\Http\Repositories;
 use Bolt\Favorite;
 use Bolt\Http\Controllers\Controller;
 use Bolt\Video;
-use Bolt\Category;
 
 class VideoRepository extends Controller
 {
