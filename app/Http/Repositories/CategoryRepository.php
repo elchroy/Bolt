@@ -2,8 +2,8 @@
 
 namespace Bolt\Http\Repositories;
 
-use Bolt\Http\Controllers\Controller;
 use Bolt\Category;
+use Bolt\Http\Controllers\Controller;
 
 class CategoryRepository extends Controller
 {

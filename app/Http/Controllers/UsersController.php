@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     /**
      * The authenticated user instance.
-     * 
+     *
      * @var [type]
      */
     protected $user;
@@ -45,7 +45,7 @@ class UsersController extends Controller
     public function edit()
     {
         $data = [
-            'user' => $this->user,
+            'user'  => $this->user,
             'title' => 'Edit Your Profile',
         ];
 

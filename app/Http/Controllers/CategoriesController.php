@@ -4,20 +4,22 @@ namespace Bolt\Http\Controllers;
 
 use Auth;
 use Bolt\Category;
-use Bolt\User;
 use Bolt\Http\Repositories\CategoryRepository as CatRepo;
+use Bolt\User;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
     /**
      * The authenticated user instance.
+     *
      * @var [type]
      */
     protected $user;
 
     /**
      * The category repository instance.
+     *
      * @var [type]
      */
     protected $catRepo;
@@ -62,7 +64,7 @@ class CategoriesController extends Controller
     {
         $data = [
             'categories' => $this->catRepo->getCatByOrder(),
-            'title' => 'All Categories',
+            'title'      => 'All Categories',
         ];
 
         return view('categories.index', $data);
@@ -89,9 +91,9 @@ class CategoriesController extends Controller
 
         $data = [
             'category' => $this->category,
-            'videos' => $videos,
-            'paging' => $paging,
-            'title' => $this->category->name,
+            'videos'   => $videos,
+            'paging'   => $paging,
+            'title'    => $this->category->name,
         ];
 
         return view('videos.index', $data);
@@ -101,7 +103,7 @@ class CategoriesController extends Controller
     {
         $data = [
             'category' => $this->category,
-            'title' => "Edit Category - $this->category->name",
+            'title'    => "Edit Category - $this->category->name",
         ];
 
         return view('categories.edit', $data);

@@ -4,13 +4,14 @@ namespace Bolt\Http\Controllers;
 
 use Auth;
 use Bolt\Comment;
-use Illuminate\Http\Request;
 use Bolt\Http\Repositories\CommentRepository as ComRepo;
+use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
     /**
      * The authenticated user instance.
+     *
      * @var [type]
      */
     protected $user;

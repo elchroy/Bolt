@@ -48,7 +48,7 @@ class UserTest extends TestCase
             ->visit('/dashboard')
             ->seePageIs('dashboard');
     }
-    
+
     public function testUserLoginFails()
     {
         $page = $this->visit('/login')
@@ -56,8 +56,7 @@ class UserTest extends TestCase
                         ->type('teacher', 'password')
                         ->press('Login')
                         ->seePageIs('login')
-                        ->see('These credentials do not match our records.')
-                        ;
+                        ->see('These credentials do not match our records.');
     }
 
     public function testUserSocialLogin()
