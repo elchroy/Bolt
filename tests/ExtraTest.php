@@ -1,26 +1,26 @@
 <?php
 
-
 class ExtraTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test the home page of the application.
      *
      * @return void
      */
-    public function testExample()
+    public function testBasicExample()
     {
-        $this->assertTrue(true);
+        $this->visit('/')
+            ->see('Bolt');
     }
 
-    public function testModelAvailabilityMiddleWare()
+    public function testModelAvailabilityMiddleWareWhenModelIDIsNotAvailable()
     {
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
 
         $this->actingAs($user)
-                ->visit('videos/1200')
-                ->see(404);
+            ->visit('videos/1200')
+            ->see(404);
     }
 }

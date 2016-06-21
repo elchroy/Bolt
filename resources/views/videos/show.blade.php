@@ -21,7 +21,7 @@
 				    		<div id="video-extra">
 				    			<h5> <strong> </strong> <span class=""> {{ $video->description }} </span> </h5>
 					    		<h5> <strong> Category: </strong> <a href="{{ url('categories/' . $video->category->id) }}"> <i class="devicon-{{ strtolower($video->category->name) }}-plain colored"></i> {{ $video->category->name }}</a></h5>
-					    		<h6> <strong> Owner: </strong>{{ $video->user->name }}</h6>
+					    		<h6 class="video-user"> <strong> Owner: </strong>{{ $video->user->name }}</h6>
 					    		<h6> <strong> At: </strong>{{ $video->created_at->diffForHumans() }}</h6>
 				    		</div>
 				    			

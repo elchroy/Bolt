@@ -26,6 +26,7 @@
                     <li id="search-list">
                         <form class="bolt-form" method="GET" action="{{ url('videos/search') }}" id="search-form">
                             <input class="" required id="search-videos" value="{{ $toSearch or null }}" name="search" placeholder="Search..." autocomplete="off" autofocus="autofocus" type="search">
+                            <button id="submit-search" type="submit" hidden> <i class="fa fa-search"> </i> </button>
                         </form>
                     </li>
 
