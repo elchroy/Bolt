@@ -4,48 +4,53 @@ namespace Bolt\Http\Controllers;
 
 use Auth;
 use Bolt\Category;
+use Bolt\Http\Repositories\CategoryRepository as CatRepo;
+use Bolt\Http\Repositories\CommentRepository as ComRepo;
+use Bolt\Http\Repositories\VideoRepository as VidRepo;
 use Bolt\Video;
 use Illuminate\Http\Request;
-use Bolt\Http\Repositories\CategoryRepository as CatRepo;
-use Bolt\Http\Repositories\VideoRepository as VidRepo;
-use Bolt\Http\Repositories\CommentRepository as ComRepo;
 
 class VideosController extends Controller
 {
     /**
-     * The category repo instance
+     * The category repo instance.
+     *
      * @var [type]
      */
     protected $catRepo;
 
     /**
      * The video repo instance.
+     *
      * @var [type]
      */
     protected $vidRepo;
 
     /**
      * The comment repo instance.
+     *
      * @var [type]
      */
     protected $comRepo;
 
     /**
      * The authenticated user instance.
+     *
      * @var [type]
      */
     protected $user;
 
     /**
      * A video instance.
+     *
      * @var [type]
      */
     protected $video;
-    
+
     public function __construct(Request $request, CatRepo $catRepo, VidRepo $vidRepo, ComRepo $comRepo)
     {
-        $this->middleware('auth', [ 'except' => [
-            'index', 'show', 'search', 'check', 'createURL'
+        $this->middleware('auth', ['except' => [
+            'index', 'show', 'search', 'check', 'createURL',
         ]]);
 
         // Next confirm that the requested video of given ID is available.
@@ -93,8 +98,8 @@ class VideosController extends Controller
     public function show()
     {
         $data = [
-            'video' => $this->video,
-            'title' => $this->video->title,
+            'video'    => $this->video,
+            'title'    => $this->video->title,
             'comments' => $this->comRepo->getLatestComments(15),
         ];
 
@@ -112,7 +117,6 @@ class VideosController extends Controller
 
     public function createVideo(Request $request)
     {
-
         $data = $request->all();
         $data['url'] = $this->createURL($request->url);
 
