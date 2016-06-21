@@ -194,6 +194,7 @@
 		min-height: 50px;
 		border-bottom: #f2f2f2 solid 2px;
 	}
+
 	.leftcolumn.commenter-info {
 	    float:left;
 	    width: 100%;
@@ -201,6 +202,12 @@
 		padding: 0;
 		width: 15%;
 	}
+
+	.leftcolumn.commenter-info img {
+		max-height: 80px;
+		margin: 0 2px;
+	}
+
 	.contentwrapper {
 	    float:right;
 	    width:80%;

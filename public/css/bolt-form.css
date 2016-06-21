@@ -75,7 +75,12 @@ select {
 }
 
 .button-half {
-  width: auto;
+  width: auto !important;
+  min-width: 10%;
+  float: right;
+  background: var(--bolt-hovr) !important;
+  color: var(--bolt-dark) !important;
+  border-radius: 2px;
 }
 .bolt-form button:hover,.bolt-form button:active,.bolt-form button:focus {
   background: rgb(98, 94, 99);
