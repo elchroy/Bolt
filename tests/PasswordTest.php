@@ -3,23 +3,13 @@
 
 class PasswordTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
-
     public function testForgotPassword()
     {
-        $page = $this->visit('password/reset')
-                    ->see('Reset Password')
-                    ->see('E-Mail Address')
-                    ->type('royaldaddy@example.com', 'email')
-                    ->press('Send Password Reset Link');
+        $this->visit('password/reset')
+            ->see('Reset Password')
+            ->see('E-Mail Address')
+            ->type('royaldaddy@example.com', 'email')
+            ->press('Send Password Reset Link');
     }
 
     public function testPasswordEmailReset()
@@ -32,28 +22,9 @@ class PasswordTest extends TestCase
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
-        $response = $this->actingAs($user)->visit('password/reset')
-                        ->seePageIs('/');
+        $response = $this->actingAs($user)->visit('password/reset')->seePageIs('/');
+        
         $this->assertResponseStatus(200);
         $this->assertResponseOk();
-    }
-
-    public function testArtisanInspire()
-    {
-        // should go off
-        $response = Artisan::call('inspire');
-        $this->assertEquals(0, $response);
-    }
-
-    public function testBasicExample()
-    {
-        // should go out.
-        $this->createTTModels();
-        $user = Bolt\User::find(1);
-        $return = $this->visit('dashboard', ['title' => 'A new title'])
-             // ->seeJson([
-                 // 'created' => true,
-             // ])
-;
     }
 }

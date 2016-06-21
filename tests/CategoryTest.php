@@ -3,22 +3,12 @@
 
 class CategoryTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
-
     public function testCategoryCreate()
     {
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
-        $page = $this->actingAs($user)
+        $this->actingAs($user)
                 ->visit('/dashboard')
                 ->see('Add Category')
                 ->click('#add-category')
@@ -29,7 +19,7 @@ class CategoryTest extends TestCase
                 ->seePageIs('/dashboard')
                 ->see('PHP')
                 ->see('Created');
-        // dd($page);
+
         $category = Bolt\Category::find(2);
         $brief = $category->brief;
         $this->assertEquals('HyperText PreProcessor', $brief);
@@ -47,16 +37,16 @@ class CategoryTest extends TestCase
 
         $user = Bolt\User::find(1);
         $this->actingAs($user)
-                ->visit('/dashboard')
-                ->see('Add Category')
-                ->click('add-category')
-                ->seePageIs('categories/add')
-                ->type('', 'name')
-                ->type('', 'brief')
-                ->press('Add')
-                ->seePageIs('categories/add')
-                ->see('The brief field is required.')
-                ->see('The name field is required.');
+            ->visit('/dashboard')
+            ->see('Add Category')
+            ->click('add-category')
+            ->seePageIs('categories/add')
+            ->type('', 'name')
+            ->type('', 'brief')
+            ->press('Add')
+            ->seePageIs('categories/add')
+            ->see('The brief field is required.')
+            ->see('The name field is required.');
     }
 
     public function testCategoryEdit()
@@ -64,17 +54,17 @@ class CategoryTest extends TestCase
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
-        $category = Bolt\Category::find(1);
+
         $this->actingAs($user)
-                ->visit('/categories/1/edit')
-                ->see('Edit Category')
-                ->see('MsDotNet')
-                ->type('MsDotNetV2', 'name')
-                ->type('MicroSoft Network Version 2.', 'brief')
-                ->press('Update')
-                ->seePageIs('/dashboard')
-                ->see('MsDotNetV2')
-                ->see('Updated');
+            ->visit('/categories/1/edit')
+            ->see('Edit Category')
+            ->see('MsDotNet')
+            ->type('MsDotNetV2', 'name')
+            ->type('MicroSoft Network Version 2.', 'brief')
+            ->press('Update')
+            ->seePageIs('/dashboard')
+            ->see('MsDotNetV2')
+            ->see('Updated');
 
         $category = Bolt\Category::find(1);
         $brief = $category->brief;
@@ -90,6 +80,7 @@ class CategoryTest extends TestCase
     public function testCategoryEditWrongOwner()
     {
         $this->createTTModels();
+
         factory(Bolt\Category::class)->create([
             'name'    => 'PHP',
             'user_id' => 2,
@@ -105,26 +96,25 @@ class CategoryTest extends TestCase
 
     public function testCategoryEditValidationFails()
     {
-        // This tests is for update failure. The same problem with including the validation for the update category function.method.
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
+        
         $this->actingAs($user)
-                ->visit('categories/1/edit')
-                ->see('Edit Category')
-                ->see('MsDotNet')
-                ->see('This section deals with lessons on MsDotNet.')
-                ->type('', 'name')
-                ->type('', 'brief')
-                ->press('Update')
-                ->seePageIs('categories/1/edit')
-                ->see('The brief field is required.')
-                ->see('The name field is required.');
+            ->visit('categories/1/edit')
+            ->see('Edit Category')
+            ->see('MsDotNet')
+            ->see('This section deals with lessons on MsDotNet.')
+            ->type('', 'name')
+            ->type('', 'brief')
+            ->press('Update')
+            ->seePageIs('categories/1/edit')
+            ->see('The brief field is required.')
+            ->see('The name field is required.');
     }
 
     public function testCategoryEditValidationFailsDuplicate()
     {
-        // This tests is for update failure. The same problem with including the validation for the update category function.method.
         $this->createTTModels();
 
         factory(Bolt\Category::class)->create([
@@ -133,17 +123,17 @@ class CategoryTest extends TestCase
         ]);
 
         $user = Bolt\User::find(1);
-        $page = $this->actingAs($user)
-                ->visit('categories/1/edit')
-                ->see('Edit Category')
-                ->see('MsDotNet')
-                ->see('This section deals with lessons on MsDotNet.')
-                ->type('PHP', 'name')
-                ->type('', 'brief')
-                ->press('Update')
-                ->seePageIs('categories/1/edit')
-                ->see('The brief field is required.')
-                ->see('The name has already been taken.');
+        $this->actingAs($user)
+            ->visit('categories/1/edit')
+            ->see('Edit Category')
+            ->see('MsDotNet')
+            ->see('This section deals with lessons on MsDotNet.')
+            ->type('PHP', 'name')
+            ->type('', 'brief')
+            ->press('Update')
+            ->seePageIs('categories/1/edit')
+            ->see('The brief field is required.')
+            ->see('The name has already been taken.');
     }
 
     public function testCategoryShow()
@@ -165,6 +155,7 @@ class CategoryTest extends TestCase
         ]);
 
         $user = Bolt\User::find(1);
+
         $this->actingAs($user)->visit('/categories')
             ->see('PHP')
             ->see('MsDotNet');
@@ -181,12 +172,4 @@ class CategoryTest extends TestCase
         $this->assertEquals($user, $catUser);
         $this->assertEquals(1, $category->numberOfVideos());
     }
-
-    // public function testCategoryCreate();
-
-    // public function testCategoryCreate();
-
-    // public function testCategoryCreate();
-
-    // public function testCategoryCreate();
 }

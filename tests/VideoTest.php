@@ -3,72 +3,68 @@
 
 class VideoTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
 
-    public function testVideoIndex()
+    const AJAX_VIDEO_FAV = '{"status":"success","message":"Done"}';
+
+    const AJAX_VIDEO_UNFAV = '{"status":"success","message":"Done"}';
+
+    public function testVideoIndexViewForAllVideos()
     {
-        $category = $this->createCategory();
+        $this->createTTModels();
+
         $this->visit('/videos')
-            ->seePageIs('videos');
-            // ->see('MsDotNet');
+            ->seePageIs('videos')
+            ->see('MsDotNet');
     }
 
     public function testVideoShowWithoutAuthUser()
     {
         $this->createVideo();
         $this->visit('videos/1')
-                // ->see('roy')
-                // ->see('A Introduction to MsDotNet')
-;
-        // $this->countElements('.video-user', 1);
+            ->see('roy')
+            ->see('MsDotNet')
+            ->see('A Introduction to MsDotNet');
+
+        $this->countElements('.video-user', 1);
     }
 
-    public function testAddVideoLinkFailsForNoAuth()
+    public function testAddVideoLinkFailsForNoAuthenticatedUser()
     {
-        $page = $this->visit('videos/add')
-                    ->seePageIs('login');
+        $this->visit('videos/add')->seePageIs('login');
     }
 
     public function testAddVideoSucceeds()
     {
         $user = $this->createUser();
-        $category = $this->createCategory();
-        $page = $this->actingAs($user)
-                    ->visit('videos/add')
-                    ->seePageIs('videos/add')
-                    ->type('A new title', 'title')
-                    ->type('https://www.youtube.com/watch?v=3oT9PQcFZKc', 'url')
-                    ->type('A new description', 'description')
-                    ->select(1, 'category_id')
-                    ->press('Add')
-                    ->seePageIs('dashboard')
-                    // ->see('A new title')
-;
+        $this->createCategory();
+        $this->actingAs($user)
+            ->visit('videos/add')
+            ->seePageIs('videos/add')
+            ->type('A new title', 'title')
+            ->type('https://www.youtube.com/watch?v=3oT9PQcFZKc', 'url')
+            ->type('A new description', 'description')
+            ->select(1, 'category_id')
+            ->press('Add')
+            ->seePageIs('dashboard')
+            ->see('A new title');
     }
 
-    public function testAddVideoValidatorFails()
+    public function testAddVideoValidatorFailsForEmptyFields()
     {
         $user = $this->createUser();
-        $category = $this->createCategory();
-        $page = $this->actingAs($user)
-                    ->visit('videos/add')
-                    ->seePageIs('videos/add')
-                    ->type('', 'title')
-                    ->type('', 'url')
-                    ->type('', 'description')
-                    ->select('', 'category_id')
-                    ->press('Add')
-                    ->seePageIs('videos/add')
-                    // ->see('A new title')
-;
+        $this->createCategory();
+        $this->actingAs($user)
+            ->visit('videos/add')
+            ->seePageIs('videos/add')
+            ->type('', 'title')
+            ->type('', 'url')
+            ->type('', 'description')
+            ->select('', 'category_id')
+            ->press('Add')
+            ->seePageIs('videos/add')
+            ->see('The description field is required.')
+            ->see('The category id field is required.')
+            ->see('The url field is required.');
     }
 
     public function testVideoEditPage()
@@ -76,54 +72,51 @@ class VideoTest extends TestCase
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
-        $page = $this->actingAs($user)
-                ->visit('videos/1/edit')
-                ->see('A Introduction to MsDotNet')
-                ->see('This is an introduction to the Microsoft DotNet Framework. It is very powerful.')
-                ->type('This is the updated description.', 'description')
-                ->select(1, 'category_id')
-                ->see('Save')
-                ->press('Save')
-                ->seePageIs('dashboard');
-        $video = Bolt\Video::find(1);
-        $this->assertEquals('This is the updated description.', $video->description);
+
+        $this->actingAs($user)
+            ->visit('videos/1/edit')
+            ->see('A Introduction to MsDotNet')
+            ->see('This is an introduction to the Microsoft DotNet Framework. It is very powerful.')
+            ->type('This is the updated description.', 'description')
+            ->select(1, 'category_id')
+            ->see('Save')
+            ->press('Save')
+            ->seePageIs('dashboard');
+
+        $this->assertEquals('This is the updated description.', Bolt\Video::find(1)->description);
     }
 
     public function testEditVideoLinkFailsForNoAuth()
     {
-        $page = $this->visit('videos/1/edit')
-                    ->seePageIs('login');
+        $this->visit('videos/1/edit')->seePageIs('login');
     }
 
     public function testEditVideoLinkFailsForWrongOwner()
     {
         $this->createTTModels();
-
-        factory(Bolt\User::class)->create([
-            'id'   => 100,
-        ]);
+        factory(Bolt\User::class)->create(['id' => 100]);
 
         $user = Bolt\User::find(100);
 
-        $page = $this->actingAs($user)
-                    ->visit('videos/1/edit')
-                    ->seePageIs('dashboard');
+        $this->actingAs($user)
+            ->visit('videos/1/edit')
+            ->seePageIs('dashboard');
     }
 
-    public function testVideoDelete()
+    public function testVideoDeleteIsSuccessful()
     {
         $this->createTTModels();
         $video = Bolt\Video::find(1);
         $this->createFavoriteFor($video);
 
         $user = Bolt\User::find(1);
-        $page = $this->actingAs($user)
-                ->visit('videos/1/edit')
-                ->press('submit-delete-form')
-                ->seePageIs('dashboard')
-                ->see('Video Deleted');
+        
+        $this->actingAs($user)
+            ->visit('videos/1/edit')
+            ->press('submit-delete-form')
+            ->seePageIs('dashboard')
+            ->see('Video Deleted');
 
-        // $this->assertSessionHas('success', 'Please Login.');
         $this->countElements('.delete_video', 0);
         $video = Bolt\Video::find(1);
         $this->assertEquals(null, $video);
@@ -132,13 +125,13 @@ class VideoTest extends TestCase
     public function testVideoSearch()
     {
         $this->createVideo();
-        $response = $this->call('GET', 'videos/search', ['search' => 'Introdu'])
+        $response = $this->call('GET', 'videos/search', ['search' => 'Introdu']);
 
-        // $this->visit('/videos')
-                // ->type('Introdu', 'search')
-                // ->press("Search")
-                // ->seePageIs('/videos')
-                // ->see()
+        $this->visit('/videos')
+            ->type('Introdu', 'search')
+            ->press("submit-search")
+            ->seePageIs('/videos/search?search=Introdu')
+            ->see('Introduction to MsDotNet')
 ;
         $this->assertEquals(200, $response->status());
     }
@@ -149,14 +142,14 @@ class VideoTest extends TestCase
 
         $user = Bolt\User::find(1);
         $video = Bolt\Video::find(1);
-        $page = $this->actingAs($user)
-                ->visit('videos/1')
-                ->see('Like')
-                ->press('button-favorite')
-                ->seePageIs('videos/1')
-                ->see('Unfavorite');
-        $status = $user->favors($video);
-        $this->assertEquals(1, $status);
+        $this->actingAs($user)
+            ->visit('videos/1')
+            ->see('Like')
+            ->press('button-favorite')
+            ->seePageIs('videos/1')
+            ->see('Unfavorite');
+        
+        $this->assertEquals(1, $user->favors($video));
     }
 
     public function testVideoUnLike()
@@ -166,14 +159,13 @@ class VideoTest extends TestCase
 
         $user = Bolt\User::find(1);
         $video = Bolt\Video::find(1);
-        $page = $this->actingAs($user)
-                ->visit('videos/1')
-                // ->see('Unlike')
-                ->press('button-unfavorite')
-                ->seePageIs('videos/1')
-                ->see('Like');
-        $status = $user->favors($video);
-        $this->assertEquals(0, $status);
+        $this->actingAs($user)
+            ->visit('videos/1')
+            ->press('button-unfavorite')
+            ->seePageIs('videos/1')
+            ->see('Like');
+
+        $this->assertEquals(0, $user->favors($video));
     }
 
     public function testVideoFavoriteWithAjax()
@@ -188,11 +180,11 @@ class VideoTest extends TestCase
 
         $jsonResponse = $response->content();
 
-        $this->assertEquals('{"status":"success","message":"Done"}', $jsonResponse);
+        $this->assertEquals( SELF::AJAX_VIDEO_FAV , $jsonResponse);
         $this->assertEquals(200, $response->status());
 
-        $favorite = Bolt\Favorite::find(1);
-        $status = $favorite->status;
+        $status = Bolt\Favorite::find(1)->status;
+        
         $this->assertEquals(1, $status);
         $this->assertTrue(1 == $status);
     }
@@ -210,11 +202,11 @@ class VideoTest extends TestCase
 
         $jsonResponse = $response->content();
 
-        $this->assertEquals('{"status":"success","message":"Done"}', $jsonResponse);
+        $this->assertEquals(SELF::AJAX_VIDEO_UNFAV, $jsonResponse);
         $this->assertEquals(200, $response->status());
 
-        $favorite = Bolt\Favorite::find(1);
-        $status = $favorite->status;
+        $status = Bolt\Favorite::find(1)->status;
+        
         $this->assertEquals(0, $status);
         $this->assertTrue(0 == $status);
     }
