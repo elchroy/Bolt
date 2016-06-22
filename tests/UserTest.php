@@ -51,7 +51,7 @@ class UserTest extends TestCase
             ->visit('/dashboard')
             ->seePageIs('dashboard');
     }
-    
+
     public function testUserLoginFailsWhenThereIsNoUserWithTheCredentials()
     {
         $this->visit('/login')
@@ -96,7 +96,7 @@ class UserTest extends TestCase
             ->attach($uploadedFile, 'file')
             ->press('change-avatar')
             ->seePageIs('dashboard');
-        
+
         $this->assertResponseStatus(200);
     }
 

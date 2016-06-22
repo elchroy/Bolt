@@ -21,7 +21,7 @@ class FavoriteTest extends TestCase
 
         $user = Bolt\User::find(1);
         $video = Bolt\Video::find(1);
-        
+
         $favorite = $this->createFavoriteFor($video);
         $favOwner = $favorite->favoriter();
 

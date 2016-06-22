@@ -8,7 +8,7 @@ class CommentTest extends TestCase
     const AJAX_EDIT_RETURN = '{"status":"success","time":"1 second ago","edited":null}';
 
     /**
-     * Constant. Return string of an AJAX call to delete a comment
+     * Constant. Return string of an AJAX call to delete a comment.
      */
     const AJAX_DELETE_RETURN = '{"status":"success"}';
 
@@ -75,7 +75,7 @@ class CommentTest extends TestCase
         ]);
 
         $user = Bolt\User::find(1);
-        
+
         $this->assertEquals(2, $user->comments()->get()->count());
     }
 
@@ -97,7 +97,7 @@ class CommentTest extends TestCase
         $this->call('PATCH', 'comments/1', ['_token' => csrf_token(), 'comment' => 'This is the updated comment.']);
 
         $comment = Bolt\Comment::find(1);
-        
+
         $this->assertEquals('Very nice introduction to the MS-Dot-Net Framework.', Bolt\Comment::find(1)->comment);
     }
 

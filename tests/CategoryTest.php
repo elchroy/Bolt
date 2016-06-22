@@ -99,7 +99,7 @@ class CategoryTest extends TestCase
         $this->createTTModels();
 
         $user = Bolt\User::find(1);
-        
+
         $this->actingAs($user)
             ->visit('categories/1/edit')
             ->see('Edit Category')

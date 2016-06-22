@@ -23,7 +23,7 @@ class PasswordTest extends TestCase
 
         $user = Bolt\User::find(1);
         $response = $this->actingAs($user)->visit('password/reset')->seePageIs('/');
-        
+
         $this->assertResponseStatus(200);
         $this->assertResponseOk();
     }

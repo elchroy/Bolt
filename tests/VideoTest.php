@@ -3,7 +3,6 @@
 
 class VideoTest extends TestCase
 {
-
     const AJAX_VIDEO_FAV = '{"status":"success","message":"Done"}';
 
     const AJAX_VIDEO_UNFAV = '{"status":"success","message":"Done"}';
@@ -110,7 +109,7 @@ class VideoTest extends TestCase
         $this->createFavoriteFor($video);
 
         $user = Bolt\User::find(1);
-        
+
         $this->actingAs($user)
             ->visit('videos/1/edit')
             ->press('submit-delete-form')
@@ -129,10 +128,9 @@ class VideoTest extends TestCase
 
         $this->visit('/videos')
             ->type('Introdu', 'search')
-            ->press("submit-search")
+            ->press('submit-search')
             ->seePageIs('/videos/search?search=Introdu')
-            ->see('Introduction to MsDotNet')
-;
+            ->see('Introduction to MsDotNet');
         $this->assertEquals(200, $response->status());
     }
 
@@ -148,7 +146,7 @@ class VideoTest extends TestCase
             ->press('button-favorite')
             ->seePageIs('videos/1')
             ->see('Unfavorite');
-        
+
         $this->assertEquals(1, $user->favors($video));
     }
 
@@ -180,11 +178,11 @@ class VideoTest extends TestCase
 
         $jsonResponse = $response->content();
 
-        $this->assertEquals( SELF::AJAX_VIDEO_FAV , $jsonResponse);
+        $this->assertEquals(SELF::AJAX_VIDEO_FAV, $jsonResponse);
         $this->assertEquals(200, $response->status());
 
         $status = Bolt\Favorite::find(1)->status;
-        
+
         $this->assertEquals(1, $status);
         $this->assertTrue(1 == $status);
     }
@@ -206,7 +204,7 @@ class VideoTest extends TestCase
         $this->assertEquals(200, $response->status());
 
         $status = Bolt\Favorite::find(1)->status;
-        
+
         $this->assertEquals(0, $status);
         $this->assertTrue(0 == $status);
     }
