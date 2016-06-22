@@ -8,4 +8,4 @@ composer.lock
 public/uploads/banner.jpg
 /public/bootstrap
 colors
-.phpintel
+.phpintel/
