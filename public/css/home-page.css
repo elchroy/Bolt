@@ -100,7 +100,7 @@
 
 .hero .title a h2 {
     color: #312C32;
-    background: var(--bolt-main);
+    background: var(--bolt-hovr);
     border-radius: 2px;
     padding: 10px;
     text-align: center;
@@ -109,7 +109,7 @@
 
 .hero .title a:hover h2.login {
     color: var(--bolt-dark);
-    background: var(--bolt-hovr);
+    background: var(--bolt-link);
     border-radius: 2px;
     padding: 10px;
     text-align: center;

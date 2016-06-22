@@ -38,7 +38,6 @@
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
     .bolt-form {
         max-width: 500px;
-        /*border: 1px solid #f2f2f2;*/
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
     .bolt-form .register-form {
