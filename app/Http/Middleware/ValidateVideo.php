@@ -36,7 +36,7 @@ class ValidateVideo
     protected function validateVideo(array $data)
     {
         $messages = [
-            'yt_video' => 'A youtube video with the url, <b>'.$data['url'].'</br>, does not exist. Please enter a valid youtube video address.',
+            'yt_video' => 'A youtube video with the url , <strong><i>' . $data["url"] . '</i></strong>, does not exist. Please enter a valid youtube video address.',
         ];
 
         return Validator::make($data, [
