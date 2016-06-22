@@ -7,7 +7,7 @@ html {
 
 :root {
   --bolt-main: #f2f2f2; /* off-white */
-  --bolt-link: #98dafc; /*blue*/
+  --bolt-link: #faffbd; /* yellow */
   --bolt-hovr: #daad86; /* brown */
   --bolt-dark: #312c32; /* purple-grey */
   --bolt-dele: #C52020; /* delete-grey */
