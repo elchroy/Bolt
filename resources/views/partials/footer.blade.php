@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="copyright text-center">
-          {{ date('Y') }} Designed by <a href="http://github.com/andela-celisha-wigwe">Roy</a>.
+          {{ date('Y') }} Designed by <a href="http://github.com/andela-celisha-wigwe" target="_blank">Roy</a>.
         </p>
       </div>
     </div>
