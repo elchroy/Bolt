@@ -5,7 +5,7 @@ class CommentTest extends TestCase
     /**
      * Constant. Return string of an AJAX call to edit a comment.
      */
-    const AJAX_EDIT_RETURN = '{"status":"success","time":"1 second ago","edited":null}';
+    const AJAX_EDIT_RETURN = '{"status":"success","time":"3 seconds ago","edited":"| (edited)"}';
 
     /**
      * Constant. Return string of an AJAX call to delete a comment.
@@ -151,6 +151,8 @@ class CommentTest extends TestCase
     public function testCommentUpdateWithAjax()
     {
         $this->createTTModels();
+
+        sleep(3);
 
         $user = Bolt\User::find(1);
 

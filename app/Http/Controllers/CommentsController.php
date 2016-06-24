@@ -71,7 +71,7 @@ class CommentsController extends Controller
             $output = [
                 'status' => 'success',
                 'time'   => $comment->created_at->diffForHumans(),
-                'edited' => $comment->is_edited(),
+                'edited' => $comment->isEdited(),
 
             ];
 

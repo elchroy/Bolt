@@ -90,7 +90,7 @@
 			    				<p class="comment-info">
 			    					<span class="comment-name truncate" id="comment-name-{{ $comment->id }}">{{ $comment->user->name }}</span>
 			    					<span class="comment-time" id="comment-time-{{ $comment->id }}">{{ $comment->commentedAt() }}</span>
-			    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->is_edited() }}</span>
+			    					<span class="comment-edited" id="edited-{{$comment->id}}">{{ $comment->isEdited() }}</span>
 									@if(Auth::user())
 										@if(Auth::user()->owns($comment))
 											<a href="#" title="Edit" class="pull-right comment-form-openers edit" comment="{{$comment->id}}" for="edit-comment-{{ $comment->id }}" id="open-edit-for-{{$comment->id}}"> <i class="fa fa-edit"></i></a>
