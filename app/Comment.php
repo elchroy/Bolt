@@ -27,7 +27,7 @@ class Comment extends Model
         return $this->created_at->diffForHumans();
     }
 
-    public function is_edited()
+    public function isEdited()
     {
         return $this->created_at != $this->updated_at ? '| (edited)' : null;
     }
