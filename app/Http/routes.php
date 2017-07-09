@@ -1,11 +1,18 @@
 <?php
 
+use API\V1\VideosController as VideosAPI;
+
 // All the ID parameters will accept only recieve integer patterns.
 // All other patterns will return to an unfriendly 404 response.
 
 Route::get('/', 'PagesController@welcome');
 
 Route::auth();
+
+// API/V1
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::resource('/videos', VideosAPI::class);
+});
 
 // Rser Dashboard Route
 Route::get('/dashboard', 'PagesController@dashboard');
