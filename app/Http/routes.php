@@ -5,6 +5,9 @@
 
 Route::get('/', 'PagesController@welcome');
 
+Route::post('/stored_json', 'JsonController@storeJson');
+Route::get('/stored_json', 'JsonController@getStoredJson');
+
 Route::auth();
 
 // Rser Dashboard Route
