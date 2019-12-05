@@ -1,0 +1,45 @@
+.add-video-form,
+.edit-video-form {
+    /*line-height: 30px;*/
+    margin: 20px 0;
+    background: rgba(248, 249, 249, 0.5);
+    border-radius: 3px;
+    padding: 20px;
+    width: 100%;
+}
+
+
+
+.add-video-form div label,
+.edit-video-form div label {
+    font-weight: bolder;
+    text-align: left !important;
+} 
+
+
+.video-image {
+    width: 100%;
+}
+
+.close-delete-forms {
+	background: var(--bolt-dele);
+    padding: 1px 0;
+    margin: 0px;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.actions button {
+	width: 50%;
+	float: right;
+	padding: 10px 0;
+}
+
+.actions button.cancel {
+    background: var(--bolt-hovr);
+    color: var( --bolt-dark);
+}
+
+.actions button.confirm {
+}

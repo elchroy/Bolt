@@ -1,0 +1,234 @@
+.main-panel {
+        /*overflow: auto;*/
+        /*max-height: 100vh;*/
+    }
+    .sideforms .bolt-form {
+        padding: 10px 5px !important;
+        margin: 0 !important;
+        line-height: 80%; 
+    }
+
+    .title,max-height: {
+        width: auto;
+        display: inline-block;
+    }
+
+    .video-delete-form {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .video-delete-form form {
+        margin: 0px;
+    }
+
+    .video-delete-form form .alert {
+        border: solid 2px var(--bolt-hovr);
+        background: #F2F2F2;
+        color: #312C32;
+    }
+
+    .pagination ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    p#user-manage {
+        background: rgb(49, 44, 50);
+        color: #fff;
+        font-weight: bolder;
+        border-radius: 1px;
+
+    }
+
+    p#user-manage a {
+        color: #fff;
+        width: 100%;
+
+    }
+
+    p#user-manage span {
+        padding: 2px 1px;
+        border-radius: 2px;
+    }
+
+    p#user-manage span:hover {
+        color: var(--bolt-hovr);
+        text-decoration: underline;
+    }
+
+    .list-group-item {
+        font-size: 80%;
+        font-weight: bold;
+    }
+
+    p#user-manage i,
+    p#user-manage span {
+        cursor: pointer;
+        width: auto;
+    }
+
+    div.user-info:hover #user-manage-overlay {
+        opacity: 1;
+    }
+
+    /*div.user-info:hover #user-manage-overlay h3,*/
+    div.user-info:hover #user-manage-overlay button {
+        width: auto;
+    }
+
+    .bolt-puppy {
+        padding: 5px;
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    #user-sidebar {
+        border-radius: 3px;
+        padding: 5px;
+        display: block;
+    }
+
+    #user-sidebar h3,
+    #user-sidebar h4 {
+        text-align: center;
+    }
+
+    #user-sifdebar img {
+    }
+
+    .user-info img {
+        height: auto;
+        max-height: 250px;
+        border-radius: 2px;
+    }
+
+    .user-info div {
+        padding: 2px 3px;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 2px;
+    }
+
+    #user-sidebar .list-group {
+        background: transparent;
+        padding: 2px 15px;
+        margin-bottom: 0px;
+    }
+
+    #user-sidebar .list-group div {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .list-group .list-group-item:hover {
+        background: #312C32;
+        color: #fff;
+    }
+
+    .list-group .list-group-item {
+        background: #F2F2F2;
+        color: #312C32;
+        border-radius: 0px !important;
+        
+    }
+
+    ul.pagination li {
+        border: none;
+        border-radius: 0px;
+    }
+
+    ul.pagination li.active {
+        color: #fff;
+        background: #fff;
+    }
+
+    .user-info {
+        border-radius: 2px;
+        padding: 5px;
+        color: #fff;
+        background: #312C32;
+    }
+
+
+    .sideforms {
+        background: #fff;
+        padding: 10px;
+        margin: 2px;
+        border-radius: 3px;
+        display: block;
+        margin: 0px;
+        position: absolute;
+        border:solid 1px #312C32;
+        max-width: 300px;
+    }
+
+    .empty-collection {
+	    border-color: #312C32;
+	    border-radius: 1px;
+	    border: none;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size: 90%;
+    }
+
+    .user-badge, .add-badge {
+        background-color: var(--bolt-hovr) !important;
+        color: var(--bolt-dark);
+        border-radius: 3px !important;
+    }
+
+    .add-badge {
+        line-height: 3 !important;
+        cursor: pointer;
+    }
+
+    .image { 
+        position: relative; 
+        width: 100%; /* for IE 6 */
+    }
+
+    .image h3,
+    .image h4 { 
+        position: absolute; 
+        top: 200px; 
+        left: 0; 
+        width: 100%; 
+    }
+
+    .close-form {
+    	color: #FFFFFF;
+	    background: #312C32;
+	    opacity: 1;
+	    font-size: inherit;
+	    position: relative;
+	    z-index: 10;
+	    padding: 1px 10px;
+	    border-radius: 2px;
+	    margin-bottom: 2px;
+    }
+
+    .user-section {
+        
+    }
+
+    .delete-video-openers {
+        color: var(--bolt-dele);
+    }
+
+    .edit-video-openers {
+        color: #312c32;
+    }
+
+    .dash-section {
+        border: solid 1px var(--bolt-hovr);
+        border-radius: 2px;
+        margin-bottom: 10px;
+    }
+
+    .dash-section .video-group-title {
+        background: var(--bolt-hovr);
+        padding: 0;
+    }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace Bolt\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -24,11 +24,11 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            \Bolt\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Bolt\Http\Middleware\VerifyCsrfToken::class,
         ],
 
         'api' => [
@@ -44,10 +44,17 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth'       => \Bolt\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'can'        => \Illuminate\Foundation\Http\Middleware\Authorize::class,
+        'guest'      => \Bolt\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'video'      => \Bolt\Http\Middleware\ValidateVideo::class,
+        'avatar'     => \Bolt\Http\Middleware\ValidateAvatar::class,
+        'comment'    => \Bolt\Http\Middleware\ValidateComment::class,
+        'owner'      => \Bolt\Http\Middleware\CheckOwnership::class,
+        'category'   => \Bolt\Http\Middleware\ValidateCategory::class,
+        'available'  => \Bolt\Http\Middleware\ModelIsAvailable::class,
+        'userUpdate' => \Bolt\Http\Middleware\ValidateUserUpdate::class,
     ];
 }

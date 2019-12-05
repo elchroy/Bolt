@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace Bolt\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('yt_video', 'Bolt\Http\Middleware\ValidateVideo@videoExists');
     }
 
     /**

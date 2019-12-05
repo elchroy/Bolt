@@ -18,6 +18,8 @@
             <directory suffix=".php">./app</directory>
             <exclude>
                 <file>./app/Http/routes.php</file>
+                <file>app/Http/Controllers/Auth/AuthController.php</file>
+                <file>app/Http/Middleware/Authenticate.php</file>
             </exclude>
         </whitelist>
     </filter>
@@ -26,5 +28,11 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="test"/>
+        <env name="APP_CIPHER" value="AES-256-CBC"/>
+        <env name="APP_KEY" value="base64:PcF+yIj8hVIe9wCHUAQnwXYzj/qrrBQ1jNf75Uo0lxQ="/>
+        <env name="CLOUDINARY_CLOUD_NAME" value="dax1lcajn"/>
+        <env name="CLOUDINARY_API_KEY" value="724974163436624"/>
+        <env name="CLOUDINARY_API_SECRET" value="LEGPtwbA-YFzAbfRsbOSK4Dvodc"/>
     </php>
 </phpunit>

@@ -1,0 +1,16 @@
+#login-modes {
+    /*background: #5A565B;*/
+    padding: 50px;
+    border-radius: 4px;
+    /*background: rgba(255, 255, 255, 0.7) url('/../uploads/bg.png') repeat center top fixed;*/*/
+}
+
+.login-elements {
+    border-radius: 3px;
+    line-height: 30px;
+    width: 100%;
+}
+
+.bolt-button {
+    background: #98dafc;
+}

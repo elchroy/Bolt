@@ -1,0 +1,297 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+:root {
+  --bolt-main: #f2f2f2; /* off-white */
+  --bolt-link: #faffbd; /* yellow */
+  --bolt-hovr: #daad86; /* brown */
+  --bolt-dark: #312c32; /* purple-grey */
+  --bolt-dele: #C52020; /* delete-grey */
+  --bolt-edit: #337abe; /* edit-grey */
+  --bolt-dark-trans: rgba(218, 173, 134, 0.4);
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #312C32;
+  background: #fff url('/../uploads/bolt-skin.jpg') fixed repeat center;
+  background-size: cover;
+}
+
+.bolt-logo {
+  width: 100px;
+  background: var(--bolt-main);
+  border-radius: 2px;
+}
+
+#processor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: none;
+  width: auto;
+  background: rgb(242, 242, 242);
+  height: 30px;
+}
+
+.header-badge{
+  height: inherit;
+  background: var(--bolt-dele);
+  border-radius: 1px;
+}
+
+a:hover {
+
+  text-decoration: none;
+
+    -webkit-transition: all .3s ease-in 0s;
+       -moz-transition: all .3s ease-in 0s;
+        -ms-transition: all .3s ease-in 0s;
+         -o-transition: all .3s ease-in 0s;
+            transition: all .3s ease-in 0s;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+.bolt-div {
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	max-width: 400px;
+	margin: 0 auto 100px;
+	padding: 40px;
+	color-profile: none;
+	color: #312C32 !important;
+}
+
+.bolt-button {
+	text-transform: uppercase;
+	outline: 0;
+	background: #312C32;
+	/*width: 100%;*/
+	border: 0;
+	padding: 10px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.bolt-calling {
+	text-transform: uppercase;
+	outline: 0;
+	background: var(--bolt-hovr);
+	width: 100%;
+  width: auto;
+	border: 0;
+	padding: 10px;
+	color: var(--bolt-dark);
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.navbar-default {
+	background-color: #312c32;
+  border-color: transparent;
+  color: #fff;
+  margin: 0px;
+}
+
+.navbar-default a {
+	color: #fff;
+	
+}
+.navbar-nav li a {
+	font-weight: 300;
+    font-size: larger;
+    margin: 5px 5px;
+    padding: 10px;
+    border-radius: 1px;
+    color: #fff !important;
+}
+.navbar-nav li#avatar a {
+	margin: 5px 5px;
+    padding: 0px;
+}
+
+.navbar-brand {
+	font-weight: 300;
+    font-size: xx-large;
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover {
+    background: #FFFFFF !important;
+    color: #312C32 !important;
+}
+
+.navbar-nav li form {
+	margin: 0px !important;
+	background: transparent;
+	width: 100%;
+	padding: 0px 10px;
+    margin-top: 10px !important;
+}
+.navbar-nav li form input#search-videos {
+	background: inherit;
+  border: none;
+  display: block;
+  height: 30px;
+  padding: 0px;
+}
+
+.container {
+  width: 90%;
+}
+
+#back-top {
+  bottom: 20px;
+  position: fixed;
+  right: 25px;
+  z-index: 10;
+  padding: 5px 10px;
+  color: var(--bolt-hovr);
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+li.open a.dropdown-toggle {
+	background: #FFFFFF !important;
+	color: #312C32 !important;
+}
+
+.dropdown-menu li a{
+    margin: 0;
+    background: #312C32;
+}
+
+.dropdown-menu li {
+    font-size: 80%;
+}
+
+#navbar-avatar {
+  max-height: 45px;
+  max-width: 75px;
+}
+
+body .bolt-welcome {
+  margin-top: 70px;
+}
+
+
+body .bolt-section {
+  margin: 70px 20px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+
+body .bolt-section div.row {
+  padding: 10px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-group-title,
+.section-header {
+    text-align: center;
+    color: var(--bolt-dark);
+    padding: 5px;
+    font-weight: 100;
+    font-weight: 100;
+}
+.video-group-title h2,
+.section-header h2{
+  margin: 0px;
+}
+
+.section-body {
+  padding: 0 20px;
+}
+
+.pagination-div {
+  width: 100%;
+  display: block;
+}
+
+ul.pagination {
+  border: none;
+  margin: 0px;
+  width: 100%;
+  float: right;
+}
+
+ul.pagination li.disabled span {
+  border-radius: 0px;
+}
+
+ul.pagination li.active span {
+  background: #312C32;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+ul.pagination li.active span:hover {
+  background: var(--bolt-dark);
+  color: var(--bolt-main);
+  border: none;
+  cursor: not-allowed;
+}
+
+ul.pagination li a{
+  color: #312C32;
+}
+
+ul.pagination li a:hover{
+  background: var(--bolt-hovr);
+  color: var(--bolt-dark);
+}
+
+.bolt-presenter {
+  background: var(--bolt-hovr);
+  position: fixed;
+  color: #312C32;
+  z-index: 1999;
+  width: 100%;
+  display: block;
+  top: 50px;
+  text-align: center;
+  font-size: large;
+  font-weight: 400;
+  border-bottom: solid 1px #312C32;
+}
+.bolt-presenter p {
+  margin: 0px;
+  padding: 3px;
+}
+
+.bolt-presenter .alert {
+  margin: 0px;
+  border-radius: 1px;
+  background: #f2f2f2;
+}
+
+.link-info {
+  text-align: center;
+}

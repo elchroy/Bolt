@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Bolt\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Auth;
+use Bolt\Http\Controllers\Controller;
+use Bolt\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Socialite;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -28,7 +31,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new authentication controller instance.
@@ -43,30 +46,128 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
 
     /**
+     * Redirect the user to the Social authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider(Request $request)
+    {
+        $link = $request->link;
+
+        return Socialite::driver($link)->redirect();
+    }
+
+    /**
+     * Obtain the user information from Socail Network.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback(Request $request)
+    {
+        $link = $request->link;
+        try {
+            $user = Socialite::driver($link)->user();
+        } catch (Exception $e) {
+            return redirect("auth/$link");
+        }
+
+        if ($link === 'twitter') {
+            $user->email = $user->id.time().'@twitter.com';
+        }
+
+        return $this->continueHandling($user, $link, $request);
+    }
+
+    private function continueHandling($user, $link, Request $request)
+    {
+        $authUser = $this->findOrCreateSocialUser($user, $link);
+
+        if ($authUser) {
+            Auth::login($authUser, true);
+
+            return redirect('dashboard');
+        }
+
+        $request->session()->flash('error', "There is a problem with this account on the $link network. Ensure that your name and email are public.");
+
+        return redirect()->back();
+    }
+
+    /**
+     * Return user if exists; create and return if it doesn't.
+     *
+     * @param $socialUser
+     *
+     * @return User
+     */
+    private function findOrCreateSocialUser($socialUser, $socialLink)
+    {
+        if ($authUser = User::where('social_id', $socialUser->id)->first()) {
+            return $authUser;
+        }
+
+        $data = [
+            'name'        => is_null($socialUser->name) ? time().'-Bolt' : $socialUser->name,
+            'email'       => is_null($socialUser->email) ? $socialUser->id.time().'@bolt.net' : $socialUser->email,
+            'social_id'   => $socialUser->id,
+            'social_link' => $socialLink,
+            'password'    => bcrypt('mybolt'),
+            'avatar'      => $socialUser->avatar,
+        ];
+
+        $validator = $this->validateSocialUser($data);
+
+        if ($validator->fails()) {
+            return false;
+        }
+
+        return User::create($data);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validateSocialUser(array $data)
+    {
+        return Validator::make($data, [
+            'name'      => 'required|max:255',
+            'email'     => 'required|unique:users',
+            'social_id' => 'required|unique:users',
+            'avatar'    => 'required|unique:users',
         ]);
     }
 }
